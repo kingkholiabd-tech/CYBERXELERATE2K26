@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Events from './components/Events';
-import Timeline from './components/Timeline';
+import Timeline from './components/EventTimeline';
 import Guidelines from './components/Guidelines';
 import Contact from './components/Contact';
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Trophy, Zap } from 'lucide-react';
+// import { Trophy, Zap } from 'lucide-react';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -61,7 +61,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex items-center justify-center gap-8 mb-8">
+        {/* <div className="flex items-center justify-center gap-8 mb-8">
           <motion.div
             initial={{ x: -100, opacity: 0, rotate: -45 }}
             animate={{ x: 0, opacity: 1, rotate: 0 }}
@@ -84,7 +84,7 @@ export default function Home() {
           >
             <Zap className="w-16 h-16 text-blue-500" strokeWidth={1.5} />
           </motion.div>
-        </div>
+        </div> */}
 
         <motion.h1
           className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
@@ -185,13 +185,13 @@ export default function Home() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+        {/* <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
           <motion.div
             className="w-1 h-2 bg-white/60 rounded-full"
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-        </div>
+        </div> */}
       </motion.div>
     </section>
   );

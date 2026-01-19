@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code, Brain, Palette, Rocket, Database, Shield } from 'lucide-react';
+import { Code, Brain, Palette, Rocket, Gamepad2Icon, Gamepad } from 'lucide-react';
 
 const events = [
   {
@@ -12,41 +12,41 @@ const events = [
   },
   {
     icon: Brain,
-    title: 'Innovation Arena',
+    title: 'Capture The Flag',
     description: 'Present groundbreaking ideas and innovative solutions. Pitch your vision and compete for recognition in this showcase of creative thinking.',
-    category: 'Innovation',
+    category: 'Technical',
     color: 'from-purple-500 to-purple-600',
     posterUrl: '#',
   },
   {
     icon: Palette,
-    title: 'Design Duel',
+    title: 'Vibe Code',
     description: 'UI/UX designers face off in a timed challenge to create stunning, user-centric designs that push the boundaries of digital aesthetics.',
-    category: 'Design',
+    category: 'Technical',
     color: 'from-blue-500 to-blue-600',
     posterUrl: '#',
   },
   {
     icon: Rocket,
-    title: 'Startup Showdown',
+    title: 'Pitch Perfect',
     description: 'Entrepreneurs present their business ideas, compete for investor attention, and demonstrate their ability to turn concepts into reality.',
-    category: 'Business',
+    category: 'Technical',
     color: 'from-cyan-500 to-cyan-600',
     posterUrl: '#',
   },
   {
-    icon: Database,
+    icon: Gamepad2Icon,
     title: 'Data Derby',
     description: 'Data scientists and analysts compete to extract meaningful insights from complex datasets, proving their analytical supremacy.',
-    category: 'Analytics',
+    category: 'Non Technical',
     color: 'from-orange-500 to-orange-600',
     posterUrl: '#',
   },
   {
-    icon: Shield,
-    title: 'Security Sprint',
+    icon: Gamepad,
+    title: 'Cyber Clash',
     description: 'Cybersecurity experts engage in capture-the-flag challenges, testing their skills in penetration testing and defensive strategies.',
-    category: 'Security',
+    category: 'Non Technical',
     color: 'from-green-500 to-green-600',
     posterUrl: '#',
   },
@@ -152,7 +152,7 @@ export default function Events() {
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -164,7 +164,7 @@ export default function Events() {
               <span className="font-bold text-white">Pro Tip:</span> Participate in multiple events to maximize your experience and showcase diverse skills
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

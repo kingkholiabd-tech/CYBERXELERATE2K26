@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-// import { Trophy, Zap } from 'lucide-react';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -32,7 +31,7 @@ export default function Home() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" />
         <motion.div
           className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-r from-red-950/40 to-transparent"
           initial={{ x: -100, opacity: 0 }}
@@ -56,36 +55,9 @@ export default function Home() {
           animate={{ y: [-100, window.innerHeight + 100] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1.5 }}
         />
-      </div>
-
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* <div className="flex items-center justify-center gap-8 mb-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0, rotate: -45 }}
-            animate={{ x: 0, opacity: 1, rotate: 0 }}
-            transition={{ duration: 1, type: "spring" }}
-          >
-            <Trophy className="w-16 h-16 text-red-500" strokeWidth={1.5} />
-          </motion.div>
-
-          <motion.div
-            className="h-32 w-1 bg-gradient-to-b from-red-500 via-white to-blue-500"
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-
-          <motion.div
-            initial={{ x: 100, opacity: 0, rotate: 45 }}
-            animate={{ x: 0, opacity: 1, rotate: 0 }}
-            transition={{ duration: 1, type: "spring" }}
-          >
-            <Zap className="w-16 h-16 text-blue-500" strokeWidth={1.5} />
-          </motion.div>
-        </div> */}
-
         <motion.h1
           className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
           initial={{ y: 50, opacity: 0 }}
@@ -185,13 +157,6 @@ export default function Home() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        {/* <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-          <motion.div
-            className="w-1 h-2 bg-white/60 rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div> */}
       </motion.div>
     </section>
   );

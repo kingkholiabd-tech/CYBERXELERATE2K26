@@ -43,7 +43,7 @@ export default function Navbar() {
             className="text-xl font-bold bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
-            EL CLÁSICO
+            R.M.K College of Engineering and Technology  
           </motion.div>
 
           <div className="hidden md:flex space-x-1">

@@ -234,8 +234,8 @@ const contactInfo = [
   },
   {
     title: 'Student Coordinator',
-    name: 'Mr. Aswanth Babu',
-    phone: '+91 91509 08828',
+    name: 'Mr Pritto Ruban.R ',
+    phone: '+91 96291 69076',
   },
 ];
 

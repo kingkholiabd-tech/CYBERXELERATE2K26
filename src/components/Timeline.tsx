@@ -199,7 +199,7 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 
-export function TimelineDemo() {
+export function Timeline() {
   const data = [
     {
       title: "2024",

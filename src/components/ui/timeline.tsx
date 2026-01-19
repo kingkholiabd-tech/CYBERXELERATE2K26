@@ -17,7 +17,7 @@ export function Timeline({ data }: TimelineProps) {
       <div className="flex flex-col items-center">
         <div className="w-4 h-4 bg-blue-500 rounded-full" />
         {index < data.length - 1 && (
-          <div className="w-0.5 h-16 bg-gray-600 mt-2" />
+          <div className="w-0.5 h-16 bg-purple-500 mt-2" />
         )}
       </div>
 

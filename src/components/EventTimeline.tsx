@@ -1,5 +1,6 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
+import { motion } from "framer-motion";
 
 export default function EventTimeline() {
   const data = [
@@ -68,14 +69,31 @@ export default function EventTimeline() {
   ];
 
   return (
-    <section id="timeline" className="relative w-full bg-black py-16">
+    <section id="timeline" className="relative w-full  py-16">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
+       <motion.div
+          className="text-center mb-16"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="inline-block mb-4"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, type: "spring" }}
+          >
+            <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
           Event Timeline
         </h2>
-        <p className="text-center text-gray-400 mb-12">
+          <p className="text-center text-gray-400 mb-12">
           A day of excellence, competition, and celebration
         </p>
+        </motion.div>
 
         <Timeline data={data} />
       </div>

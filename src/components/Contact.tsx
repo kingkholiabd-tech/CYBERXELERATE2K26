@@ -382,7 +382,7 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-gray-400">
-            © 2026 All rights reserved.
+            &copy; 2026 All rights reserved.
           </p>
         </motion.div>
       </div>

@@ -46,7 +46,7 @@ const timelineEvents = [
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="relative min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <section id="timeline" className="relative min-h-screen py-10 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
           className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 via-purple-500 to-blue-500"

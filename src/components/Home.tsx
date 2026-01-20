@@ -142,10 +142,11 @@
 
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import bgVideo from '../assets/rmcfvsfcb.mp4';
 import { EncryptedText } from './ui/encrypted-text';
+
 
 
 const NAVBAR_HEIGHT = 80; // must match navbar height
@@ -206,14 +207,13 @@ export default function Home() {
       <div className="relative z-20 max-w-6xl mx-auto px-4 text-center">
 
         {/* Main Title with Encrypted Reveal */}
-        <h1 className="font-extrabold mb-6 text-7xl">
+        <h1 className="font-extrabold mb-6 text-7xl bg-gradient-to-r from-red-700/80 via-none to-blue-700/80 bg-clip-text">
           <EncryptedText
             text="WELCOME TO EL CLÁSICO"
             encryptedClassName="text-gray-600"
-            revealedClassName="bg-gradient-to-r from-red-700/80 via-none  to-blue-700/80 bg-clip-text text-transparent"
+            revealedClassName="text-transparent"
             revealDelayMs={40}
             startDelay={300}
-            className="bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text"
           />
         </h1>
 
@@ -240,7 +240,7 @@ export default function Home() {
         </p>
 
         {/* ⏳ COUNTDOWN */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-16 max-w-2xl mx-auto">
+        <div className="grid grid-cols-2  sm:grid-cols-4 gap-16 max-w-2xl mx-auto">
           {[
             { label: 'DAYS', value: timeLeft.days },
             { label: 'HOURS', value: timeLeft.hours },
@@ -249,10 +249,21 @@ export default function Home() {
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-xl bg-black/60 backdrop-blur-md border border-white/10 p-4"
+              className="rounded-xl bg-black/60  backdrop-blur-md border border-white/10 p-4"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-                {String(item.value).padStart(2, '0')}
+              <div className="relative h-12 sm:h-14 md:h-16 flex items-center justify-center overflow-hidden">
+                <AnimatePresence mode="popLayout">
+                  <motion.div
+                    key={item.value}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -30, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white absolute"
+                  >
+                    {String(item.value).padStart(2, '0')}
+                  </motion.div>
+                </AnimatePresence>
               </div>
               <div className="text-xs tracking-wider text-gray-400 mt-1">
                 {item.label}

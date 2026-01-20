@@ -303,7 +303,7 @@ import { Badge } from "@/components/ui/badge";
 const events = [
   {
     icon: Code,
-    title: "Code Combat",
+    title: "Binary Derby",
     slug: "code-combat",
     description:
       "An intense coding competition where developers battle through algorithmic challenges.",
@@ -321,7 +321,7 @@ const events = [
   },
   {
     icon: Palette,
-    title: "Vibe Code",
+    title: "Vibathon",
     slug: "vibe-code",
     description:
       "UI/UX designers face off to create stunning, user-centric designs.",
@@ -330,7 +330,7 @@ const events = [
   },
   {
     icon: Rocket,
-    title: "Pitch Perfect",
+    title: "Project Explosion",
     slug: "pitch-perfect",
     description:
       "Entrepreneurs pitch innovative ideas to impress judges and investors.",
@@ -367,7 +367,7 @@ export default function Events() {
     >
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl font-bold text-center text-white mb-16">
-          Competition Events
+          Legends Arena
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -388,7 +388,7 @@ export default function Events() {
                   >
                     <event.icon className="text-white" size={28} />
                   </div>
-                  <Badge className="text-white bg-white/10 border-white/20">
+                  <Badge className="text-white  bg-white/10 border-white/20">
                     {event.category}
                   </Badge>
                 </CardHeader>
@@ -401,7 +401,7 @@ export default function Events() {
                     {event.description}
                   </CardDescription>
 
-                  <div className="mt-6 flex items-center justify-between">
+                  <div className="mt-6 flex items-center  justify-between">
                     <span className="text-xs text-gray-400">
                       Click to view details
                     </span>

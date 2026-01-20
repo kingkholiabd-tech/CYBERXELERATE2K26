@@ -177,6 +177,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import bgVideo from '../assets/rmcfvsfcb.mp4';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -223,7 +224,7 @@ export default function Home() {
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
       >
-        <source src="/rmcfvsfcb.mp4" type="video/mp4" />
+        <source src={bgVideo} type="video/mp4" />
       </video>
 
       {/* 🎨 Overlays */}

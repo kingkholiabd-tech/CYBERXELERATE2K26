@@ -169,9 +169,136 @@
 //     </section>
 //   );
 // }
+
+// import { motion } from "framer-motion";
+// import { Code, Brain, Palette, Rocket, Gamepad2Icon, Gamepad } from "lucide-react";
+// import { useNavigate } from "react-router-dom";
+
+// const events = [
+//   {
+//     icon: Code,
+//     title: "Code Combat",
+//     slug: "code-combat",
+//     description:
+//       "An intense coding competition where developers battle through algorithmic challenges.",
+//     category: "Technical",
+//     color: "from-red-500 to-red-600",
+//   },
+//   {
+//     icon: Brain,
+//     title: "Capture The Flag",
+//     slug: "ctf",
+//     description:
+//       "Cybersecurity challenge testing real-world attack and defense skills.",
+//     category: "Technical",
+//     color: "from-purple-500 to-purple-600",
+//   },
+//   {
+//     icon: Palette,
+//     title: "Vibe Code",
+//     slug: "vibe-code",
+//     description:
+//       "UI/UX designers face off to create stunning, user-centric designs.",
+//     category: "Technical",
+//     color: "from-blue-500 to-blue-600",
+//   },
+//   {
+//     icon: Rocket,
+//     title: "Pitch Perfect",
+//     slug: "pitch-perfect",
+//     description:
+//       "Entrepreneurs pitch innovative ideas to impress judges and investors.",
+//     category: "Technical",
+//     color: "from-cyan-500 to-cyan-600",
+//   },
+//   {
+//     icon: Gamepad2Icon,
+//     title: "Data Derby",
+//     slug: "data-derby",
+//     description:
+//       "Analyze datasets and extract powerful insights under pressure.",
+//     category: "Non Technical",
+//     color: "from-orange-500 to-orange-600",
+//   },
+//   {
+//     icon: Gamepad,
+//     title: "Cyber Clash",
+//     slug: "cyber-clash",
+//     description:
+//       "CTF-style hacking event testing penetration and defense skills.",
+//     category: "Non Technical",
+//     color: "from-green-500 to-green-600",
+//   },
+// ];
+
+// export default function Events() {
+//   const navigate = useNavigate();
+
+//   return (
+//     <section
+//       id="events"
+//       className="min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black"
+//     >
+//       <div className="max-w-7xl mx-auto px-6">
+//         <h2 className="text-5xl font-bold text-center text-white mb-16">
+//           Competition Events
+//         </h2>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//           {events.map((event, index) => (
+//             <motion.div
+//               key={event.slug}
+//               onClick={() => navigate(`/event/${event.slug}`)}
+//               className="cursor-pointer bg-black/60 border border-white/10 rounded-2xl p-6 hover:border-white/30"
+//               initial={{ y: 40, opacity: 0 }}
+//               whileInView={{ y: 0, opacity: 1 }}
+//               transition={{ delay: index * 0.1 }}
+//               whileHover={{ scale: 1.05 }}
+//             >
+//               <div
+//                 className={`p-3 inline-block rounded-xl bg-gradient-to-br ${event.color} mb-4`}
+//               >
+//                 <event.icon className="text-white" size={28} />
+//               </div>
+
+//               <h3 className="text-2xl font-bold text-white mb-2">
+//                 {event.title}
+//               </h3>
+
+//               <p className="text-gray-400 mb-4">{event.description}</p>
+
+//               <span
+//                 className={`inline-block px-3 py-1 text-xs rounded-full bg-gradient-to-r ${event.color} text-white`}
+//               >
+//                 {event.category}
+//               </span>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 import { motion } from "framer-motion";
-import { Code, Brain, Palette, Rocket, Gamepad2Icon, Gamepad } from "lucide-react";
+import {
+  Code,
+  Brain,
+  Palette,
+  Rocket,
+  Gamepad2Icon,
+  Gamepad,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const events = [
   {
@@ -243,34 +370,47 @@ export default function Events() {
           Competition Events
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event, index) => (
             <motion.div
               key={event.slug}
               onClick={() => navigate(`/event/${event.slug}`)}
-              className="cursor-pointer bg-black/60 border border-white/10 rounded-2xl p-6 hover:border-white/30"
+              className="cursor-pointer"
               initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
             >
-              <div
-                className={`p-3 inline-block rounded-xl bg-gradient-to-br ${event.color} mb-4`}
-              >
-                <event.icon className="text-white" size={28} />
-              </div>
+              <Card className="bg-black/70 border-white/10 hover:border-white/30 hover:shadow-lg transition-all duration-300">
+                <CardHeader className="flex items-center justify-between">
+                  <div
+                    className={`p-3 rounded-xl bg-gradient-to-br ${event.color} shadow-md`}
+                  >
+                    <event.icon className="text-white" size={28} />
+                  </div>
+                  <Badge className="text-white bg-white/10 border-white/20">
+                    {event.category}
+                  </Badge>
+                </CardHeader>
 
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {event.title}
-              </h3>
+                <CardContent className="pt-4">
+                  <CardTitle className="text-2xl text-white">
+                    {event.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-400 mt-2">
+                    {event.description}
+                  </CardDescription>
 
-              <p className="text-gray-400 mb-4">{event.description}</p>
-
-              <span
-                className={`inline-block px-3 py-1 text-xs rounded-full bg-gradient-to-r ${event.color} text-white`}
-              >
-                {event.category}
-              </span>
+                  <div className="mt-6 flex items-center justify-between">
+                    <span className="text-xs text-gray-400">
+                      Click to view details
+                    </span>
+                    <span className="text-xs text-white/80">
+                      →  
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>

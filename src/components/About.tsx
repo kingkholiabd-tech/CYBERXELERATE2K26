@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
+      className="relative min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden z-10 rounded-t-3xl"
     >
       {/* Background glow */}
       <div className="absolute inset-0 opacity-30">

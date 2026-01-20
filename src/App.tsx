@@ -43,11 +43,15 @@ import Contact from "./components/Contact";
 import EventDetails from "./components/EventDetails";
 import EventTimeline from "./components/EventTimeline";
 import Guidelines from "./components/Guidelines";
+import VideoBackground from "./components/VideoBackground";
 import "./index.css";
 
 function App() {
   return (
     <>
+      {/* Global Fixed Video Background */}
+      <VideoBackground />
+      
       <Navbar />
 
       <Routes>

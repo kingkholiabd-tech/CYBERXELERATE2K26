@@ -524,7 +524,7 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
         className="fixed top-0 left-0 w-full z-50 h-20 bg-gradient-to-b from-blue-950/90 via-blue-950/50 to-blue-950/1 bg-blur-lg backdrop-blur-sm"
       >
-        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-evenly">
+        <div className="max-w-8xl mx-auto px-4 h-full flex items-center justify-evenly">
           <div className="flex items-center gap-3">
           {/* LOGO */}
           <img src={RMKCET} alt="RMKCET Logo" className="h-10 sm:h-12" />
@@ -541,7 +541,7 @@ export default function Navbar() {
           </div>
 
           {/* RIGHT */}
-          <div className="flex items-center gap-3">
+          
             {/* DESKTOP NAV */}
             <div className="hidden lg:flex gap-2">
               {navItems.map((item) => (
@@ -566,7 +566,7 @@ export default function Navbar() {
                   <span className="relative z-10">{item}</span>
                 </motion.button>
               ))}
-            </div>
+           
 
             {/* POSTER */}
             <a

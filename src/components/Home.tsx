@@ -144,7 +144,6 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import bgVideo from '../assets/rmcfvsfcb.mp4';
 import { EncryptedText } from './ui/encrypted-text';
 
 
@@ -183,26 +182,8 @@ export default function Home() {
     <section
       id="home"
       style={{ paddingTop: NAVBAR_HEIGHT }}
-      className="relative min-h-screen flex items-center  justify-center overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center justify-center z-10"
     >
-      {/* 🎥 Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
-      >
-        <source src={bgVideo} type="video/mp4" />
-      </video>
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
-
-      {/* Gradient Sides */}
-      <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-red-950/50 to-transparent z-10" />
-      <div className="absolute right-0 inset-y-0 w-1/2 bg-gradient-to-l from-blue-950/50 to-transparent z-10" />
-
       {/* CONTENT */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 text-center">
 

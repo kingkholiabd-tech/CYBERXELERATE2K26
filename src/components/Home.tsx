@@ -205,13 +205,14 @@ export default function Home() {
 
         <motion.h1
           className="font-extrabold mb-6
-          text-[clamp(3rem,8vw,6rem)]
+          text-[clamp(3rem,8vw,5rem)]
           bg-gradient-to-r from-red-500 via-white to-blue-500
           bg-clip-text text-transparent"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          EL CLÁSICO
+          CyberXelerate 3.0
+          <p></p>
         </motion.h1>
 
         <motion.p

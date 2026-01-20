@@ -93,6 +93,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const eventsData = {
   "coding-contest": {
     poster: "Poster for Coding Contest",
+    formLink: "https://forms.gle/XXXXXXXXXX",
     rules: [
       "Rule 1: No plagiarism.",
       "Rule 2: Time limit 2 hours.",
@@ -106,6 +107,7 @@ const eventsData = {
   },
   "dance-competition": {
     poster: "Poster for Dance Competition",
+    formLink: "https://forms.gle/YYYYYYYYYY",
     rules: [
       "Rule 1: Maximum 5 members.",
       "Rule 2: No vulgar content.",
@@ -118,6 +120,7 @@ const eventsData = {
     ]
   }
 };
+
 
 export default function EventDetails() {
   const { slug } = useParams();
@@ -154,6 +157,18 @@ export default function EventDetails() {
         </ul>
       </div>
     </div>
+    <div className="mt-10 flex justify-center">
+  <a
+    href={event.formLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-10 py-4 rounded-full font-semibold
+               bg-gradient-to-r from-green-500 to-emerald-600
+               hover:scale-105 transition-transform"
+  >
+    Register Now
+  </a>
+</div>
 
     {/* Coordinators */}
     <div className="mt-10 flex justify-center">

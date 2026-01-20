@@ -7,17 +7,17 @@ import Timeline from './components/EventTimeline';
 import Guidelines from './components/Guidelines';
 import Contact from './components/Contact';
 
+
 function App() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
-
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
 
   return (
-    <div className="bg-black text-white overflow-x-hidden">
+    <div className="relative  text-white overflow-x-hidden">
       <Navbar />
       <div className="space-y-[3px]">
         <Home />

@@ -69,7 +69,7 @@ export default function EventTimeline() {
   ];
 
   return (
-    <section id="timeline" className="relative w-full  py-16">
+    <section id="timeline" className="relative w-full bg-black py-16">
       <div className="max-w-5xl mx-auto px-4">
        <motion.div
           className="text-center mb-16"

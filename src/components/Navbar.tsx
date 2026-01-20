@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import RMKCET from '../assets/RMKCET Logo.png';
 
 const navItems = ['Home', 'About', 'Events', 'Timeline', 'Guidelines', 'Contact'];
 
@@ -37,15 +38,17 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img src="" alt="" />
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <div className="flex items-center space-x-2 md:space-x-4">
+          <img src={RMKCET} alt="RMKCET Logo" className='h-[40px] md:h-[50px]' />
           <motion.div
-            // className="text-xl font-bold bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
+            className="text-sm md:text-lg lg:text-xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
-            R.M.K College of Engineering and Technology  
+            R.M.K College of Engineering and Technology
           </motion.div>
+        </div>
+        <div className="flex items-center justify-start h-16">
 
           <div className="hidden md:flex space-x-1">
             {navItems.map((item) => (

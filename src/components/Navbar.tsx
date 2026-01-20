@@ -522,23 +522,22 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 w-full z-50 h-20
-        bg-gradient-to-r from-[#0c1022] via-[#12163a] to-[#0c1022]
-        backdrop-blur-lg border-b border-white/10"
+        className="fixed top-0 left-0 w-full z-50 h-20 bg-gradient-to-b from-blue-950/90 via-blue-950/50 to-blue-950/1 bg-blur-lg backdrop-blur-sm"
       >
-        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-          
+        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-evenly">
+          <div className="flex items-center gap-3">
           {/* LOGO */}
           <img src={RMKCET} alt="RMKCET Logo" className="h-10 sm:h-12" />
 
           {/* CENTER TEXT */}
           <div className="hidden xl:flex flex-col text-center">
-            <h1 className="text-white font-semibold text-lg">
+            <h1 className="text-white font-bold text-lg">
               R.M.K College of Engineering and Technology
             </h1>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-400 font-semibold text-sm">
               Department of CSE (Cyber Security)
             </p>
+          </div>
           </div>
 
           {/* RIGHT */}
@@ -549,7 +548,7 @@ export default function Navbar() {
                 <motion.button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`relative px-4 py-2 rounded-full text-sm
+                  className={`relative px-4 py-2 rounded-full font-extrabold text-sm
                   ${
                     activeSection === item
                       ? "text-white"
@@ -561,7 +560,7 @@ export default function Navbar() {
                   {activeSection === item && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 bg-white/10 rounded-full border border-white/20"
+                      className="absolute ring-btn overflow-hidden inset-0 bg-black rounded-full border border-white/20"
                     />
                   )}
                   <span className="relative z-10">{item}</span>
@@ -571,13 +570,15 @@ export default function Navbar() {
 
             {/* POSTER */}
             <a
-              href="/event-poster.pdf"
-              target="_blank"
-              className="hidden sm:inline-flex px-4 py-2 rounded-full
-              bg-black text-white text-sm border border-white/20"
-            >
-              Event Poster
-            </a>
+  href="/event-poster.pdf"
+  target="_blank"
+  className="relative hidden sm:inline-flex px-4 py-2 rounded-full
+             text-white text-sm font-extrabold overflow-hidden
+             ring-btn"
+>
+  <span className="relative z-10">Event Poster</span>
+</a>
+
 
             {/* MOBILE MENU */}
             <button

@@ -66,3 +66,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.ring-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0.8px;
+  border-radius: 9999px;
+  background: conic-gradient(
+   
+    #6b00009c,
+    #a10101,
+    #8a0101,
+     #6d0202,
+    #1502bb,
+    #2600ff,
+    #011650,
+    #0c003f
+  );
+  animation: spin 10s linear infinite;
+}
+
+.ring-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0.8px;
+  border-radius: 9999px;
+  background: black; /* button inner background */
+  z-index: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1080deg);
+  }
+}

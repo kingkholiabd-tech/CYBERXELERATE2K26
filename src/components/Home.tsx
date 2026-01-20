@@ -145,6 +145,8 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import bgVideo from '../assets/rmcfvsfcb.mp4';
+import { EncryptedText } from './ui/encrypted-text';
+
 
 const NAVBAR_HEIGHT = 80; // must match navbar height
 
@@ -180,7 +182,7 @@ export default function Home() {
     <section
       id="home"
       style={{ paddingTop: NAVBAR_HEIGHT }}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center  justify-center overflow-hidden bg-black"
     >
       {/* 🎥 Background Video */}
       <video
@@ -203,32 +205,42 @@ export default function Home() {
       {/* CONTENT */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 text-center">
 
-        <motion.h1
-          className="font-extrabold mb-6
-          text-[clamp(3rem,8vw,6rem)]
-          bg-gradient-to-r from-red-500 via-white to-blue-500
-          bg-clip-text text-transparent"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-        >
-          EL CLÁSICO
-        </motion.h1>
+        {/* Main Title with Encrypted Reveal */}
+        <h1 className="font-extrabold mb-6 text-7xl">
+          <EncryptedText
+            text="WELCOME TO EL CLÁSICO"
+            encryptedClassName="text-gray-600"
+            revealedClassName="bg-gradient-to-r from-red-700/80 via-none  to-blue-700/80 bg-clip-text text-transparent"
+            revealDelayMs={40}
+            startDelay={300}
+            className="bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text"
+          />
+        </h1>
 
-        <motion.p
-          className="text-gray-300 mb-12 max-w-3xl mx-auto
-          text-base sm:text-lg md:text-xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          Where Excellence Meets Competition
-          <span className="block text-sm text-gray-400 mt-2">
-            A Symposium of Innovation, Rivalry & Intelligence
-          </span>
-        </motion.p>
+        {/* Subheading with Delayed Reveal */}
+        <p className="text-gray-300 mb-4 max-w-3xl mx-auto text-base sm:text-lg md:text-xl">
+          <EncryptedText
+            text="Where Excellence Meets Competition"
+            encryptedClassName="text-gray-700"
+            revealedClassName="text-gray-300"
+            revealDelayMs={35}
+            startDelay={1500}
+          />
+        </p>
+
+        {/* Tagline with Further Delay */}
+        <p className="text-sm text-gray-400 mb-12 max-w-3xl mx-auto">
+          <EncryptedText
+            text="A Symposium of Innovation, Rivalry & Intelligence"
+            encryptedClassName="text-gray-800"
+            revealedClassName="text-gray-400"
+            revealDelayMs={30}
+            startDelay={2500}
+          />
+        </p>
 
         {/* ⏳ COUNTDOWN */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-16 max-w-2xl mx-auto">
           {[
             { label: 'DAYS', value: timeLeft.days },
             { label: 'HOURS', value: timeLeft.hours },

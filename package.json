@@ -16,7 +16,7 @@
     "@supabase/supabase-js": "^2.57.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.27.1",
+    "framer-motion": "^12.27.5",
     "lucide-react": "^0.344.0",
     "motion": "^12.27.4",
     "react": "^18.3.1",

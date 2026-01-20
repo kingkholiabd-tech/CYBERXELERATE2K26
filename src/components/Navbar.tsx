@@ -128,3 +128,15 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+
+// import { useNavigate } from "react-router-dom";
+
+// export default function Navbar() {
+//   const navigate = useNavigate();
+
+//   return (
+//     <nav className="fixed top-0 w-full bg-black text-white p-4 z-50">
+//       <button onClick={() => navigate("/")}>Home</button>
+//     </nav>
+//   );
+// }

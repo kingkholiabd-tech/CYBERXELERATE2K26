@@ -430,7 +430,7 @@ import { Button } from "@/components/ui/button";
 
 const events = [
   {
-    title: "Binary Derby",
+    title: "CODE FC",
     slug: "code-combat",
     category: "Technical",
     description: "Battle through intense algorithmic challenges.",
@@ -439,7 +439,7 @@ const events = [
     color: "from-red-500 to-red-600",
   },
   {
-    title: "Hack Off CTF",
+    title: "H4CK_077 CTF",
     slug: "ctf",
     category: "Technical",
     description: "Real-world cybersecurity attack & defense challenges.",
@@ -448,7 +448,7 @@ const events = [
     color: "from-purple-500 to-purple-600",
   },
   {
-    title: "Vibathon",
+    title: "Vibe-A-thon",
     slug: "vibe-code",
     category: "Technical",
     description: "Design stunning UI/UX under time pressure.",
@@ -525,7 +525,7 @@ export default function Events() {
   const navigate = useNavigate();
 
   return (
-    <section className="min-h-screen py-24 bg-gradient-to-b from-black via-gray-900 to-black">
+    <section id="events" className="min-h-screen py-24 bg-gradient-to-b from-black via-gray-900 to-black">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}

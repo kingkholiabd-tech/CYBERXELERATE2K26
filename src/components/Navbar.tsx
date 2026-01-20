@@ -571,7 +571,7 @@ export default function Navbar() {
 
             {/* POSTER */}
             <a
-              href="/event-poster.pdf"
+              href="/Event Poster.pdf"
               target="_blank"
               className="hidden sm:inline-flex px-4 py-2 rounded-full
               bg-black text-white text-sm border border-white/20"

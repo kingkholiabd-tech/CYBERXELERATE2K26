@@ -1,8 +1,152 @@
+// 'use client';
+
+// import { motion } from 'framer-motion';
+// import { useState, useEffect } from 'react';
+// import bgVideo from '../assets/rmcfvsfcb.mp4';
+
+// export default function Home() {
+//   const [timeLeft, setTimeLeft] = useState({
+//     days: 0,
+//     hours: 0,
+//     minutes: 0,
+//     seconds: 0,
+//   });
+
+//   useEffect(() => {
+//     const targetDate = new Date('2026-02-09T09:00:00').getTime();
+
+//     const interval = setInterval(() => {
+//       const now = new Date().getTime();
+//       const difference = targetDate - now;
+
+//       if (difference <= 0) {
+//         clearInterval(interval);
+//         return;
+//       }
+
+//       setTimeLeft({
+//         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+//         hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+//         minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+//         seconds: Math.floor((difference % (1000 * 60)) / 1000),
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <section
+//       id="home"
+//       className="relative min-h-screen top-3 flex items-center justify-center overflow-hidden bg-black"
+//     >
+//       {/* 🔥 Background Video */}
+//       <video
+//         autoPlay
+//         loop
+//         muted
+//         playsInline
+//         preload="auto"
+//         className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+//       >
+//         <source src={bgVideo} type="video/mp4" />
+//       </video>
+
+//       {/* 🎨 Overlays */}
+//       <div className="absolute inset-0 z-10 bg-black/40" />
+
+//       <motion.div
+//         className="absolute left-0 top-0 bottom-0 w-1/2 z-10 bg-gradient-to-r from-red-950/50 to-transparent"
+//         initial={{ x: -120, opacity: 0 }}
+//         animate={{ x: 0, opacity: 1 }}
+//         transition={{ duration: 1 }}
+//       />
+
+//       <motion.div
+//         className="absolute right-0 top-0 bottom-0 w-1/2 z-10 bg-gradient-to-l from-blue-950/50 to-transparent"
+//         initial={{ x: 120, opacity: 0 }}
+//         animate={{ x: 0, opacity: 1 }}
+//         transition={{ duration: 1 }}
+//       />
+
+//       {/* ⚔️ Center Content */}
+//       <div className="relative z-20 max-w-7xl mx-auto px-4 text-center">
+//         <motion.h1
+//           className="text-6xl md:text-8xl font-extrabold mb-6 bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
+//           initial={{ y: 60, opacity: 0 }}
+//           animate={{ y: 0, opacity: 1 }}
+//           transition={{ duration: 0.8 }}
+//         >
+//           EL CLÁSICO
+//         </motion.h1>
+
+//         <motion.p
+//           className="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto"
+//           initial={{ y: 30, opacity: 0 }}
+//           animate={{ y: 0, opacity: 1 }}
+//           transition={{ duration: 0.8, delay: 0.3 }}
+//         >
+//           Where Excellence Meets Competition
+//           <span className="block text-base text-gray-400 mt-2">
+//             A Symposium of Innovation, Rivalry & Intelligence
+//           </span>
+//         </motion.p>
+
+//         {/* ⏳ Countdown */}
+//         <motion.div
+//           className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+//           initial={{ scale: 0.9, opacity: 0 }}
+//           animate={{ scale: 1, opacity: 1 }}
+//           transition={{ duration: 0.8, delay: 0.6 }}
+//         >
+//           {[
+//             { label: 'DAYS', value: timeLeft.days, color: 'from-red-500 to-red-600' },
+//             { label: 'HOURS', value: timeLeft.hours, color: 'from-purple-500 to-purple-600' },
+//             { label: 'MINUTES', value: timeLeft.minutes, color: 'from-blue-500 to-blue-600' },
+//             { label: 'SECONDS', value: timeLeft.seconds, color: 'from-cyan-500 to-cyan-600' },
+//           ].map((item, index) => (
+//             <motion.div
+//               key={item.label}
+//               className="relative rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 p-6"
+//               initial={{ y: 40, opacity: 0 }}
+//               animate={{ y: 0, opacity: 1 }}
+//               transition={{ delay: 0.8 + index * 0.1 }}
+//             >
+//               <div
+//                 className={`text-4xl md:text-6xl font-bold bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}
+//               >
+//                 {String(item.value).padStart(2, '0')}
+//               </div>
+//               <div className="mt-2 text-sm tracking-wider text-gray-400 font-semibold">
+//                 {item.label}
+//               </div>
+//             </motion.div>
+//           ))}
+//         </motion.div>
+
+//         {/* 📅 Date Badge */}
+//         <motion.div
+//           className="mt-12 inline-block px-8 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/20"
+//           initial={{ y: 30, opacity: 0 }}
+//           animate={{ y: 0, opacity: 1 }}
+//           transition={{ delay: 1.2 }}
+//         >
+//           <span className="text-white font-semibold">
+//             February 9, 2026 | 9:00 AM
+//           </span>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// }
+
 'use client';
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import bgVideo from '../assets/rmcfvsfcb.mp4';
+
+const NAVBAR_HEIGHT = 80; // must match navbar height
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -16,19 +160,16 @@ export default function Home() {
     const targetDate = new Date('2026-02-09T09:00:00').getTime();
 
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
+      const now = Date.now();
+      const diff = targetDate - now;
 
-      if (difference <= 0) {
-        clearInterval(interval);
-        return;
-      }
+      if (diff <= 0) return clearInterval(interval);
 
       setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
       });
     }, 1000);
 
@@ -38,103 +179,82 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="relative min-h-screen top-3 flex items-center justify-center overflow-hidden bg-black"
+      style={{ paddingTop: NAVBAR_HEIGHT }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* 🔥 Background Video */}
+      {/* 🎥 Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
       >
         <source src={bgVideo} type="video/mp4" />
       </video>
 
-      {/* 🎨 Overlays */}
-      <div className="absolute inset-0 z-10 bg-black/40" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-10" />
 
-      <motion.div
-        className="absolute left-0 top-0 bottom-0 w-1/2 z-10 bg-gradient-to-r from-red-950/50 to-transparent"
-        initial={{ x: -120, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
+      {/* Gradient Sides */}
+      <div className="absolute left-0 inset-y-0 w-1/2 bg-gradient-to-r from-red-950/50 to-transparent z-10" />
+      <div className="absolute right-0 inset-y-0 w-1/2 bg-gradient-to-l from-blue-950/50 to-transparent z-10" />
 
-      <motion.div
-        className="absolute right-0 top-0 bottom-0 w-1/2 z-10 bg-gradient-to-l from-blue-950/50 to-transparent"
-        initial={{ x: 120, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
+      {/* CONTENT */}
+      <div className="relative z-20 max-w-6xl mx-auto px-4 text-center">
 
-      {/* ⚔️ Center Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 text-center">
         <motion.h1
-          className="text-6xl md:text-8xl font-extrabold mb-6 bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent"
-          initial={{ y: 60, opacity: 0 }}
+          className="font-extrabold mb-6
+          text-[clamp(3rem,8vw,6rem)]
+          bg-gradient-to-r from-red-500 via-white to-blue-500
+          bg-clip-text text-transparent"
+          initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
         >
           EL CLÁSICO
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-gray-300 mb-12 max-w-3xl mx-auto
+          text-base sm:text-lg md:text-xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
         >
           Where Excellence Meets Competition
-          <span className="block text-base text-gray-400 mt-2">
+          <span className="block text-sm text-gray-400 mt-2">
             A Symposium of Innovation, Rivalry & Intelligence
           </span>
         </motion.p>
 
-        {/* ⏳ Countdown */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
+        {/* ⏳ COUNTDOWN */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {[
-            { label: 'DAYS', value: timeLeft.days, color: 'from-red-500 to-red-600' },
-            { label: 'HOURS', value: timeLeft.hours, color: 'from-purple-500 to-purple-600' },
-            { label: 'MINUTES', value: timeLeft.minutes, color: 'from-blue-500 to-blue-600' },
-            { label: 'SECONDS', value: timeLeft.seconds, color: 'from-cyan-500 to-cyan-600' },
-          ].map((item, index) => (
-            <motion.div
+            { label: 'DAYS', value: timeLeft.days },
+            { label: 'HOURS', value: timeLeft.hours },
+            { label: 'MINUTES', value: timeLeft.minutes },
+            { label: 'SECONDS', value: timeLeft.seconds },
+          ].map((item) => (
+            <div
               key={item.label}
-              className="relative rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 p-6"
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8 + index * 0.1 }}
+              className="rounded-xl bg-black/60 backdrop-blur-md border border-white/10 p-4"
             >
-              <div
-                className={`text-4xl md:text-6xl font-bold bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}
-              >
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
                 {String(item.value).padStart(2, '0')}
               </div>
-              <div className="mt-2 text-sm tracking-wider text-gray-400 font-semibold">
+              <div className="text-xs tracking-wider text-gray-400 mt-1">
                 {item.label}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* 📅 Date Badge */}
-        <motion.div
-          className="mt-12 inline-block px-8 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/20"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <span className="text-white font-semibold">
+        {/* 📅 DATE */}
+        <div className="mt-10 inline-block px-6 py-3 rounded-full bg-white/5 border border-white/20">
+          <span className="text-white text-sm font-semibold">
             February 9, 2026 | 9:00 AM
           </span>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

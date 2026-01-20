@@ -13,11 +13,11 @@
 //         animate={{ opacity: 1, y: 0 }}
 //       >
 //         {/* Poster */}
-//         <div className="bg-white/10 rounded-xl h-[420px] flex items-center justify-center">
-//           <span className="text-gray-400 text-xl">
-//             Poster for {slug}
-//           </span>
-//         </div>
+        // <div className="bg-white/10 rounded-xl h-[420px] flex items-center justify-center">
+        //   <span className="text-gray-400 text-xl">
+        //     Poster for {slug}
+        //   </span>
+        // </div>
 
 //         {/* Content */}
 //         <div>
@@ -61,6 +61,11 @@ export default function EventDetails() {
         <h1 className="text-4xl font-bold mb-6 uppercase">
           {slug?.replace("-", " ")}
         </h1>
+        <div className="bg-white/10 rounded-xl h-[420px] flex items-center justify-center">
+          <span className="text-gray-400 text-xl">
+            Poster for {slug}
+          </span>
+        </div>
 
         <p className="text-gray-400 mb-8">
           Detailed rules, poster, coordinators, and event format will be shown

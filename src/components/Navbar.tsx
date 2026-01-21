@@ -467,15 +467,95 @@
 // }
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, Dispatch, SetStateAction } from "react";
 import RMKCET from "../assets/RMKCET Logo.png";
 
 const navItems = ["Home", "About", "Events", "Timeline", "Guidelines", "Contact"];
 const NAVBAR_HEIGHT = 80; // px (h-20)
 
+// Type for hover cursor position
+type CursorPosition = {
+  left: number;
+  width: number;
+  opacity: number;
+};
+
+// Hover Cursor component - follows mouse
+const HoverCursor = ({ position }: { position: CursorPosition }) => {
+  return (
+    <motion.div
+      animate={{
+        left: position.left,
+        width: position.width,
+        opacity: position.opacity,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 30,
+      }}
+      className="absolute ring-btn overflow-hidden inset-0 bg-black rounded-full border border-cyan-400/50"
+    />
+  );
+};
+
+// Nav Tab component with hover tracking
+const NavTab = ({
+  children,
+  setHoverPosition,
+  isActive,
+  isHovering,
+  onClick,
+}: {
+  children: string;
+  setHoverPosition: Dispatch<SetStateAction<CursorPosition>>;
+  isActive: boolean;
+  isHovering: boolean;
+  onClick: () => void;
+}) => {
+  const ref = useRef<HTMLButtonElement | null>(null);
+
+  return (
+    <motion.button
+      ref={ref}
+      onClick={onClick}
+      onMouseEnter={() => {
+        if (!ref?.current) return;
+        const { width } = ref.current.getBoundingClientRect();
+        setHoverPosition({
+          left: ref.current.offsetLeft,
+          width,
+          opacity: 1,
+        });
+      }}
+      className={`relative z-10 px-4 py-2 rounded-full font-extrabold text-sm cursor-pointer
+        ${isActive ? "text-white" : "text-gray-300 hover:text-white"}`}
+      whileTap={{ scale: 0.95 }}
+    >
+      {/* Active section indicator - only show when NOT hovering */}
+      {isActive && !isHovering && (
+        <motion.div
+          layoutId="active-pill"
+          className="absolute ring-btn overflow-hidden inset-0 bg-black rounded-full border border-cyan-400/50"
+          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        />
+      )}
+      <span className="relative z-10">{children}</span>
+    </motion.button>
+  );
+};
+
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("Home");
   const [open, setOpen] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  
+  // Hover cursor position state
+  const [hoverPosition, setHoverPosition] = useState<CursorPosition>({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
 
   /* ---------------- ACTIVE SECTION ON SCROLL ---------------- */
   useEffect(() => {
@@ -542,29 +622,31 @@ export default function Navbar() {
 
           {/* RIGHT */}
           
-            {/* DESKTOP NAV */}
-            <div className="hidden lg:flex gap-2">
+            {/* DESKTOP NAV with hover cursor */}
+            <div 
+              className="hidden lg:flex gap-1 relative items-center"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => {
+                setIsHovering(false);
+                setHoverPosition((prev) => ({
+                  ...prev,
+                  opacity: 0,
+                }));
+              }}
+            >
+              {/* Hover cursor that follows mouse */}
+              <HoverCursor position={hoverPosition} />
+              
               {navItems.map((item) => (
-                <motion.button
+                <NavTab
                   key={item}
+                  setHoverPosition={setHoverPosition}
+                  isActive={activeSection === item}
+                  isHovering={isHovering}
                   onClick={() => scrollToSection(item)}
-                  className={`relative px-4 py-2 rounded-full font-extrabold text-sm
-                  ${
-                    activeSection === item
-                      ? "text-white"
-                      : "text-gray-300 hover:text-white"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  {activeSection === item && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="absolute ring-btn overflow-hidden inset-0 bg-black rounded-full border border-white/20"
-                    />
-                  )}
-                  <span className="relative z-10">{item}</span>
-                </motion.button>
+                  {item}
+                </NavTab>
               ))}
            
 

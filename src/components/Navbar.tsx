@@ -468,6 +468,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef, Dispatch, SetStateAction } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import RMKCET from "../assets/RMKCET Logo.png";
 
 const navItems = ["Home", "About", "Events", "Timeline", "Guidelines", "Contact"];
@@ -546,6 +547,10 @@ const NavTab = ({
 };
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  
   const [activeSection, setActiveSection] = useState("Home");
   const [open, setOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -650,7 +655,7 @@ export default function Navbar() {
                   setHoverPosition={setHoverPosition}
                   isActive={activeSection === item}
                   isHovering={isHovering}
-                  onClick={() => scrollToSection(item)}
+                  onClick={() => handleNavigation(item)}
                 >
                   {item}
                 </NavTab>

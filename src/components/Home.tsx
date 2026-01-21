@@ -38,14 +38,14 @@ export default function Home() {
     <section
       id="home"
       style={{ paddingTop: NAVBAR_HEIGHT }}
-      className="relative min-h-screen flex items-center justify-center z-10"
+            className="relative min-h-screen flex items-center justify-center z-10"
     >
       {/* CONTENT - All centered */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 text-center">
 
         {/* Main Title Container - Fixed height to prevent layout shift */}
         <div className="h-20 sm:h-24 md:h-28 flex items-center justify-center mb-4">
-          <h1 className="font-extrabold text-5xl sm:text-6xl md:text-7xl bg-gradient-to-r from-red-700/80 via-white to-blue-700/80 bg-clip-text">
+          <h1 className="font-extrabold text-5xl sm:text-6xl md:text-7xl bg-gradient-to-r from-red-700 via-white to-blue-700 bg-clip-text">
             <EncryptedText
               text="CYBERXELERATE 3.0"
               encryptedClassName="text-gray-600"

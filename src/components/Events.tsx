@@ -561,19 +561,12 @@ export default function Events() {
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, y: 20 }}
-            className={cn(
-              "grid gap-6",
-              activeCategory === "Non Technical"
-                ? "grid-cols-1 sm:grid-cols-2"
-                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            )}
+            className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filteredEvents.map((event, index) => (
               <div
                 key={event.slug}
-                className={cn(
-                  activeCategory === "Non Technical" ? "h-[400px]" : "h-[320px]"
-                )}
+                className="h-[600px]"
               >
                 <EventCard
                   event={event}

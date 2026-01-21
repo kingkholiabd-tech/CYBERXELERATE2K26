@@ -369,7 +369,7 @@ export default function HeroSplit() {
       ref={containerRef}
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative h-[150vh] bg-surface-base"
+      className="relative h-[150vh] bg-gradient-to-r from-blue-800 via-black to-red-800"
     >
       {/* Sticky container for pinned hero */}
       <div

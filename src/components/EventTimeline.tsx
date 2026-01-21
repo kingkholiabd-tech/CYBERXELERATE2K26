@@ -1,4 +1,3 @@
-import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 import { motion } from "framer-motion";
 
@@ -87,7 +86,7 @@ export default function EventTimeline() {
           >
             <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white font-oxanium">
           Event Timeline
         </h2>
           <p className="text-center text-gray-400 mb-12">

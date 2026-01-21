@@ -22,7 +22,7 @@ export function Timeline({ data }: TimelineProps) {
       </div>
 
       <div className="ml-6">
-        <h3 className="text-lg font-semibold text-white mb-2">
+        <h3 className="text-lg font-semibold text-white mb-2 font-share-tech-mono">
           {item.title}
         </h3>
         <div>{item.content}</div>

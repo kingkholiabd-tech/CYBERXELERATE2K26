@@ -1,473 +1,6 @@
-// 'use client';
-// import { motion } from 'framer-motion';
-// import { useEffect, useState } from 'react';
-// import RMKCET from '../assets/RMKCET Logo.png';
-
-// const navItems = ['Home', 'About', 'Events', 'Timeline', 'Guidelines', 'Contact'];
-
-// export default function Navbar() {
-//   const [activeSection, setActiveSection] = useState('Home');
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const sections = navItems.map(item =>
-//         document.getElementById(item.toLowerCase())
-//       );
-//       const scrollPosition = window.scrollY + 120;
-
-//       for (let i = sections.length - 1; i >= 0; i--) {
-//         if (sections[i] && sections[i].offsetTop <= scrollPosition) {
-//           setActiveSection(navItems[i]);
-//           break;
-//         }
-//       }
-//     };
-
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-
-//   const scrollToSection = (sectionId) => {
-//     const element = document.getElementById(sectionId.toLowerCase());
-//     if (element) {
-//       element.scrollIntoView({ behavior: 'smooth' });
-//     }
-//   };
-
-//   return (
-//     <motion.nav
-//       initial={{ y: -100 }}
-//       animate={{ y: 0 }}
-//       transition={{ duration: 0.8 }}
-//       className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#0c1022] via-[#12163a] to-[#0c1022] backdrop-blur-lg border-b border-white/10"
-//     >
-//       <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-
-//         {/* 🔰 LEFT: LOGO */}
-//         <div className="flex items-center gap-3">
-//           <img
-//             src={RMKCET}
-//             alt="RMKCET Logo"
-//             className="h-12 w-auto"
-//           />
-//         </div>
-
-//         {/* 🏫 CENTER: COLLEGE TEXT */}
-//         <div className="hidden lg:flex flex-col items-center text-center">
-//           <h1 className="text-white font-semibold text-lg tracking-wide">
-//             R.M.K College of Engineering and Technology
-//           </h1>
-//           <p className="text-gray-300 text-sm">
-//             Department of Computer Science and Engineering (Cyber Security)
-//           </p>
-//         </div>
-
-//         {/* 🧭 RIGHT: NAV + BUTTON */}
-//         <div className="flex items-center gap-4">
-
-//           {/* NAV ITEMS */}
-//           <div className="hidden md:flex items-center gap-2">
-//             {navItems.map((item) => (
-//               <motion.button
-//                 key={item}
-//                 onClick={() => scrollToSection(item)}
-//                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all
-//                   ${
-//                     activeSection === item
-//                       ? 'text-white'
-//                       : 'text-gray-300 hover:text-white'
-//                   }`}
-//                 whileHover={{ scale: 1.05 }}
-//                 whileTap={{ scale: 0.95 }}
-//               >
-//                 {activeSection === item && (
-//                   <motion.div
-//                     layoutId="active-pill"
-//                     className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
-//                   />
-//                 )}
-//                 <span className="relative z-10">{item}</span>
-//               </motion.button>
-//             ))}
-//           </div>
-
-//           {/* 🎫 EVENT POSTER BUTTON */}
-//           <motion.a
-//             href="/event-poster.pdf"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//             className="px-5 py-2 rounded-full bg-black text-white text-sm font-semibold border border-white/20 hover:border-white/40 transition-all"
-//             whileHover={{ scale: 1.05 }}
-//             whileTap={{ scale: 0.95 }}
-//           >
-//             Event Poster
-//           </motion.a>
-
-//           {/* 🍔 MOBILE MENU ICON */}
-//           <motion.button
-//             className="md:hidden text-white"
-//             whileTap={{ scale: 0.9 }}
-//           >
-//             <svg
-//               className="w-6 h-6"
-//               fill="none"
-//               stroke="currentColor"
-//               viewBox="0 0 24 24"
-//             >
-//               <path
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 strokeWidth={2}
-//                 d="M4 6h16M4 12h16M4 18h16"
-//               />
-//             </svg>
-//           </motion.button>
-
-//         </div>
-//       </div>
-//     </motion.nav>
-//   );
-// }
-
-// // import { useNavigate } from "react-router-dom";
-
-// // export default function Navbar() {
-// //   const navigate = useNavigate();
-
-// //   return (
-// //     <nav className="fixed top-0 w-full bg-black text-white p-4 z-50">
-// //       <button onClick={() => navigate("/")}>Home</button>
-// //     </nav>
-// //   );
-// // }
-
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useEffect, useState } from "react";
-// import RMKCET from "../assets/RMKCET Logo.png";
-
-// const navItems = ["Home", "About", "Events", "Timeline", "Guidelines", "Contact"];
-
-// export default function Navbar() {
-//   const [activeSection, setActiveSection] = useState("Home");
-//   const [open, setOpen] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const sections = navItems.map((item) =>
-//         document.getElementById(item.toLowerCase())
-//       );
-//       const scrollPosition = window.scrollY + 140;
-
-//       for (let i = sections.length - 1; i >= 0; i--) {
-//         if (sections[i] && sections[i]!.offsetTop <= scrollPosition) {
-//           setActiveSection(navItems[i]);
-//           break;
-//         }
-//       }
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const scrollToSection = (item: string) => {
-//     const el = document.getElementById(item.toLowerCase());
-//     if (el) {
-//       el.scrollIntoView({ behavior: "smooth" });
-//       setOpen(false);
-//     }
-//   };
-
-//   return (
-//     <>
-//       <motion.nav
-//         initial={{ y: -100 }}
-//         animate={{ y: 0 }}
-//         transition={{ duration: 0.6 }}
-//         className="fixed top-0 w-full z-50 bg-gradient-to-r from-[#0c1022] via-[#12163a] to-[#0c1022] border-b border-white/10 backdrop-blur-lg"
-//       >
-//         <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-
-//           {/* LEFT */}
-//           <div className="flex items-center gap-3">
-//             <img src={RMKCET} alt="RMKCET Logo" className="h-10 sm:h-12" />
-//           </div>
-
-//           {/* CENTER (Desktop only) */}
-//           <div className="hidden xl:flex flex-col text-center">
-//             <h1 className="text-white font-semibold text-lg">
-//               R.M.K College of Engineering and Technology
-//             </h1>
-//             <p className="text-gray-300 text-sm">
-//               Department of CSE (Cyber Security)
-//             </p>
-//           </div>
-
-//           {/* RIGHT */}
-//           <div className="flex items-center gap-3">
-
-//             {/* Desktop Nav */}
-//             <div className="hidden lg:flex items-center gap-2">
-//               {navItems.map((item) => (
-//                 <motion.button
-//                   key={item}
-//                   onClick={() => scrollToSection(item)}
-//                   className={`relative px-4 py-2 rounded-full text-sm
-//                     ${
-//                       activeSection === item
-//                         ? "text-white"
-//                         : "text-gray-300 hover:text-white"
-//                     }`}
-//                   whileHover={{ scale: 1.05 }}
-//                   whileTap={{ scale: 0.95 }}
-//                 >
-//                   {activeSection === item && (
-//                     <motion.div
-//                       layoutId="active-pill"
-//                       className="absolute inset-0 bg-white/10 rounded-full border border-white/20"
-//                     />
-//                   )}
-//                   <span className="relative z-10">{item}</span>
-//                 </motion.button>
-//               ))}
-//             </div>
-
-//             {/* Poster Button */}
-//             <motion.a
-//               href="/event-poster.pdf"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hidden sm:inline-flex px-4 py-2 rounded-full bg-black text-white text-sm border border-white/20 hover:border-white/40"
-//               whileHover={{ scale: 1.05 }}
-//             >
-//               Event Poster
-//             </motion.a>
-
-//             {/* Mobile Menu Button */}
-//             <button
-//               className="lg:hidden text-white"
-//               onClick={() => setOpen(!open)}
-//             >
-//               <svg
-//                 className="w-6 h-6"
-//                 fill="none"
-//                 stroke="currentColor"
-//                 viewBox="0 0 24 24"
-//               >
-//                 <path
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   strokeWidth={2}
-//                   d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-//                 />
-//               </svg>
-//             </button>
-//           </div>
-//         </div>
-//       </motion.nav>
-
-//       {/* MOBILE MENU */}
-//       <AnimatePresence>
-//         {open && (
-//           <motion.div
-//             initial={{ height: 0, opacity: 0 }}
-//             animate={{ height: "auto", opacity: 1 }}
-//             exit={{ height: 0, opacity: 0 }}
-//             className="fixed top-20 left-0 w-full bg-[#0c1022] z-40 border-t border-white/10 lg:hidden"
-//           >
-//             <div className="flex flex-col p-4 gap-2">
-//               {navItems.map((item) => (
-//                 <button
-//                   key={item}
-//                   onClick={() => scrollToSection(item)}
-//                   className="text-left text-gray-300 hover:text-white py-2"
-//                 >
-//                   {item}
-//                 </button>
-//               ))}
-
-//               <a
-//                 href="/event-poster.pdf"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="mt-2 text-center py-2 rounded-lg bg-black text-white border border-white/20"
-//               >
-//                 Event Poster
-//               </a>
-//             </div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// }
-
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useEffect, useState } from "react";
-// import RMKCET from "../assets/RMKCET Logo.png";
-
-// const NAV_ITEMS = ["Home", "About", "Events", "Timeline", "Guidelines", "Contact"];
-
-// export default function Navbar() {
-//   const [active, setActive] = useState("Home");
-//   const [open, setOpen] = useState(false);
-
-//   useEffect(() => {
-//     const onScroll = () => {
-//       const offset = window.scrollY + 120;
-
-//       for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
-//         const section = document.getElementById(
-//           NAV_ITEMS[i].toLowerCase()
-//         );
-//         if (section && section.offsetTop <= offset) {
-//           setActive(NAV_ITEMS[i]);
-//           break;
-//         }
-//       }
-//     };
-
-//     window.addEventListener("scroll", onScroll);
-//     return () => window.removeEventListener("scroll", onScroll);
-//   }, []);
-
-//   const scrollTo = (item: string) => {
-//     const el = document.getElementById(item.toLowerCase());
-//     if (el) {
-//       el.scrollIntoView({ behavior: "smooth" });
-//       setOpen(false);
-//     }
-//   };
-
-//   return (
-//     <>
-//       {/* NAVBAR */}
-//       <motion.nav
-//         initial={{ y: -80 }}
-//         animate={{ y: 0 }}
-//         transition={{ duration: 0.5 }}
-//         className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[#0c1022] via-[#12163a] to-[#0c1022] border-b border-white/10 backdrop-blur-lg"
-//       >
-//         <div className="max-w-7xl mx-auto h-[90px] px-4 flex items-center justify-between">
-
-//           {/* LEFT LOGO */}
-//           <div className="flex items-center gap-3">
-//             <img src={RMKCET} alt="RMKCET" className="h-10 sm:h-12" />
-//           </div>
-
-//           {/* CENTER TEXT (DESKTOP ONLY) */}
-//           <div className="hidden xl:flex flex-col text-center">
-//             <h1 className="text-white font-semibold text-lg">
-//               R.M.K College of Engineering and Technology
-//             </h1>
-//             <p className="text-gray-300 text-sm">
-//               Department of CSE (Cyber Security)
-//             </p>
-//           </div>
-
-//           {/* RIGHT */}
-//           <div className="flex items-center gap-3">
-
-//             {/* DESKTOP MENU */}
-//             <div className="hidden lg:flex gap-1">
-//               {NAV_ITEMS.map((item) => (
-//                 <button
-//                   key={item}
-//                   onClick={() => scrollTo(item)}
-//                   className={`relative px-4 py-2 text-sm rounded-full transition
-//                     ${
-//                       active === item
-//                         ? "text-white"
-//                         : "text-gray-300 hover:text-white"
-//                     }`}
-//                 >
-//                   {active === item && (
-//                     <motion.span
-//                       layoutId="active-pill"
-//                       className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
-//                     />
-//                   )}
-//                   <span className="relative z-10">{item}</span>
-//                 </button>
-//               ))}
-//             </div>
-
-//             {/* POSTER BUTTON */}
-//             <a
-//               href="/event-poster.pdf"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hidden sm:inline-flex px-4 py-2 rounded-full bg-black text-white text-sm border border-white/20 hover:border-white/40 transition"
-//             >
-//               Event Poster
-//             </a>
-
-//             {/* MOBILE MENU BUTTON */}
-//             <button
-//               onClick={() => setOpen(!open)}
-//               className="lg:hidden text-white"
-//             >
-//               <svg
-//                 className="w-6 h-6"
-//                 fill="none"
-//                 stroke="currentColor"
-//                 viewBox="0 0 24 24"
-//               >
-//                 <path
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   strokeWidth={2}
-//                   d={
-//                     open
-//                       ? "M6 18L18 6M6 6l12 12"
-//                       : "M4 6h16M4 12h16M4 18h16"
-//                   }
-//                 />
-//               </svg>
-//             </button>
-
-//           </div>
-//         </div>
-//       </motion.nav>
-
-//       {/* MOBILE MENU */}
-//       <AnimatePresence>
-//         {open && (
-//           <motion.div
-//             initial={{ height: 0, opacity: 0 }}
-//             animate={{ height: "auto", opacity: 1 }}
-//             exit={{ height: 0, opacity: 0 }}
-//             className="fixed top-[90px] left-0 w-full z-40 bg-[#0c1022] border-t border-white/10 lg:hidden"
-//           >
-//             <div className="flex flex-col p-4 gap-3">
-//               {NAV_ITEMS.map((item) => (
-//                 <button
-//                   key={item}
-//                   onClick={() => scrollTo(item)}
-//                   className="text-left text-gray-300 hover:text-white py-2"
-//                 >
-//                   {item}
-//                 </button>
-//               ))}
-
-//               <a
-//                 href="/event-poster.pdf"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="mt-2 text-center py-2 rounded-lg bg-black text-white border border-white/20"
-//               >
-//                 Event Poster
-//               </a>
-//             </div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// }
-
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import RMKCET from "../assets/RMKCET Logo.png";
 
 const navItems = ["Home", "About", "Events", "Timeline", "Guidelines", "Contact"];
@@ -476,9 +9,15 @@ const NAVBAR_HEIGHT = 80; // px (h-20)
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("Home");
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === "/";
 
   /* ---------------- ACTIVE SECTION ON SCROLL ---------------- */
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const scrollPos = window.scrollY + NAVBAR_HEIGHT + 10;
 
@@ -492,27 +31,32 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
-  /* ---------------- PERFECT SCROLL FUNCTION ---------------- */
-  const scrollToSection = (item: string) => {
-    const id = item.toLowerCase();
-    const section = document.getElementById(id);
+  /* ---------------- SMOOTH SCROLL FUNCTION ---------------- */
+  const handleNavigation = (item: string) => {
+    if (isHomePage) {
+      const id = item.toLowerCase();
+      const section = document.getElementById(id);
 
-    if (!section) return;
+      if (!section) return;
 
-    const y =
-      section.getBoundingClientRect().top +
-      window.pageYOffset -
-      NAVBAR_HEIGHT;
+      const y = section.getBoundingClientRect().top + window.pageYOffset - NAVBAR_HEIGHT;
 
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
+      window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const id = item.toLowerCase();
+        const section = document.getElementById(id);
+        if (!section) return;
 
+        const y = section.getBoundingClientRect().top + window.pageYOffset - NAVBAR_HEIGHT;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }, 300);
+    }
     setOpen(false);
   };
 
@@ -521,101 +65,202 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 w-full z-50 h-20
-        bg-gradient-to-r from-[#0c1022] via-[#12163a] to-[#0c1022]
-        backdrop-blur-lg border-b border-white/10"
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 w-full z-50 h-16 md:h-20
+        bg-black/80 backdrop-blur-xl border-b border-white/5"
       >
-        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-          
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
+
           {/* LOGO */}
-          <img src={RMKCET} alt="RMKCET Logo" className="h-10 sm:h-12" />
+          <motion.div
+            className="flex items-center gap-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <img
+              src={RMKCET}
+              alt="RMKCET Logo"
+              className="h-8 md:h-10 w-auto"
+            />
+            <div className="hidden md:flex flex-col text-left">
+              <span className="text-white font-orbitron text-sm font-semibold leading-tight">
+                RMK COLLEGE OF ENGINEERING AND TECHNOLOGY
+              </span>
+              <span className="text-cyan-300 font-oxanium text-xs leading-tight">
+                Department of CSE (Cyber Security)
+              </span>
+            </div>
+          </motion.div>
 
-          {/* CENTER TEXT */}
-          <div className="hidden xl:flex flex-col text-center">
-            <h1 className="text-white font-semibold text-lg">
-              R.M.K College of Engineering and Technology
-            </h1>
-            <p className="text-gray-300 text-sm">
-              Department of CSE (Cyber Security)
-            </p>
-          </div>
-
-          {/* RIGHT */}
-          <div className="flex items-center gap-3">
-            {/* DESKTOP NAV */}
-            <div className="hidden lg:flex gap-2">
+          {/* DESKTOP NAV - Centered */}
+          <div className="hidden lg:flex items-betwee absolute left-1/2 transform -translate-x-1/2">
+            <div className="flex items-center gap-1 bg-white/5 rounded-full p-1 border border-white/10">
               {navItems.map((item) => (
                 <motion.button
                   key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`relative px-4 py-2 rounded-full text-sm
-                  ${
-                    activeSection === item
-                      ? "text-white"
-                      : "text-gray-300 hover:text-white"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  onClick={() => handleNavigation(item)}
+                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    ${activeSection === item && isHomePage
+                      ? "text-white bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30"
+                      : "text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10"
+                    }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {activeSection === item && (
+                  {item}
+                  {activeSection === item && isHomePage && (
                     <motion.div
-                      layoutId="active-pill"
-                      className="absolute inset-0 bg-white/10 rounded-full border border-white/20"
+                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full"
+                      layoutId="activeIndicator"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  <span className="relative z-10">{item}</span>
                 </motion.button>
               ))}
             </div>
+          </div>
 
-            {/* POSTER */}
-            <a
+          {/* RIGHT ACTIONS */}
+          <div className="flex items-center gap-3">
+            {/* EVENT POSTER - Desktop only */}
+            <motion.a
               href="/Event Poster.pdf"
               target="_blank"
-              className="hidden sm:inline-flex px-4 py-2 rounded-full
-              bg-black text-white text-sm border border-white/20"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex px-4 py-2 rounded-lg
+              bg-gradient-to-r from-cyan-500/10 to-blue-500/10
+              text-cyan-300 text-sm font-medium border border-cyan-500/20
+              hover:border-cyan-400/40 hover:bg-cyan-500/20
+              transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Event Poster
-            </a>
+            </motion.a>
 
-            {/* MOBILE MENU */}
-            <button
+            {/* MOBILE MENU BUTTON */}
+            <motion.button
               onClick={() => setOpen(!open)}
-              className="lg:hidden text-white"
+              className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              whileTap={{ scale: 0.9 }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeWidth={2}
+              <motion.svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                animate={open ? "open" : "closed"}
+              >
+                <motion.path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                  variants={{
+                    closed: { d: "M4 6h16M4 12h16M4 18h16" },
+                    open: { d: "M6 6l12 12M6 18L18 6" }
+                  }}
+                  transition={{ duration: 0.3 }}
                 />
-              </svg>
-            </button>
+              </motion.svg>
+            </motion.button>
           </div>
         </div>
       </motion.nav>
+
+      {/* MOBILE MENU BACKDROP */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="fixed top-20 left-0 w-full z-40 bg-[#0c1022] border-t border-white/10 lg:hidden"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-40
+            bg-gradient-to-b from-gray-900/95 to-black/95 backdrop-blur-xl
+            border-l border-white/10 lg:hidden shadow-2xl"
           >
-            <div className="flex flex-col p-4">
-              {navItems.map((item) => (
-                <button
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <img src={RMKCET} alt="RMKCET Logo" className="h-8 w-auto" />
+                <span className="text-white font-semibold text-sm">Menu</span>
+              </div>
+              <motion.button
+                onClick={() => setOpen(false)}
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </motion.button>
+            </div>
+
+            {/* Navigation Items */}
+            <div className="flex flex-col p-6 gap-2">
+              {navItems.map((item, index) => (
+                <motion.button
                   key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="text-left py-3 text-gray-300 hover:text-white"
+                  onClick={() => handleNavigation(item)}
+                  className={`text-left py-4 px-4 rounded-xl text-lg font-medium
+                    transition-all duration-200 border border-transparent
+                    ${activeSection === item && isHomePage
+                      ? "text-white bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30"
+                      : "text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10"
+                    }`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {item}
-                </button>
+                  <span className="flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 opacity-60"></span>
+                    {item}
+                  </span>
+                </motion.button>
               ))}
+
+              {/* Divider */}
+              <div className="my-4 border-t border-white/10"></div>
+
+              {/* Event Poster */}
+              <motion.a
+                href="/Event Poster.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 py-4 px-4 rounded-xl
+                bg-gradient-to-r from-cyan-500/10 to-blue-500/10
+                text-cyan-300 font-medium border border-cyan-500/20
+                hover:border-cyan-400/40 hover:bg-cyan-500/20
+                transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setOpen(false)}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Event Poster
+              </motion.a>
             </div>
           </motion.div>
         )}

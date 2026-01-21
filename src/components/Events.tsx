@@ -422,9 +422,9 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 /* ------------------ EVENTS DATA ------------------ */
 
@@ -529,7 +529,7 @@ export default function Events() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <h2 className="text-5xl font-bold text-center text-white mb-16">
+        <h2 className="text-5xl font-bold text-center text-white mb-16 font-oxanium">
           Legends Arena
         </h2>
 
@@ -577,7 +577,7 @@ export default function Events() {
 
                     <motion.h3
                       variants={textVariants}
-                      className="text-2xl font-semibold text-white"
+                      className="text-2xl font-semibold text-white font-orbitron"
                     >
                       {event.title}
                     </motion.h3>

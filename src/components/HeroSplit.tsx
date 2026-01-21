@@ -70,7 +70,7 @@ const ScrollIndicator = ({ opacity }: { opacity: any }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 2, duration: 1, ease: APPLE_EASE }}
     style={{ opacity }}
-    className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30"
+    className="absolute bottom-6 sm:bottom-8 inset-x-0 flex flex-col items-center gap-2 z-30"
   >
     <span className="text-2xs sm:text-xs text-text-tertiary tracking-widest uppercase">
       Scroll

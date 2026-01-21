@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2, AlertCircle, Users, Shield, Clock, Trophy } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Clock, Shield, Trophy, Users } from 'lucide-react';
 
 const guidelines = [
   {
@@ -75,7 +75,7 @@ export default function Guidelines() {
           >
             <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent font-oxanium">
             Guidelines & Rules
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">

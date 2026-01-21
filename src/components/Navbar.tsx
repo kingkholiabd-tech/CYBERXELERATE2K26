@@ -559,6 +559,8 @@ export default function Navbar() {
 
   /* ---------------- ACTIVE SECTION ON SCROLL ---------------- */
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const scrollPos = window.scrollY + NAVBAR_HEIGHT + 10;
 
@@ -572,27 +574,32 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
-  /* ---------------- PERFECT SCROLL FUNCTION ---------------- */
-  const scrollToSection = (item: string) => {
-    const id = item.toLowerCase();
-    const section = document.getElementById(id);
+  /* ---------------- SMOOTH SCROLL FUNCTION ---------------- */
+  const handleNavigation = (item: string) => {
+    if (isHomePage) {
+      const id = item.toLowerCase();
+      const section = document.getElementById(id);
 
-    if (!section) return;
+      if (!section) return;
 
-    const y =
-      section.getBoundingClientRect().top +
-      window.pageYOffset -
-      NAVBAR_HEIGHT;
+      const y = section.getBoundingClientRect().top + window.pageYOffset - NAVBAR_HEIGHT;
 
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
+      window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const id = item.toLowerCase();
+        const section = document.getElementById(id);
+        if (!section) return;
 
+        const y = section.getBoundingClientRect().top + window.pageYOffset - NAVBAR_HEIGHT;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }, 300);
+    }
     setOpen(false);
   };
 
@@ -662,43 +669,129 @@ export default function Navbar() {
 </a>
 
 
-            {/* MOBILE MENU */}
-            <button
+            {/* MOBILE MENU BUTTON */}
+            <motion.button
               onClick={() => setOpen(!open)}
-              className="lg:hidden text-white"
+              className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              whileTap={{ scale: 0.9 }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeWidth={2}
+              <motion.svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                animate={open ? "open" : "closed"}
+              >
+                <motion.path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                  variants={{
+                    closed: { d: "M4 6h16M4 12h16M4 18h16" },
+                    open: { d: "M6 6l12 12M6 18L18 6" }
+                  }}
+                  transition={{ duration: 0.3 }}
                 />
-              </svg>
-            </button>
+              </motion.svg>
+            </motion.button>
           </div>
         </div>
       </motion.nav>
+
+      {/* MOBILE MENU BACKDROP */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="fixed top-20 left-0 w-full z-40 bg-[#0c1022] border-t border-white/10 lg:hidden"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-40
+            bg-gradient-to-b from-gray-900/95 to-black/95 backdrop-blur-xl
+            border-l border-white/10 lg:hidden shadow-2xl"
           >
-            <div className="flex flex-col p-4">
-              {navItems.map((item) => (
-                <button
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <img src={RMKCET} alt="RMKCET Logo" className="h-8 w-auto" />
+                <span className="text-white font-semibold text-sm">Menu</span>
+              </div>
+              <motion.button
+                onClick={() => setOpen(false)}
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </motion.button>
+            </div>
+
+            {/* Navigation Items */}
+            <div className="flex flex-col p-6 gap-2">
+              {navItems.map((item, index) => (
+                <motion.button
                   key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="text-left py-3 text-gray-300 hover:text-white"
+                  onClick={() => handleNavigation(item)}
+                  className={`text-left py-4 px-4 rounded-xl text-lg font-medium
+                    transition-all duration-200 border border-transparent
+                    ${activeSection === item && isHomePage
+                      ? "text-white bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-500/30"
+                      : "text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10"
+                    }`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {item}
-                </button>
+                  <span className="flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 opacity-60"></span>
+                    {item}
+                  </span>
+                </motion.button>
               ))}
+
+              {/* Divider */}
+              <div className="my-4 border-t border-white/10"></div>
+
+              {/* Event Poster */}
+              <motion.a
+                href="/Event Poster.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 py-4 px-4 rounded-xl
+                bg-gradient-to-r from-cyan-500/10 to-blue-500/10
+                text-cyan-300 font-medium border border-cyan-500/20
+                hover:border-cyan-400/40 hover:bg-cyan-500/20
+                transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setOpen(false)}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Event Poster
+              </motion.a>
             </div>
           </motion.div>
         )}

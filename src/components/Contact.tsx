@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Instagram, Linkedin, Github } from 'lucide-react';
+import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 
 const contactInfo = [
   {
@@ -55,7 +55,7 @@ export default function Contact() {
           >
             <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent font-oxanium">
             Contact
           </h2>
         </motion.div>

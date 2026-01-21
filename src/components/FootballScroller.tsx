@@ -17,24 +17,30 @@ export default function FootballScroller() {
     restDelta: 0.001,
   });
 
-  // Football moves from left edge (0%) to right edge (100%) using left position
+  // Football moves from left edge (0%) to right edge (100%)
   const leftPosition = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
   
   // Football rotates as it moves (rolling effect) - 4 full spins
   const rotation = useTransform(smoothProgress, [0, 1], [0, 1440]);
 
-  // Slight scale effect
-  const scale = useTransform(smoothProgress, [0, 0.5, 1], [0.9, 1.1, 0.9]);
+  // Scale effect - grows in the middle
+  const scale = useTransform(smoothProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
 
   return (
     <div
       ref={containerRef}
-      className="relative h-24 sm:h-32 lg:h-40 bg-surface-base overflow-hidden"
-    >
-      {/* Track line */}
-      <div className="absolute top-1/2 left-0 right-0  bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      className="relative h-24 sm:h-32 lg:h-40 bg-surface-base"
+    >   
+      {/* Trail effect - follows the ball */}
+      <motion.div
+        style={{
+          left: leftPosition,
+          translateX: "-100%",
+        }}
+        className="absolute top-1/2 -translate-y-1/2 w-16 h-6 bg-gradient-to-r from-transparent via-red-800/40 to-blue-800/40 blur-lg animate-pulse"
+      />
 
-      {/* Football */}
+      {/* Football with glow */}
       <motion.div
         style={{
           left: leftPosition,
@@ -45,13 +51,29 @@ export default function FootballScroller() {
         }}
         className="absolute top-1/2 will-change-transform"
       >
+        {/* Outer glow ring with pulse */}
+        <div className="absolute inset-0 -m-2 rounded-full bg-gradient-to-r from-red-800/80 to-blue-800/80 blur-lg opacity-70 animate-pulse" />
+        
+        {/* Inner glow with pulse */}
+        <div className="absolute inset-0 -m-1 rounded-full bg-white/30 blur-md opacity-50 animate-pulse" />
+
+        {/* Football image */}
         <img
           src="/events/image.png"
           alt="Football"
-          className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 object-contain drop-shadow-2xl"
+          className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain drop-shadow-2xl"
         />
+      </motion.div>
+
+      {/* Sparkle particles with pulse */}
+      <motion.div
+        style={{ left: leftPosition, translateX: "-200%" }}
+        className="absolute top-1/2 -translate-y-1/2"
+      >
+        <span className="absolute w-2 h-2 bg-white/60 rounded-full blur-sm animate-pulse" />
       </motion.div>
     </div>
   );
 }
+
 

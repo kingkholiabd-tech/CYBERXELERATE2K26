@@ -39,7 +39,7 @@ export default function ScheduleRules() {
     <section
       ref={sectionRef}
       id="event-info"
-      className="relative py-12 sm:py-16 lg:py-20 bg-surface-base"
+      className="relative py-12 sm:py-16 lg:py-24 mt-5 lg:mt-10 bg-surface-base"
     >
       <div className="section-container">
         {/* Header */}

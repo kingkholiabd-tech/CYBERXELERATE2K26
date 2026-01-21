@@ -467,7 +467,7 @@ export default function Events() {
     <section
       ref={sectionRef}
       id="events"
-      className="relative py-16 sm:py-20  lg:pt-20 lg:pb-0  bg-surface-base overflow-hidden"
+      className="relative py-12 sm:py-16 lg:py-20 bg-surface-base overflow-hidden"
     >
       {/* Background Gradient */}
       <div
@@ -566,7 +566,7 @@ export default function Events() {
             {filteredEvents.map((event, index) => (
               <div
                 key={event.slug}
-                className="h-[600px]"
+                className="h-[300px]"
               >
                 <EventCard
                   event={event}

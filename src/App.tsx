@@ -43,6 +43,7 @@ import About from "./components/About";
 import Events from "./components/Events";
 import Contact from "./components/Contact";
 import ScheduleRules from "./components/ScheduleRules";
+import FootballScroller from "./components/FootballScroller";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import "./index.css";
@@ -93,6 +94,7 @@ function App() {
                 <HeroSplit />
                 <About />
                 <Events />
+                <FootballScroller />
                 <ScheduleRules />
                 <Contact />
                 <Footer />

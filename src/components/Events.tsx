@@ -57,7 +57,7 @@ const events: Event[] = [
     description: "Competitive coding on HackerRank.",
     longDescription:
       "Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.",
-    image: "/events/binary.jpg",
+    image: "/events/code.png",
     formLink: "https://forms.gle/xxxxx2",
     gradient: "from-rivalry-red to-red-600",
   },
@@ -68,7 +68,7 @@ const events: Event[] = [
     description: "Present innovative tech ideas.",
     longDescription:
       "Showcase your research in Cyber Security, AI, Edutech, or Open Innovation. Submit your project report (PDF) and PPT online. Present offline for 5-10 minutes. Team: 1-4 members. Venue: Mechanical Block, 3rd Floor. Time: 10:00 AM – 12:30 PM.",
-    image: "/events/vibe.jpg",
+    image: "/events/paper.png",
     formLink: "https://forms.gle/xxxxx3",
     gradient: "from-rivalry-blue to-blue-700",
   },
@@ -79,7 +79,7 @@ const events: Event[] = [
     description: "UI/UX design challenge.",
     longDescription:
       "Create stunning user interfaces under pressure. One round with 4 problem statements to solve in 2 hours. Team: 2-3 members. Design beautiful, functional solutions that showcase your creativity and technical skills.",
-    image: "/events/data.jpg",
+    image: "/events/vibe.png",
     formLink: "https://forms.gle/xxxxx4",
     gradient: "from-cyan-500 to-blue-600",
   },

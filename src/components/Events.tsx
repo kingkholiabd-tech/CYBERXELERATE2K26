@@ -47,7 +47,7 @@ const events: Event[] = [
       "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.",
     image: "/events/ctf1.jpeg",
     formLink: "https://forms.gle/xxxxx1",
-    gradient: "from-purple-500 to-purple-700",
+    gradient: "from-rivalry-red  to-red-600",
     featured: true,
   },
   {
@@ -73,12 +73,12 @@ const events: Event[] = [
     gradient: "from-rivalry-blue to-blue-700",
   },
   {
-    title: "Vibe Coding",
-    slug: "vibe-coding",
+    title: "Vibeathon",
+    slug: "vibeathon",
     category: "Technical",
-    description: "UI/UX design challenge.",
+    description: "Mini Hackathon – Build full-stack apps under pressure.",
     longDescription:
-      "Create stunning user interfaces under pressure. One round with 4 problem statements to solve in 2 hours. Team: 2-3 members. Design beautiful, functional solutions that showcase your creativity and technical skills.",
+      "Step into Vibeathon, a high-energy mini hackathon where creativity and problem-solving come together. Build full-stack applications within 2 hours. Problem statements given on-spot. GitHub repo provided for development. Team: 1-2 members. FREE REGISTRATION.",
     image: "/events/vibe.png",
     formLink: "https://forms.gle/xxxxx4",
     gradient: "from-cyan-500 to-blue-600",
@@ -467,7 +467,7 @@ export default function Events() {
     <section
       ref={sectionRef}
       id="events"
-      className="relative py-24 sm:py-32 bg-surface-base overflow-hidden"
+      className="relative py-16 sm:py-20  lg:pt-20 lg:pb-0  bg-surface-base overflow-hidden"
     >
       {/* Background Gradient */}
       <div

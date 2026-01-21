@@ -25,7 +25,7 @@ interface EventData {
 }
 
 const eventsData: Record<string, EventData> = {
-  ctf: {
+  "hack077-ctf": {
     title: "H4CK_077 CTF",
     tagline: "Capture the flag.",
     description:
@@ -47,7 +47,7 @@ const eventsData: Record<string, EventData> = {
       { name: "Vishnu TS", phone: "+91 88258 66507" },
     ],
   },
-  "code-combat": {
+  "code-fc": {
     title: "CODE FC",
     tagline: "Solve. Submit. Win.",
     description:
@@ -69,26 +69,28 @@ const eventsData: Record<string, EventData> = {
       { name: "Muthumeena", phone: "+91 98765 43211" },
     ],
   },
-  "vibe-code": {
-    title: "Vibe Coding",
-    tagline: "Design under pressure.",
+  "vibeathon": {
+    title: "Vibeathon",
+    tagline: "Build. Ship. Win.",
     description:
-      "UI/UX design challenge. 4 problem statements, 2 hours. Create beautiful, functional interfaces.",
-    poster: "/events/vibe.jpg",
+      "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
+    poster: "/events/vibe.png",
     formLink: "https://forms.gle/xxxxx3",
     time: "10:00 AM – 12:00 PM",
-    team: "2-3 members",
+    team: "1-2 members",
     rules: [
-      "Teams of 2-3 only",
-      "Design during event only",
-      "Internet for fonts/icons allowed",
-      "Submit design files + explanation",
-      "No templates or plagiarized work",
+      "Team size: 1-2 members only",
+      "Problem statements given on-spot",
+      "2 hours to build your solution",
+      "Domain: Full Stack Development",
+      "GitHub repo will be provided – work only on that repo",
+      "Cloning existing projects leads to disqualification",
+      "AI tools allowed (Antigravity, Cursor, Copilot, etc.)",
+      "Judges' decisions are final",
     ],
     coordinators: [
-      { name: "Balaskanthan AK", phone: "+91 91235 87980" },
-      { name: "Darshini", phone: "+91 98765 43215" },
       { name: "Dilip Kumar V", phone: "+91 73588 51959" },
+      { name: "Balaskanthan AK", phone: "+91 91235 87980" },
     ],
   },
   "paper-presentation": {

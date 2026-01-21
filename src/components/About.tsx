@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { Bus } from "lucide-react";
+import { Bus, Ticket, UtensilsCrossed, ScrollText } from "lucide-react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimations";
 
 // Apple-style easing
@@ -18,10 +18,10 @@ const stats = [
 
 // What's included - no fluff
 const includes = [
-  { emoji: "🎟️", text: "Free entry for all" },
-  { emoji: "🍽️", text: "Meals provided" },
-  { emoji: "🚌", text: "Transport available" },
-  { emoji: "📜", text: "Certificates for all" },
+  { icon: Ticket, text: "Free entry for all" },
+  { icon: UtensilsCrossed, text: "Meals provided" },
+  { icon: Bus, text: "Transport available" },
+  { icon: ScrollText, text: "Certificates for all" },
 ];
 
 export default function About() {
@@ -105,13 +105,13 @@ export default function About() {
 
         {/* Stats - Clean grid */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16  sm:mb-20"
           style={{ y: statsY, opacity: statsOpacity }}
         >
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="text-center py-6 sm:py-8 rounded-2xl bg-surface-elevated/50 border border-white/5"
+              className="text-center transition-all ease-in-out duration-500 py-6 sm:py-8 rounded-2xl bg-surface-elevated/50 border border-white/5 hover:bg-gradient-to-br hover:from-red-800/20 hover:via-gray-900/50 hover:to-blue-800/20 hover:border-white/20 hover:scale-105"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -138,7 +138,7 @@ export default function About() {
             {includes.map((item, i) => (
               <motion.div
                 key={item.text}
-                className="flex flex-col items-center gap-1.5 flex-shrink-0"
+                className="flex flex-col items-center hover:animate-pulse gap-1.5 flex-shrink-0"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -148,8 +148,8 @@ export default function About() {
                   ease: APPLE_EASE,
                 }}
               >
-                <span className="text-2xl">{item.emoji}</span>
-                <span className="text-xs text-text-tertiary whitespace-nowrap">
+                <item.icon className="w-8 h-8 text-text-secondary" />
+                <span className="text-sm text-text-tertiary whitespace-nowrap">
                   {item.text}
                 </span>
               </motion.div>
@@ -164,7 +164,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6, ease: APPLE_EASE }}
           >
-            <p className="text-text-tertiary text-sm mb-4">
+            <p className="text-text-tertiary text-sm mt-4 mb-6">
               Hosted by CSE (Cyber Security), RMKCET
             </p>
 
@@ -178,7 +178,7 @@ export default function About() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Bus className="w-4 h-4" />
+              <Bus className="w-4 h-4 " />
               Transport Routes
             </motion.a>
           </motion.div>

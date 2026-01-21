@@ -48,7 +48,7 @@ export default function Home() {
         {/* Main Title with Encrypted Reveal */}
         <h1 className="font-extrabold mb-6 text-7xl bg-gradient-to-r from-red-700/80 via-none to-blue-700/80 bg-clip-text">
           <EncryptedText
-            text="WELCOME TO EL CLÁSICO"
+            text="CYBERXELERATE 3.0"
             encryptedClassName="text-gray-600"
             revealedClassName="text-transparent"
             revealDelayMs={40}

@@ -90,7 +90,7 @@ const events: Event[] = [
     description: "Music-based rhythm challenge.",
     longDescription:
       "Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.",
-    image: "/events/cyber.jpg",
+    image: "/events/music.png",
     formLink: "https://forms.gle/xxxxx5",
     gradient: "from-pink-500 to-rose-600",
   },
@@ -101,7 +101,7 @@ const events: Event[] = [
     description: "Teamwork & coordination games.",
     longDescription:
       "Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.",
-    image: "/events/cyber.jpg",
+    image: "/events/play.png",
     formLink: "https://forms.gle/xxxxx6",
     gradient: "from-emerald-500 to-green-600",
   },

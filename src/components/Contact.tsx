@@ -1,169 +1,228 @@
-import { motion } from 'framer-motion';
-import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
+'use client';
 
-const contactInfo = [
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef } from 'react';
+import { Phone } from 'lucide-react';
+import { useIsMobile, usePrefersReducedMotion } from '../hooks/useScrollAnimations';
+
+// Contact data
+const contacts = [
   {
-    title: 'Head Of Department CSE (Cyber Security)',
+    role: 'Head of Department',
+    subtitle: 'CSE (Cyber Security)',
     name: 'Dr. Udhaya Sankar S M',
-    phone: '',
   },
   {
-    title: 'Faculty Coordinator - Associate Professor',
+    role: 'Faculty Coordinator',
+    subtitle: 'Associate Professor',
     name: 'Dr. Dharini N',
-    phone: '',
   },
   {
-    title: 'Student Coordinator',
-    name: 'Mr Pritto Ruban.R ',
+    role: 'Student Coordinator',
+    name: 'Pritto Ruban R',
     phone: '+91 99529 41725',
   },
 ];
 
-const socialMedia = [
-  { icon: Instagram, name: 'Instagram', link: 'https://instagram.com' },
-  { icon: Linkedin, name: 'LinkedIn', link: 'https://linkedin.com' },
-  { icon: Mail, name: 'Email', link: 'mailto:info@elclasico.com' },
-  { icon: Github, name: 'GitHub', link: 'https://github.com' },
-];
+// Contact Card with scroll-based parallax
+function ContactCard({ 
+  contact, 
+  index, 
+  scrollProgress 
+}: { 
+  contact: typeof contacts[0]; 
+  index: number; 
+  scrollProgress: any;
+}) {
+  const prefersReduced = usePrefersReducedMotion();
+  
+  // Staggered parallax for each card
+  const cardY = useTransform(
+    scrollProgress,
+    [0.05, 0.25],
+    prefersReduced ? [0, 0] : [40 + index * 15, 0]
+  );
+  
+  const cardOpacity = useTransform(
+    scrollProgress,
+    [0.05 + index * 0.03, 0.2 + index * 0.03],
+    [0, 1]
+  );
+  
+  const cardScale = useTransform(
+    scrollProgress,
+    [0.05, 0.2],
+    prefersReduced ? [1, 1] : [0.95, 1]
+  );
+
+  return (
+    <motion.div
+      style={{
+        y: cardY,
+        opacity: cardOpacity,
+        scale: cardScale,
+      }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="glass-card rounded-2xl p-6 text-center will-change-transform"
+    >
+      <p className="text-text-secondary text-sm mb-1">
+        {contact.role}
+      </p>
+      {contact.subtitle && (
+        <p className="text-text-tertiary text-xs mb-3">
+          {contact.subtitle}
+        </p>
+      )}
+      <h3 className="text-text-primary font-medium text-lg mb-2">
+        {contact.name}
+      </h3>
+      {contact.phone && (
+        <a 
+          href={`tel:${contact.phone.replace(/\s/g, '')}`}
+          className="inline-flex items-center gap-2 text-text-secondary text-sm hover:text-text-primary transition-colors"
+        >
+          <Phone size={14} />
+          {contact.phone}
+        </a>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
+
+  // Scroll progress for the section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Header scroll effects
+  const headerY = useTransform(
+    smoothProgress,
+    [0, 0.15],
+    prefersReduced ? [0, 0] : [50, 0]
+  );
+  
+  const headerOpacity = useTransform(
+    smoothProgress,
+    [0, 0.1],
+    [0, 1]
+  );
+
+  // Location section scroll effects
+  const locationY = useTransform(
+    smoothProgress,
+    [0.3, 0.5],
+    prefersReduced ? [0, 0] : [40, 0]
+  );
+  
+  const locationOpacity = useTransform(
+    smoothProgress,
+    [0.3, 0.45],
+    [0, 1]
+  );
+
+  // Map zoom effect - scale increases as you scroll
+  const mapScale = useTransform(
+    smoothProgress,
+    [0.35, 0.7],
+    prefersReduced ? [1, 1] : [0.95, 1.02]
+  );
+  
+  const mapOpacity = useTransform(
+    smoothProgress,
+    [0.35, 0.5],
+    [0.6, 1]
+  );
+
   return (
-    <section id="contact" className="relative min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-50" />
-      </div>
-
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-red-500 rounded-full filter blur-[128px]" />
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-[128px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+    <section 
+      ref={sectionRef}
+      id="contact" 
+      className="relative py-24 md:py-32 bg-surface-base"
+    >
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Header with scroll-linked animations */}
+        <motion.header
           className="text-center mb-16"
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          style={{
+            y: headerY,
+            opacity: headerOpacity,
+          }}
         >
-          <motion.div
-            className="inline-block mb-4"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, type: "spring" }}
+          <motion.h2 
+            className="text-4xl md:text-5xl font-medium text-text-primary mb-4"
           >
-            <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
-          </motion.div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent font-oxanium">
             Contact
-          </h2>
-        </motion.div>
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-text-secondary max-w-xl mx-auto"
+          >
+            Get in touch with our organizing team
+          </motion.p>
+        </motion.header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {contactInfo.map((info, index) => (
-            <motion.div
-              key={info.title}
-              className="relative group"
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-600/5 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300" />
-              <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-6 hover:border-white/30 transition-all duration-300 min-h-[140px]">
-                <h3 className="text-white font-bold text-lg mb-2">{info.title}</h3>
-                <p className="text-gray-300 mb-1">{info.name}</p>
-                {info.phone && (
-                  <p className="text-gray-400 text-sm">{info.phone}</p>
-                )}
-              </div>
-            </motion.div>
+        {/* Contact Cards with staggered parallax */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {contacts.map((contact, index) => (
+            <ContactCard 
+              key={contact.name} 
+              contact={contact} 
+              index={index} 
+              scrollProgress={smoothProgress} 
+            />
           ))}
         </div>
 
+        {/* Location Section with scroll effects */}
         <motion.div
-          className="mb-16"
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          style={{
+            y: locationY,
+            opacity: locationOpacity,
+          }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
-            Our Location
-          </h2>
-          <p className="text-center text-gray-300 mb-8 text-lg">
+          <motion.h3 
+            className="text-2xl md:text-3xl font-medium text-text-primary text-center mb-4"
+          >
+            Location
+          </motion.h3>
+          <motion.p 
+            className="text-text-secondary text-center mb-8 max-w-lg mx-auto"
+          >
             RMK Nagar, Gummidipoondi Taluk, Puduvoyal, Tamil Nadu 601 206
-          </p>
+          </motion.p>
 
-          <div className="relative max-w-4xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl blur-2xl" />
-            <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-4 hover:border-white/30 transition-all duration-300 overflow-hidden">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248565.7858271303!2d80.0152114441965!3d13.235330463061636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a527f0ddef76d17%3A0x61ce593720f3684b!2sRMK%20College%20of%20Engineering%20and%20Technology%20(RMKCET)!5e0!3m2!1sen!2sin!4v1768845577338!5m2!1sen!2sin" 
-                width="100%" 
-                height="450" 
-                style={{ border: 0, borderRadius: '12px' }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full"
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="mb-16"
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="relative max-w-2xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl blur-2xl" />
-            <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all duration-300">
-              <h3 className="text-2xl font-bold text-center text-white mb-6">
-                R M K College of Engineering and Technology
-              </h3>
-              <p className="text-gray-300 text-center mb-8">
-                Department of Computer Science and Engineering (Cyber Security)
-              </p>
-              
-              <div className="flex justify-center gap-4">
-                {socialMedia.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <social.icon className="text-gray-300" size={24} />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="text-center pt-12 border-t border-white/10"
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <p className="text-gray-400">
-            &copy; 2026 All rights reserved.
-          </p>
+          {/* Map with zoom effect */}
+          <motion.div
+            ref={mapRef}
+            className="glass-card rounded-2xl p-2 overflow-hidden will-change-transform"
+            style={{
+              scale: mapScale,
+              opacity: mapOpacity,
+            }}
+          >
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248565.7858271303!2d80.0152114441965!3d13.235330463061636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a527f0ddef76d17%3A0x61ce593720f3684b!2sRMK%20College%20of%20Engineering%20and%20Technology%20(RMKCET)!5e0!3m2!1sen!2sin!4v1768845577338!5m2!1sen!2sin" 
+              width="100%" 
+              height="400" 
+              style={{ border: 0, borderRadius: '12px' }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full"
+              title="RMKCET Location"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

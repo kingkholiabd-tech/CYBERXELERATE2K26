@@ -1,656 +1,538 @@
-// import { motion } from 'framer-motion';
-// import { Code, Brain, Palette, Rocket, Gamepad2Icon, Gamepad } from 'lucide-react';
+'use client';
 
-// const events = [
-//   {
-//     icon: Code,
-//     title: 'Code Combat',
-//     description: 'An intense coding competition where developers battle through algorithmic challenges, showcasing their problem-solving prowess and technical excellence.',
-//     category: 'Technical',
-//     color: 'from-red-500 to-red-600',
-//     posterUrl: '#',
-//   },
-//   {
-//     icon: Brain,
-//     title: 'Capture The Flag',
-//     description: 'Present groundbreaking ideas and innovative solutions. Pitch your vision and compete for recognition in this showcase of creative thinking.',
-//     category: 'Technical',
-//     color: 'from-purple-500 to-purple-600',
-//     posterUrl: '#',
-//   },
-//   {
-//     icon: Palette,
-//     title: 'Vibe Code',
-//     description: 'UI/UX designers face off in a timed challenge to create stunning, user-centric designs that push the boundaries of digital aesthetics.',
-//     category: 'Technical',
-//     color: 'from-blue-500 to-blue-600',
-//     posterUrl: '#',
-//   },
-//   {
-//     icon: Rocket,
-//     title: 'Pitch Perfect',
-//     description: 'Entrepreneurs present their business ideas, compete for investor attention, and demonstrate their ability to turn concepts into reality.',
-//     category: 'Technical',
-//     color: 'from-cyan-500 to-cyan-600',
-//     posterUrl: '#',
-//   },
-//   {
-//     icon: Gamepad2Icon,
-//     title: 'Data Derby',
-//     description: 'Data scientists and analysts compete to extract meaningful insights from complex datasets, proving their analytical supremacy.',
-//     category: 'Non Technical',
-//     color: 'from-orange-500 to-orange-600',
-//     posterUrl: '#',
-//   },
-//   {
-//     icon: Gamepad,
-//     title: 'Cyber Clash',
-//     description: 'Cybersecurity experts engage in capture-the-flag challenges, testing their skills in penetration testing and defensive strategies.',
-//     category: 'Non Technical',
-//     color: 'from-green-500 to-green-600',
-//     posterUrl: '#',
-//   },
-// ];
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, ExternalLink } from 'lucide-react';
+import { staggerContainer, staggerItem, scrollReveal } from '../hooks/useAppleMotion';
+import { useIsMobile, usePrefersReducedMotion } from '../hooks/useScrollAnimations';
+import { cn } from '../lib/utils';
 
-// export default function Events() {
-//   const handleViewPoster = (url: string, title: string) => {
-//     if (url === '#') {
-//       alert(`Poster for "${title}" will be available soon!`);
-//     } else {
-//       window.open(url, '_blank');
-//     }
-//   };
+// ============================================
+// Types & Data
+// ============================================
 
-//   return (
-//     <section id="events" className="relative min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
-//       <div className="absolute inset-0">
-//         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-50" />
-//       </div>
+interface Event {
+  title: string;
+  slug: string;
+  category: 'Technical' | 'Non Technical';
+  description: string;
+  longDescription: string;
+  image: string;
+  formLink: string;
+  gradient: string;
+  featured?: boolean;
+}
 
-//       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <motion.div
-//           className="text-center mb-16"
-//           initial={{ y: 50, opacity: 0 }}
-//           whileInView={{ y: 0, opacity: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.8 }}
-//         >
-//           <motion.div
-//             className="inline-block mb-4"
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5, type: "spring" }}
-//           >
-//             <div className="h-1 w-20 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto" />
-//           </motion.div>
-//           <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
-//             Competition Events
-//           </h2>
-//           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-//             Choose your battlefield and prove your excellence
-//           </p>
-//         </motion.div>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {events.map((event, index) => (
-//             <motion.div
-//               key={event.title}
-//               className="relative group"
-//               initial={{ y: 50, opacity: 0 }}
-//               whileInView={{ y: 0, opacity: 1 }}
-//               viewport={{ once: true }}
-//               transition={{ duration: 0.6, delay: index * 0.1 }}
-//             >
-//               <motion.div
-//                 className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-all duration-500`}
-//               />
-//               <motion.div
-//                 className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-full hover:border-white/30 transition-all duration-300"
-//                 whileHover={{ scale: 1.03, y: -8 }}
-//               >
-//                 <div className="flex items-start justify-between mb-4">
-//                   <motion.div
-//                     className={`p-3 bg-gradient-to-br ${event.color} rounded-xl`}
-//                     whileHover={{ rotate: 360 }}
-//                     transition={{ duration: 0.6 }}
-//                   >
-//                     <event.icon className="text-white" size={28} strokeWidth={2} />
-//                   </motion.div>
-//                   <motion.span
-//                     className={`px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r ${event.color} text-white`}
-//                     whileHover={{ scale: 1.1 }}
-//                   >
-//                     {event.category}
-//                   </motion.span>
-//                 </div>
-
-//                 <h3 className="text-2xl font-bold text-white mb-3">
-//                   {event.title}
-//                 </h3>
-
-//                 <p className="text-gray-400 leading-relaxed mb-6 min-h-[120px]">
-//                   {event.description}
-//                 </p>
-
-//                 <motion.button
-//                   onClick={() => handleViewPoster(event.posterUrl, event.title)}
-//                   className={`w-full py-3 px-6 bg-gradient-to-r ${event.color} text-white font-semibold rounded-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group/btn`}
-//                   whileHover={{ scale: 1.05 }}
-//                   whileTap={{ scale: 0.95 }}
-//                 >
-//                   <motion.div
-//                     className="absolute inset-0 bg-white/20"
-//                     initial={{ x: '-100%' }}
-//                     whileHover={{ x: '100%' }}
-//                     transition={{ duration: 0.5 }}
-//                   />
-//                   <span className="relative z-10">View Poster</span>
-//                 </motion.button>
-//               </motion.div>
-//             </motion.div>
-//           ))}
-//         </div>
-
-//         {/* <motion.div
-//           className="mt-16 text-center"
-//           initial={{ y: 30, opacity: 0 }}
-//           whileInView={{ y: 0, opacity: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.8 }}
-//         >
-//           <div className="inline-block bg-gradient-to-r from-red-500/10 via-purple-500/10 to-blue-500/10 backdrop-blur-sm border border-white/20 rounded-full px-8 py-4">
-//             <p className="text-gray-300">
-//               <span className="font-bold text-white">Pro Tip:</span> Participate in multiple events to maximize your experience and showcase diverse skills
-//             </p>
-//           </div>
-//         </motion.div> */}
-//       </div>
-//     </section>
-//   );
-// }
-
-// import { motion } from "framer-motion";
-// import { Code, Brain, Palette, Rocket, Gamepad2Icon, Gamepad } from "lucide-react";
-// import { useNavigate } from "react-router-dom";
-
-// const events = [
-//   {
-//     icon: Code,
-//     title: "Code Combat",
-//     slug: "code-combat",
-//     description:
-//       "An intense coding competition where developers battle through algorithmic challenges.",
-//     category: "Technical",
-//     color: "from-red-500 to-red-600",
-//   },
-//   {
-//     icon: Brain,
-//     title: "Capture The Flag",
-//     slug: "ctf",
-//     description:
-//       "Cybersecurity challenge testing real-world attack and defense skills.",
-//     category: "Technical",
-//     color: "from-purple-500 to-purple-600",
-//   },
-//   {
-//     icon: Palette,
-//     title: "Vibe Code",
-//     slug: "vibe-code",
-//     description:
-//       "UI/UX designers face off to create stunning, user-centric designs.",
-//     category: "Technical",
-//     color: "from-blue-500 to-blue-600",
-//   },
-//   {
-//     icon: Rocket,
-//     title: "Pitch Perfect",
-//     slug: "pitch-perfect",
-//     description:
-//       "Entrepreneurs pitch innovative ideas to impress judges and investors.",
-//     category: "Technical",
-//     color: "from-cyan-500 to-cyan-600",
-//   },
-//   {
-//     icon: Gamepad2Icon,
-//     title: "Data Derby",
-//     slug: "data-derby",
-//     description:
-//       "Analyze datasets and extract powerful insights under pressure.",
-//     category: "Non Technical",
-//     color: "from-orange-500 to-orange-600",
-//   },
-//   {
-//     icon: Gamepad,
-//     title: "Cyber Clash",
-//     slug: "cyber-clash",
-//     description:
-//       "CTF-style hacking event testing penetration and defense skills.",
-//     category: "Non Technical",
-//     color: "from-green-500 to-green-600",
-//   },
-// ];
-
-// export default function Events() {
-//   const navigate = useNavigate();
-
-//   return (
-//     <section
-//       id="events"
-//       className="min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black"
-//     >
-//       <div className="max-w-7xl mx-auto px-6">
-//         <h2 className="text-5xl font-bold text-center text-white mb-16">
-//           Competition Events
-//         </h2>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {events.map((event, index) => (
-//             <motion.div
-//               key={event.slug}
-//               onClick={() => navigate(`/event/${event.slug}`)}
-//               className="cursor-pointer bg-black/60 border border-white/10 rounded-2xl p-6 hover:border-white/30"
-//               initial={{ y: 40, opacity: 0 }}
-//               whileInView={{ y: 0, opacity: 1 }}
-//               transition={{ delay: index * 0.1 }}
-//               whileHover={{ scale: 1.05 }}
-//             >
-//               <div
-//                 className={`p-3 inline-block rounded-xl bg-gradient-to-br ${event.color} mb-4`}
-//               >
-//                 <event.icon className="text-white" size={28} />
-//               </div>
-
-//               <h3 className="text-2xl font-bold text-white mb-2">
-//                 {event.title}
-//               </h3>
-
-//               <p className="text-gray-400 mb-4">{event.description}</p>
-
-//               <span
-//                 className={`inline-block px-3 py-1 text-xs rounded-full bg-gradient-to-r ${event.color} text-white`}
-//               >
-//                 {event.category}
-//               </span>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// import { motion } from "framer-motion";
-// import {
-//   Code,
-//   Brain,
-//   Palette,
-//   Rocket,
-//   Gamepad2Icon,
-//   Gamepad,
-// } from "lucide-react";
-// import { useNavigate } from "react-router-dom";
-
-// import {
-//   Card,
-//   CardContent,
-//   CardHeader,
-//   CardTitle,
-//   CardDescription,
-// } from "@/components/ui/card";
-// import { Badge } from "@/components/ui/badge";
-
-// const events = [
-//   {
-//     icon: Code,
-//     title: "Binary Derby",
-//     slug: "code-combat",
-//     description:
-//       "An intense coding competition where developers battle through algorithmic challenges.",
-//     category: "Technical",
-//     color: "from-red-500 to-red-600",
-//   },
-//   {
-//     icon: Brain,
-//     title: "Capture The Flag",
-//     slug: "ctf",
-//     description:
-//       "Cybersecurity challenge testing real-world attack and defense skills.",
-//     category: "Technical",
-//     color: "from-purple-500 to-purple-600",
-//   },
-//   {
-//     icon: Palette,
-//     title: "Vibathon",
-//     slug: "vibe-code",
-//     description:
-//       "UI/UX designers face off to create stunning, user-centric designs.",
-//     category: "Technical",
-//     color: "from-blue-500 to-blue-600",
-//   },
-//   {
-//     icon: Rocket,
-//     title: "Project Explosion",
-//     slug: "pitch-perfect",
-//     description:
-//       "Entrepreneurs pitch innovative ideas to impress judges and investors.",
-//     category: "Technical",
-//     color: "from-cyan-500 to-cyan-600",
-//   },
-//   {
-//     icon: Gamepad2Icon,
-//     title: "Data Derby",
-//     slug: "data-derby",
-//     description:
-//       "Analyze datasets and extract powerful insights under pressure.",
-//     category: "Non Technical",
-//     color: "from-orange-500 to-orange-600",
-//   },
-//   {
-//     icon: Gamepad,
-//     title: "Cyber Clash",
-//     slug: "cyber-clash",
-//     description:
-//       "CTF-style hacking event testing penetration and defense skills.",
-//     category: "Non Technical",
-//     color: "from-green-500 to-green-600",
-//   },
-// ];
-
-// export default function Events() {
-//   const navigate = useNavigate();
-
-//   return (
-//     <section
-//       id="events"
-//       className="min-h-screen py-20 bg-gradient-to-b from-black via-gray-900 to-black"
-//     >
-//       <div className="max-w-7xl mx-auto px-6">
-//         <h2 className="text-5xl font-bold text-center text-white mb-16">
-//           Legends Arena
-//         </h2>
-
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {events.map((event, index) => (
-//             <motion.div
-//               key={event.slug}
-//               onClick={() => navigate(`/event/${event.slug}`)}
-//               className="cursor-pointer"
-//               initial={{ y: 40, opacity: 0 }}
-//               whileInView={{ y: 0, opacity: 1 }}
-//               transition={{ delay: index * 0.1 }}
-//               whileHover={{ scale: 1.03 }}
-//             >
-//               <Card className="bg-black/70 border-white/10 hover:border-white/30 hover:shadow-lg transition-all duration-300">
-//                 <CardHeader className="flex items-center justify-between">
-//                   <div
-//                     className={`p-3 rounded-xl bg-gradient-to-br ${event.color} shadow-md`}
-//                   >
-//                     <event.icon className="text-white" size={28} />
-//                   </div>
-//                   <Badge className="text-white  bg-white/10 border-white/20">
-//                     {event.category}
-//                   </Badge>
-//                 </CardHeader>
-
-//                 <CardContent className="pt-4">
-//                   <CardTitle className="text-2xl text-white">
-//                     {event.title}
-//                   </CardTitle>
-//                   <CardDescription className="text-gray-400 mt-2">
-//                     {event.description}
-//                   </CardDescription>
-
-//                   <div className="mt-6 flex items-center  justify-between">
-//                     <span className="text-xs text-gray-400">
-//                       Click to view details
-//                     </span>
-//                     <span className="text-xs text-white/80">
-//                       →  
-//                     </span>
-//                   </div>
-//                 </CardContent>
-//               </Card>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
-/* ------------------ EVENTS DATA ------------------ */
-
-const events = [
+const events: Event[] = [
   {
-    title: "CODE FC",
-    slug: "code-combat",
-    category: "Technical",
-    description: "Battle through intense algorithmic challenges.",
-    image: "/events/binary.jpg",
-    formLink: "https://forms.gle/xxxxx1",
-    color: "from-red-500 to-red-600",
+    title: 'H4CK_077 CTF',
+    slug: 'hack077-ctf',
+    category: 'Technical',
+    description: 'Capture The Flag cybersecurity challenge.',
+    longDescription: 'Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.',
+    image: '/events/ctf1.jpeg',
+    formLink: 'https://forms.gle/xxxxx1',
+    gradient: 'from-purple-500 to-purple-700',
+    featured: true,
   },
   {
-    title: "H4CK_077 CTF",
-    slug: "ctf",
-    category: "Technical",
-    description: "Real-world cybersecurity attack & defense challenges.",
-    image: "/events/ctf1.jpeg",
-    formLink: "https://forms.gle/xxxxx2",
-    color: "from-purple-500 to-purple-600",
+    title: 'CODE FC',
+    slug: 'code-fc',
+    category: 'Technical',
+    description: 'Competitive coding on HackerRank.',
+    longDescription: 'Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.',
+    image: '/events/binary.jpg',
+    formLink: 'https://forms.gle/xxxxx2',
+    gradient: 'from-rivalry-red to-red-600',
   },
   {
-    title: "Vibe-A-thon",
-    slug: "vibe-code",
-    category: "Technical",
-    description: "Design stunning UI/UX under time pressure.",
-    image: "/events/vibe.jpg",
-    formLink: "https://forms.gle/xxxxx3",
-    color: "from-blue-500 to-blue-600",
+    title: 'Paper Presentation',
+    slug: 'paper-presentation',
+    category: 'Technical',
+    description: 'Present innovative tech ideas.',
+    longDescription: 'Showcase your research in Cyber Security, AI, Edutech, or Open Innovation. Submit your project report (PDF) and PPT online. Present offline for 5-10 minutes. Team: 1-4 members. Venue: Mechanical Block, 3rd Floor. Time: 10:00 AM – 12:30 PM.',
+    image: '/events/vibe.jpg',
+    formLink: 'https://forms.gle/xxxxx3',
+    gradient: 'from-rivalry-blue to-blue-700',
   },
   {
-    title: "Data Derby",
-    slug: "data-derby",
-    category: "Non Technical",
-    description: "Analyze data and extract meaningful insights.",
-    image: "/events/data.jpg",
-    formLink: "https://forms.gle/xxxxx4",
-    color: "from-orange-500 to-orange-600",
+    title: 'Vibe Coding',
+    slug: 'vibe-coding',
+    category: 'Technical',
+    description: 'UI/UX design challenge.',
+    longDescription: 'Create stunning user interfaces under pressure. One round with 4 problem statements to solve in 2 hours. Team: 2-3 members. Design beautiful, functional solutions that showcase your creativity and technical skills.',
+    image: '/events/data.jpg',
+    formLink: 'https://forms.gle/xxxxx4',
+    gradient: 'from-cyan-500 to-blue-600',
   },
   {
-    title: "Cyber Clash",
-    slug: "cyber-clash",
-    category: "Non Technical",
-    description: "Fast-paced hacking and defense battles.",
-    image: "/events/cyber.jpg",
-    formLink: "https://forms.gle/xxxxx5",
-    color: "from-green-500 to-green-600",
+    title: 'De-Melodia',
+    slug: 'de-melodia',
+    category: 'Non Technical',
+    description: 'Music-based rhythm challenge.',
+    longDescription: 'Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.',
+    image: '/events/cyber.jpg',
+    formLink: 'https://forms.gle/xxxxx5',
+    gradient: 'from-pink-500 to-rose-600',
+  },
+  {
+    title: 'Play.io',
+    slug: 'play-io',
+    category: 'Non Technical',
+    description: 'Teamwork & coordination games.',
+    longDescription: 'Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.',
+    image: '/events/cyber.jpg',
+    formLink: 'https://forms.gle/xxxxx6',
+    gradient: 'from-emerald-500 to-green-600',
   },
 ];
 
-/* ------------------ ANIMATION VARIANTS ------------------ */
+const categories = ['All', 'Technical', 'Non Technical'] as const;
+type Category = typeof categories[number];
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
+// ============================================
+// Event Card Component with Scroll Parallax
+// ============================================
 
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 },
-};
+interface EventCardProps {
+  event: Event;
+  index: number;
+  onNavigate: (slug: string) => void;
+  scrollProgress: any;
+}
 
-const cardHover = {
-  rest: { y: 0 },
-  hover: {
-    y: -8,
-    transition: { type: "spring", stiffness: 300, damping: 20 },
-  },
-};
+function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const prefersReduced = usePrefersReducedMotion();
 
-const overlayVariants = {
-  rest: { opacity: 0 },
-  hover: { opacity: 1 },
-};
+  // Staggered parallax based on grid position
+  const row = Math.floor(index / 3);
+  const col = index % 3;
+  
+  const cardY = useTransform(
+    scrollProgress,
+    [0, 1],
+    prefersReduced ? [0, 0] : [30 + row * 20, -20 - col * 10]
+  );
 
-const buttonVariants = {
-  rest: { opacity: 0, scale: 0.85 },
-  hover: {
-    opacity: 1,
-    scale: 1,
-    transition: { type: "spring", stiffness: 260 },
-  },
-};
+  const cardOpacity = useTransform(
+    scrollProgress,
+    [0, 0.1 + index * 0.02, 0.9, 1],
+    [0.3, 1, 1, 0.3]
+  );
 
-const textVariants = {
-  rest: { y: 0 },
-  hover: { y: -6 },
-};
+  return (
+    <motion.article
+      style={{
+        y: cardY,
+        opacity: cardOpacity,
+      }}
+      variants={staggerItem}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={cn(
+        'group relative rounded-2xl overflow-hidden cursor-pointer will-change-transform',
+        event.featured ? 'sm:col-span-2 sm:row-span-2' : ''
+      )}
+      onClick={() => onNavigate(event.slug)}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <motion.img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-full object-cover"
+          animate={{
+            scale: isHovered ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        
+        {/* Colored Overlay on Hover */}
+        <motion.div
+          className={cn('absolute inset-0 bg-gradient-to-br opacity-0', event.gradient)}
+          animate={{ opacity: isHovered ? 0.4 : 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
 
-/* ------------------ COMPONENT ------------------ */
+      {/* Content */}
+      <div className={cn(
+        'relative z-10 h-full flex flex-col justify-end p-6',
+        event.featured ? 'sm:p-8' : ''
+      )}>
+        {/* Category Badge */}
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.2 }}
+          className={cn(
+            'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mb-4 w-fit',
+            'bg-white/10 backdrop-blur-sm border border-white/20 text-white'
+          )}
+        >
+          {event.category}
+        </motion.span>
+
+        {/* Title */}
+        <motion.h3
+          className={cn(
+            'font-bold text-white mb-2 tracking-tight',
+            event.featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
+          )}
+          animate={{ y: isHovered ? -4 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {event.title}
+        </motion.h3>
+
+        {/* Description */}
+        <motion.p
+          className={cn(
+            'text-white/70 leading-relaxed mb-4',
+            event.featured ? 'text-base sm:text-lg max-w-md' : 'text-sm line-clamp-2'
+          )}
+          animate={{ y: isHovered ? -4 : 0 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+        >
+          {event.featured ? event.longDescription : event.description}
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex items-center gap-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? 0 : 20,
+          }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.a
+            href={event.formLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={cn(
+              'inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm text-white',
+              'bg-gradient-to-r', event.gradient,
+              'hover:shadow-lg transition-shadow duration-300'
+            )}
+          >
+            Register
+            <ExternalLink className="w-4 h-4" />
+          </motion.a>
+
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm
+              bg-white/10 backdrop-blur-sm border border-white/20 text-white
+              hover:bg-white/20 transition-colors duration-300"
+          >
+            Details
+            <ArrowRight className="w-4 h-4" />
+          </motion.button>
+        </motion.div>
+      </div>
+
+      {/* Card Border Glow */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl border-2 border-transparent pointer-events-none"
+        animate={{
+          borderColor: isHovered ? 'rgba(255,255,255,0.2)' : 'transparent',
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.article>
+  );
+}
+
+// ============================================
+// Featured Event Card (Hero Style) with Scroll Effects
+// ============================================
+
+function FeaturedEventCard({ 
+  event, 
+  onNavigate, 
+  scrollProgress 
+}: { 
+  event: Event; 
+  onNavigate: (slug: string) => void;
+  scrollProgress: any;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const prefersReduced = usePrefersReducedMotion();
+
+  // Parallax effect for featured card
+  const featuredY = useTransform(
+    scrollProgress,
+    [0, 0.5],
+    prefersReduced ? [0, 0] : [40, -20]
+  );
+  
+  const featuredScale = useTransform(
+    scrollProgress,
+    [0.3, 0.7],
+    prefersReduced ? [1, 1] : [1, 0.98]
+  );
+
+  return (
+    <motion.article
+      style={{
+        y: featuredY,
+        scale: featuredScale,
+      }}
+      variants={scrollReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-100px' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onNavigate(event.slug)}
+      className="relative rounded-3xl overflow-hidden cursor-pointer mb-12 h-[400px] sm:h-[500px] will-change-transform"
+    >
+      {/* Background */}
+      <motion.img
+        src={event.image}
+        alt={event.title}
+        className="absolute inset-0 w-full h-full object-cover"
+        animate={{ scale: isHovered ? 1.05 : 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+      <motion.div
+        className={cn('absolute inset-0 bg-gradient-to-br', event.gradient)}
+        animate={{ opacity: isHovered ? 0.3 : 0 }}
+        transition={{ duration: 0.4 }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-center p-8 sm:p-12 max-w-2xl">
+        <motion.span
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm 
+            border border-white/20 text-sm font-medium text-white mb-6 w-fit"
+        >
+          <span className="w-2 h-2 rounded-full bg-rivalry-red animate-pulse" />
+          Featured Event
+        </motion.span>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight"
+        >
+          {event.title}
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed"
+        >
+          {event.longDescription}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="flex items-center gap-4"
+        >
+          <motion.a
+            href={event.formLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={cn(
+              'inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white',
+              'bg-gradient-to-r', event.gradient,
+              'hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300'
+            )}
+          >
+            Register Now
+            <ExternalLink className="w-5 h-5" />
+          </motion.a>
+
+          <motion.button
+            whileHover={{ scale: 1.02, x: 4 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 text-white font-medium"
+          >
+            Learn More
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-8 right-8 text-8xl font-black text-white/5">
+        01
+      </div>
+    </motion.article>
+  );
+}
+
+// ============================================
+// Main Events Component
+// ============================================
 
 export default function Events() {
   const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState<Category>('All');
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
+
+  // Scroll progress for the section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Header scroll effects
+  const headerY = useTransform(
+    smoothProgress,
+    [0, 0.2],
+    prefersReduced ? [0, 0] : [60, 0]
+  );
+  
+  const headerOpacity = useTransform(
+    smoothProgress,
+    [0, 0.15],
+    [0, 1]
+  );
+
+  const filteredEvents = events.filter((event) => {
+    if (activeCategory === 'All') return !event.featured; // Don't show featured in grid
+    return event.category === activeCategory && !event.featured;
+  });
+
+  const featuredEvent = events.find((e) => e.featured);
+
+  const handleNavigate = (slug: string) => {
+    navigate(`/event/${slug}`);
+  };
 
   return (
-    <section id="events" className="min-h-screen py-24 bg-gradient-to-b from-black via-gray-900 to-black">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={sectionRef} id="events" className="relative py-24 sm:py-32 bg-surface-base overflow-hidden">
+      {/* Background Gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--rivalry-red) / 0.15) 0%, transparent 50%)',
+        }}
+      />
 
-        {/* Heading */}
-        <h2 className="text-5xl font-bold text-center text-white mb-16 font-oxanium">
-          Legends Arena
-        </h2>
-
-        {/* Cards Grid */}
+      <div className="relative z-10 section-container">
+        {/* Section Header with scroll-linked animations */}
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+          style={{
+            y: headerY,
+            opacity: headerOpacity,
+          }}
+          className="text-center mb-12"
         >
-          {events.map((event) => (
-            <motion.div
-              key={event.slug}
-              variants={item}
-              initial="rest"
-              animate="rest"
-              whileHover="hover"
-              className="cursor-pointer"
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full bg-surface-elevated border border-white/10 
+              text-xs font-medium text-text-secondary tracking-wider uppercase mb-6"
+          >
+            Competition Events
+          </motion.span>
+
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            <span className="text-text-primary">Choose Your</span>
+            <br />
+            <span className="gradient-text-rivalry">Battlefield</span>
+          </h2>
+
+          <p className="text-lg text-text-secondary max-w-xl mx-auto">
+            Five epic arenas await. Pick your challenge and prove your excellence.
+          </p>
+        </motion.div>
+
+        {/* Featured Event */}
+        {featuredEvent && (
+          <FeaturedEventCard event={featuredEvent} onNavigate={handleNavigate} scrollProgress={smoothProgress} />
+        )}
+
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center gap-2 mb-12"
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={cn(
+                'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300',
+                activeCategory === category
+                  ? 'bg-white text-surface-base'
+                  : 'bg-surface-elevated text-text-secondary border border-white/10 hover:border-white/20'
+              )}
             >
-              <motion.div variants={cardHover}>
-                <Card
-                  onClick={() => navigate(`/event/${event.slug}`)}
-                  className="group overflow-hidden
-                    backdrop-blur-xl bg-white/5
-                    border border-white/10
-                    hover:border-white/30
-                    transition-all duration-300
-                    hover:shadow-[0_0_40px_rgba(255,255,255,0.08)]"
-                >
-
-                  {/* Text Section */}
-                  <CardHeader className="space-y-3">
-                    <motion.div
-                      variants={textVariants}
-                      className="flex justify-between items-center"
-                    >
-                      <Badge className="bg-white/10 border-white/20 text-white">
-                        {event.category}
-                      </Badge>
-                      <span className="text-xs text-gray-400 uppercase">
-                        {event.slug}
-                      </span>
-                    </motion.div>
-
-                    <motion.h3
-                      variants={textVariants}
-                      className="text-2xl font-semibold text-white font-orbitron"
-                    >
-                      {event.title}
-                    </motion.h3>
-
-                    <motion.p
-                      variants={textVariants}
-                      className="text-gray-400 text-sm"
-                    >
-                      {event.description}
-                    </motion.p>
-                  </CardHeader>
-
-                  {/* Image + Hover Actions */}
-                  <CardContent className="p-0">
-                    <div className="relative h-52 overflow-hidden">
-
-                      <motion.img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover"
-                        variants={{
-                          rest: { scale: 1, rotate: 0 },
-                          hover: { scale: 1.15, rotate: 1 },
-                        }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                      />
-
-                      {/* Glass Overlay */}
-                      <motion.div
-                        variants={overlayVariants}
-                        className="absolute inset-0 bg-black/40 backdrop-blur-md"
-                      />
-
-                      {/* Hover Buttons */}
-                      <motion.div
-                        variants={overlayVariants}
-                        className="absolute inset-0 flex flex-col items-center justify-center gap-4"
-                      >
-                        <motion.div variants={buttonVariants}>
-                          <Button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.open(event.formLink, "_blank");
-                            }}
-                            className={`bg-gradient-to-r ${event.color} text-white rounded-full px-8`}
-                          >
-                            Register Now
-                          </Button>
-                        </motion.div>
-
-                        <motion.div variants={buttonVariants}>
-                          <Button
-                            variant="outline"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/event/${event.slug}`);
-                            }}
-                            className="border-white/30 text-white rounded-full"
-                          >
-                            View Details
-                          </Button>
-                        </motion.div>
-                      </motion.div>
-
-                    </div>
-                  </CardContent>
-
-                </Card>
-              </motion.div>
-            </motion.div>
+              {category}
+            </motion.button>
           ))}
         </motion.div>
 
+        {/* Events Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, y: 20 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {filteredEvents.map((event, index) => (
+              <div key={event.slug} className="h-[320px]">
+                <EventCard event={event} index={index} onNavigate={handleNavigate} scrollProgress={smoothProgress} />
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Empty State */}
+        {filteredEvents.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <p className="text-text-tertiary">No events in this category.</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

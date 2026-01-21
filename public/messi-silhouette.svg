@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 900" fill="currentColor">
+  <defs>
+    <linearGradient id="messiGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4145a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a50044;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6b002d;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Messi Silhouette - Celebration Pose with Arms Raised -->
+  <g fill="url(#messiGradient)">
+    <!-- Head -->
+    <ellipse cx="200" cy="85" rx="45" ry="55"/>
+    
+    <!-- Hair detail -->
+    <path d="M155 70 Q160 30, 200 25 Q240 30, 245 70 Q230 50, 200 45 Q170 50, 155 70"/>
+    
+    <!-- Neck -->
+    <path d="M180 135 L180 165 L220 165 L220 135 Q200 150, 180 135"/>
+    
+    <!-- Torso -->
+    <path d="M140 165 
+             L130 180 
+             L115 350 
+             L135 380 
+             L180 390 
+             L200 395 
+             L220 390 
+             L265 380 
+             L285 350 
+             L270 180 
+             L260 165 
+             Q230 175, 200 175 Q170 175, 140 165"/>
+    
+    <!-- Left Arm (raised in celebration) -->
+    <path d="M130 180 
+             L90 160 
+             L50 100 
+             L35 60 
+             L25 55 
+             Q15 50, 20 45 
+             L35 48 
+             L55 85 
+             L90 140 
+             L115 170 
+             Z"/>
+    
+    <!-- Left Hand (fist) -->
+    <ellipse cx="22" cy="48" rx="15" ry="12"/>
+    
+    <!-- Right Arm (raised in celebration) -->
+    <path d="M270 180 
+             L310 160 
+             L350 100 
+             L365 60 
+             L375 55 
+             Q385 50, 380 45 
+             L365 48 
+             L345 85 
+             L310 140 
+             L285 170 
+             Z"/>
+    
+    <!-- Right Hand (fist) -->
+    <ellipse cx="378" cy="48" rx="15" ry="12"/>
+    
+    <!-- Jersey number 10 hint -->
+    <text x="200" y="300" font-family="Inter, Arial" font-size="48" font-weight="bold" 
+          fill="rgba(255,255,255,0.15)" text-anchor="middle">10</text>
+    
+    <!-- Shorts -->
+    <path d="M135 380 
+             L120 480 
+             L150 490 
+             L175 420 
+             L200 425 
+             L225 420 
+             L250 490 
+             L280 480 
+             L265 380 
+             Z"/>
+    
+    <!-- Left Leg -->
+    <path d="M120 480 
+             L105 650 
+             L100 750 
+             L95 820 
+             L90 850 
+             L85 870 
+             L130 875 
+             L135 855 
+             L138 820 
+             L145 750 
+             L155 650 
+             L160 520 
+             L150 490 
+             Z"/>
+    
+    <!-- Left Foot/Boot -->
+    <path d="M85 870 
+             L60 875 
+             L55 890 
+             L75 900 
+             L130 900 
+             L140 890 
+             L130 875 
+             Z"/>
+    
+    <!-- Right Leg -->
+    <path d="M280 480 
+             L295 650 
+             L300 750 
+             L305 820 
+             L310 850 
+             L315 870 
+             L270 875 
+             L265 855 
+             L262 820 
+             L255 750 
+             L245 650 
+             L240 520 
+             L250 490 
+             Z"/>
+    
+    <!-- Right Foot/Boot -->
+    <path d="M315 870 
+             L340 875 
+             L345 890 
+             L325 900 
+             L270 900 
+             L260 890 
+             L270 875 
+             Z"/>
+    
+    <!-- Soccer ball near left foot (optional detail) -->
+    <circle cx="50" cy="885" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <path d="M50 867 L55 880 L45 880 Z M35 885 L48 890 L42 898 Z M65 885 L52 890 L58 898 Z" 
+          fill="rgba(255,255,255,0.15)"/>
+  </g>
+</svg>

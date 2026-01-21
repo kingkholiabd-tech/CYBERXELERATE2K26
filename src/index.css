@@ -1,108 +1,643 @@
+/* ============================================
+   CYBERXELERATE 3.0 - Apple-Grade Design System
+   ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
-
+/* Google Fonts - Clean, Modern Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
-@tailwind components; 
+@tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   Design Tokens
+   ============================================ */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    /* === Rivalry Colors === */
+    --rivalry-red: 348 83% 32%;        /* #a50044 - Barcelona burgundy */
+    --rivalry-red-glow: 348 100% 45%;  /* Brighter for hover/glow */
+    --rivalry-blue: 212 100% 31%;      /* #00529f - Real Madrid blue */
+    --rivalry-blue-glow: 212 100% 50%; /* Brighter for hover/glow */
+    
+    /* === Surface Colors === */
+    --surface-base: 228 15% 6%;        /* #0d0e12 - Deepest background */
+    --surface-primary: 228 12% 8%;     /* #121318 - Primary background */
+    --surface-elevated: 228 15% 12%;   /* #1a1b23 - Cards, elevated surfaces */
+    --surface-overlay: 228 15% 16%;    /* #252631 - Modals, overlays */
+    
+    /* === Text Colors === */
+    --text-primary: 0 0% 98%;          /* #fafafa - Primary text */
+    --text-secondary: 220 9% 70%;      /* #a8adb8 - Secondary text */
+    --text-tertiary: 220 9% 46%;       /* #6b7280 - Muted text */
+    --text-disabled: 220 9% 30%;       /* #444955 - Disabled text */
+    
+    /* === Accent Colors === */
+    --accent-gold: 45 93% 58%;         /* #f5c518 - Highlights */
+    --accent-purple: 270 70% 60%;      /* #9b5de5 - Secondary accent */
+    --accent-cyan: 185 80% 50%;        /* #19c6d4 - Tertiary accent */
+    
+    /* === Semantic Colors === */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    
+    /* === Spacing Scale (4px base) === */
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-24: 6rem;     /* 96px */
+    --space-32: 8rem;     /* 128px */
+    
+    /* === Animation Curves (Apple-inspired) === */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* === Animation Durations === */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-slower: 800ms;
+    
+    /* === Border Radius === */
+    --radius-sm: 0.375rem;  /* 6px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 0.75rem;   /* 12px */
+    --radius-xl: 1rem;      /* 16px */
+    --radius-2xl: 1.5rem;   /* 24px */
+    --radius-full: 9999px;
+    
+    /* === Shadows === */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow-red: 0 0 60px -12px hsl(var(--rivalry-red) / 0.4);
+    --shadow-glow-blue: 0 0 60px -12px hsl(var(--rivalry-blue) / 0.4);
+    
+    /* === Legacy Shadcn Variables (for compatibility) === */
+    --background: var(--surface-primary);
+    --foreground: var(--text-primary);
+    --card: var(--surface-elevated);
+    --card-foreground: var(--text-primary);
+    --popover: var(--surface-overlay);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--rivalry-red);
+    --primary-foreground: var(--text-primary);
+    --secondary: var(--surface-elevated);
+    --secondary-foreground: var(--text-secondary);
+    --muted: var(--surface-elevated);
+    --muted-foreground: var(--text-tertiary);
+    --accent: var(--rivalry-blue);
+    --accent-foreground: var(--text-primary);
+    --destructive: var(--error);
+    --destructive-foreground: var(--text-primary);
+    --border: 228 15% 20%;
+    --input: 228 15% 20%;
+    --ring: var(--rivalry-red);
+    --radius: 0.5rem;
   }
 }
 
+/* ============================================
+   Base Styles
+   ============================================ */
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border;
   }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
   body {
-    @apply bg-background text-foreground;
-    font-family: 'UnifrakturMaguntia', cursive !important;
+    @apply bg-surface-base text-text-primary;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    line-height: 1.6;
+  }
+  
+  /* Typography Scale */
+  h1, .h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+    line-height: 1.1;
+  }
+  
+  h2, .h2 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    line-height: 1.15;
+  }
+  
+  h3, .h3 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+    line-height: 1.2;
+  }
+  
+  h4, .h4 {
+    @apply text-2xl md:text-3xl font-semibold;
+    line-height: 1.25;
+  }
+  
+  h5, .h5 {
+    @apply text-xl md:text-2xl font-medium;
+    line-height: 1.3;
+  }
+  
+  h6, .h6 {
+    @apply text-lg md:text-xl font-medium;
+    line-height: 1.4;
+  }
+  
+  /* Selection */
+  ::selection {
+    background: hsl(var(--rivalry-red) / 0.3);
+    color: white;
+  }
+  
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-offset-surface-base;
+    ring-color: hsl(var(--rivalry-red));
   }
 }
 
-
-.ring-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0.8px;
-  border-radius: 9999px;
-  background: conic-gradient(
-   
-    #6b00009c,
-    #a10101,
-    #8a0101,
-     #6d0202,
-    #1502bb,
-    #2600ff,
-    #011650,
-    #0c003f
-  );
-  animation: spin 10s linear infinite;
+/* ============================================
+   Component Classes
+   ============================================ */
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    @apply bg-surface-elevated/60 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 
+      0 0 0 1px hsl(var(--border) / 0.1),
+      0 4px 24px -4px rgb(0 0 0 / 0.2);
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  
+  .glass-card-hover:hover {
+    @apply border-white/20 bg-surface-elevated/80;
+    box-shadow: 
+      0 0 0 1px hsl(var(--border) / 0.2),
+      0 8px 32px -8px rgb(0 0 0 / 0.3);
+    transform: translateY(-2px);
+  }
+  
+  /* Gradient text */
+  .gradient-text-rivalry {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--rivalry-red)) 0%,
+      hsl(var(--text-primary)) 50%,
+      hsl(var(--rivalry-blue)) 100%
+    );
+  }
+  
+  .gradient-text-messi {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--rivalry-red-glow)) 0%,
+      hsl(var(--rivalry-red)) 100%
+    );
+  }
+  
+  .gradient-text-ronaldo {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--rivalry-blue-glow)) 0%,
+      hsl(var(--rivalry-blue)) 100%
+    );
+  }
+  
+  /* Rivalry glow effects */
+  .glow-messi {
+    box-shadow: var(--shadow-glow-red);
+  }
+  
+  .glow-ronaldo {
+    box-shadow: var(--shadow-glow-blue);
+  }
+  
+  /* Text glow */
+  .text-glow-messi {
+    text-shadow: 0 0 40px hsl(var(--rivalry-red) / 0.5);
+  }
+  
+  .text-glow-ronaldo {
+    text-shadow: 0 0 40px hsl(var(--rivalry-blue) / 0.5);
+  }
+  
+  /* Animated gradient border button */
+  .ring-btn {
+    @apply relative rounded-full;
+  }
+  
+  .ring-btn::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 9999px;
+    padding: 2px;
+    background: conic-gradient(
+      from 0deg,
+      hsl(var(--rivalry-red)),
+      hsl(var(--rivalry-red-glow)),
+      hsl(var(--accent-purple)),
+      hsl(var(--rivalry-blue-glow)),
+      hsl(var(--rivalry-blue)),
+      hsl(var(--rivalry-blue-glow)),
+      hsl(var(--accent-purple)),
+      hsl(var(--rivalry-red-glow)),
+      hsl(var(--rivalry-red))
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 8s linear infinite;
+  }
+  
+  .ring-btn::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 9999px;
+    background: hsl(var(--surface-base));
+    z-index: 1;
+  }
+  
+  .ring-btn > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Monospace accent */
+  .font-mono-accent {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
 }
 
-.ring-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0.8px;
-  border-radius: 9999px;
-  background: black; /* button inner background */
-  z-index: 1;
+/* ============================================
+   Utility Classes
+   ============================================ */
+@layer utilities {
+  /* Background colors with HSL */
+  .bg-surface-base { background-color: hsl(var(--surface-base)); }
+  .bg-surface-primary { background-color: hsl(var(--surface-primary)); }
+  .bg-surface-elevated { background-color: hsl(var(--surface-elevated)); }
+  .bg-surface-overlay { background-color: hsl(var(--surface-overlay)); }
+  
+  /* Text colors */
+  .text-text-primary { color: hsl(var(--text-primary)); }
+  .text-text-secondary { color: hsl(var(--text-secondary)); }
+  .text-text-tertiary { color: hsl(var(--text-tertiary)); }
+  
+  /* Rivalry colors */
+  .bg-rivalry-red { background-color: hsl(var(--rivalry-red)); }
+  .bg-rivalry-blue { background-color: hsl(var(--rivalry-blue)); }
+  .text-rivalry-red { color: hsl(var(--rivalry-red)); }
+  .text-rivalry-blue { color: hsl(var(--rivalry-blue)); }
+  .border-rivalry-red { border-color: hsl(var(--rivalry-red)); }
+  .border-rivalry-blue { border-color: hsl(var(--rivalry-blue)); }
+  
+  /* Animation utilities */
+  .animate-ease-out-expo {
+    transition-timing-function: var(--ease-out-expo);
+  }
+  
+  .animate-ease-spring {
+    transition-timing-function: var(--ease-spring);
+  }
+  
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  
+  /* Vignette effect */
+  .vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, hsl(var(--surface-base)) 100%);
+    pointer-events: none;
+  }
+  
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
+/* ============================================
+   Keyframe Animations
+   ============================================ */
 @keyframes spin {
   to {
-    transform: rotate(1080deg);
+    transform: rotate(360deg);
   }
 }
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Bounce animation for scroll indicator */
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ============================================
+   Apple-Style Enhanced Transitions
+   ============================================ */
+
+/* Smooth parallax transform origin */
+.parallax-origin {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Scroll-linked section transitions */
+.section-fade-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* Apple-style sticky header blur */
+.sticky-blur {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* Enhanced glass with inner glow */
+.glass-card-glow {
+  @apply glass-card;
+  box-shadow: 
+    0 0 0 1px hsl(var(--border) / 0.1),
+    0 4px 24px -4px rgb(0 0 0 / 0.2),
+    inset 0 1px 0 0 hsl(var(--text-primary) / 0.05);
+}
+
+.glass-card-glow:hover {
+  box-shadow: 
+    0 0 0 1px hsl(var(--border) / 0.2),
+    0 8px 40px -8px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 0 hsl(var(--text-primary) / 0.08);
+}
+
+/* Smooth image reveal */
+@keyframes image-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.animate-image-reveal {
+  animation: image-reveal 1.2s var(--ease-out-expo) forwards;
+}
+
+/* Scale up reveal */
+@keyframes scale-reveal {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-reveal {
+  animation: scale-reveal 0.8s var(--ease-out-expo) forwards;
+}
+
+/* Blur in animation */
+@keyframes blur-in {
+  from {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.animate-blur-in {
+  animation: blur-in 0.6s var(--ease-out-expo) forwards;
+}
+
+/* Line draw animation helper */
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-line-draw {
+  stroke-dasharray: 1000;
+  animation: line-draw 2s var(--ease-out-expo) forwards;
+}
+
+/* Cyber grid pattern background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(hsl(var(--text-primary) / 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--text-primary) / 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Gradient border animation */
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-border {
+  position: relative;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--rivalry-red) / 0.5),
+    hsl(var(--rivalry-blue) / 0.5),
+    hsl(var(--rivalry-red) / 0.5)
+  );
+  background-size: 200% 100%;
+  animation: border-flow 4s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Smooth text color transition */
+.text-transition {
+  transition: color 0.4s var(--ease-out-expo);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.3);
+}
+
+/* Interactive scale */
+.interactive-scale {
+  transition: transform 0.2s var(--ease-out-expo);
+}
+
+.interactive-scale:hover {
+  transform: scale(1.02);
+}
+
+.interactive-scale:active {
+  transform: scale(0.98);
+}
+

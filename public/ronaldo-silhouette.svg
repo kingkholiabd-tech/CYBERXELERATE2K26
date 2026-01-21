@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 900" fill="currentColor">
+  <defs>
+    <linearGradient id="ronaldoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e90ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00529f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003366;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Ronaldo Silhouette - SIUUU Celebration Pose -->
+  <g fill="url(#ronaldoGradient)">
+    <!-- Head (tilted back in celebration) -->
+    <ellipse cx="200" cy="95" rx="42" ry="52" transform="rotate(-10, 200, 95)"/>
+    
+    <!-- Hair (short, styled) -->
+    <path d="M162 75 Q165 45, 200 40 Q235 45, 238 75 Q225 60, 200 58 Q175 60, 162 75"/>
+    
+    <!-- Neck (muscular) -->
+    <path d="M175 142 L172 175 L228 175 L225 142 Q200 155, 175 142"/>
+    
+    <!-- Torso (athletic build, chest out in celebration) -->
+    <path d="M135 175 
+             L120 195 
+             L105 370 
+             L130 400 
+             L175 410 
+             L200 415 
+             L225 410 
+             L270 400 
+             L295 370 
+             L280 195 
+             L265 175 
+             Q232 188, 200 188 Q168 188, 135 175"/>
+    
+    <!-- Left Arm (extended outward, SIUUU pose) -->
+    <path d="M120 195 
+             L75 220 
+             L30 260 
+             L10 300 
+             L5 320 
+             Q0 330, 8 335 
+             L20 325 
+             L35 295 
+             L70 250 
+             L100 220 
+             Z"/>
+    
+    <!-- Left Hand (open, fingers spread) -->
+    <path d="M5 320 
+             L-5 310 L-8 315 L0 325 
+             M5 320 
+             L-8 325 L-10 332 L2 330 
+             M5 320 
+             L-5 335 L-5 343 L5 338 
+             M8 335 
+             L5 350 L12 352 L15 340"/>
+    
+    <!-- Right Arm (extended outward, SIUUU pose) -->
+    <path d="M280 195 
+             L325 220 
+             L370 260 
+             L390 300 
+             L395 320 
+             Q400 330, 392 335 
+             L380 325 
+             L365 295 
+             L330 250 
+             L300 220 
+             Z"/>
+    
+    <!-- Right Hand (open, fingers spread) -->
+    <path d="M395 320 
+             L405 310 L408 315 L400 325 
+             M395 320 
+             L408 325 L410 332 L398 330 
+             M395 320 
+             L405 335 L405 343 L395 338 
+             M392 335 
+             L395 350 L388 352 L385 340"/>
+    
+    <!-- Jersey number 7 hint -->
+    <text x="200" y="310" font-family="Inter, Arial" font-size="52" font-weight="bold" 
+          fill="rgba(255,255,255,0.15)" text-anchor="middle">7</text>
+    
+    <!-- Shorts -->
+    <path d="M130 400 
+             L115 510 
+             L148 520 
+             L178 440 
+             L200 445 
+             L222 440 
+             L252 520 
+             L285 510 
+             L270 400 
+             Z"/>
+    
+    <!-- Left Leg (wide stance, powerful) -->
+    <path d="M115 510 
+             L85 680 
+             L70 780 
+             L60 840 
+             L55 865 
+             L105 875 
+             L115 850 
+             L125 780 
+             L140 680 
+             L155 550 
+             L148 520 
+             Z"/>
+    
+    <!-- Left Foot/Boot -->
+    <path d="M55 865 
+             L25 872 
+             L20 888 
+             L45 900 
+             L105 900 
+             L115 888 
+             L105 875 
+             Z"/>
+    
+    <!-- Right Leg (wide stance, powerful) -->
+    <path d="M285 510 
+             L315 680 
+             L330 780 
+             L340 840 
+             L345 865 
+             L295 875 
+             L285 850 
+             L275 780 
+             L260 680 
+             L245 550 
+             L252 520 
+             Z"/>
+    
+    <!-- Right Foot/Boot -->
+    <path d="M345 865 
+             L375 872 
+             L380 888 
+             L355 900 
+             L295 900 
+             L285 888 
+             L295 875 
+             Z"/>
+    
+    <!-- Ground shadow effect -->
+    <ellipse cx="200" cy="898" rx="120" ry="8" fill="rgba(0,0,0,0.2)"/>
+    
+    <!-- Power aura lines (subtle) -->
+    <g stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none">
+      <path d="M200 50 L200 20"/>
+      <path d="M170 60 L150 35"/>
+      <path d="M230 60 L250 35"/>
+    </g>
+  </g>
+</svg>

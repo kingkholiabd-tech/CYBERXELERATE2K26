@@ -231,8 +231,8 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] z-50 md:hidden
-                bg-surface-primary/95 backdrop-blur-xl border-l border-white/10"
+              className="fixed top-0 right-0 bottom-0 w-72 sm:w-80 max-w-[85vw] z-50 md:hidden
+                bg-surface-primary/95 backdrop-blur-xl border-l border-white/10 safe-padding-bottom"
             >
               {/* Mobile Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
@@ -259,7 +259,7 @@ export default function Navbar() {
                     key={item}
                     onClick={() => handleNavClick(item)}
                     className={`
-                      flex items-center gap-3 px-4 py-4 rounded-xl text-left
+                      flex items-center gap-3 px-4 py-4 rounded-xl text-left touch-target
                       transition-all duration-200
                       ${activeSection === item && isHomePage
                         ? 'bg-white/10 text-white'

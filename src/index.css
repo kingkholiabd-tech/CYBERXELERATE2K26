@@ -294,6 +294,32 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
+  /* Fluid typography - Apple-grade responsive text */
+  .fluid-title {
+    font-size: clamp(2rem, 5vw + 1rem, 4.5rem);
+    line-height: 1.1;
+  }
+  
+  .fluid-subtitle {
+    font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  .fluid-body {
+    font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+    line-height: 1.6;
+  }
+  
+  /* Mobile-optimized touch targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Safe area padding for mobile */
+  .safe-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+  
   /* Monospace accent */
   .font-mono-accent {
     font-family: 'JetBrains Mono', ui-monospace, monospace;

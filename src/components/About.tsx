@@ -1,360 +1,159 @@
 'use client';
 
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { Calendar, Users, Trophy, Utensils, Bus, Shield } from 'lucide-react';
+import { useRef } from 'react';
+import { Bus } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useScrollAnimations';
 
-// ============================================
-// Scroll-Linked Counter Component
-// ============================================
+// Apple-style easing
+const APPLE_EASE = [0.25, 0.1, 0.25, 1] as const;
 
-function ScrollCounter({ 
-  end, 
-  suffix = '', 
-  prefix = '',
-  scrollProgress 
-}: { 
-  end: number; 
-  suffix?: string; 
-  prefix?: string;
-  scrollProgress: any;
-}) {
-  const count = useTransform(
-    scrollProgress,
-    [0.1, 0.4],
-    [0, end]
-  );
-  
-  const [displayCount, setDisplayCount] = useState(0);
+// Stats data - concise, factual
+const stats = [
+  { value: '1000+', label: 'Participants' },
+  { value: '₹50K', label: 'Prize Pool' },
+  { value: '6', label: 'Events' },
+  { value: '1', label: 'Day' },
+];
 
-  useEffect(() => {
-    const unsubscribe = count.on('change', (latest) => {
-      setDisplayCount(Math.round(latest));
-    });
-    return () => unsubscribe();
-  }, [count]);
-
-  return (
-    <span className="tabular-nums">
-      {prefix}{displayCount.toLocaleString()}{suffix}
-    </span>
-  );
-}
-
-// ============================================
-// Stat Card with Parallax
-// ============================================
-
-interface StatCardProps {
-  icon: React.ReactNode;
-  value: number;
-  label: string;
-  suffix?: string;
-  prefix?: string;
-  scrollProgress: any;
-  index: number;
-}
-
-function StatCard({ icon, value, label, suffix = '', prefix = '', scrollProgress, index }: StatCardProps) {
-  const prefersReduced = usePrefersReducedMotion();
-  
-  // Staggered parallax for each card
-  const cardY = useTransform(
-    scrollProgress,
-    [0, 0.5],
-    prefersReduced ? [0, 0] : [60 + index * 15, 0]
-  );
-  
-  const cardOpacity = useTransform(
-    scrollProgress,
-    [0.05 + index * 0.03, 0.2 + index * 0.03],
-    [0, 1]
-  );
-
-  return (
-    <motion.div
-      style={{
-        y: cardY,
-        opacity: cardOpacity,
-      }}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="glass-card-hover p-6 flex flex-col items-center text-center will-change-transform"
-    >
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rivalry-red/20 to-rivalry-blue/20 flex items-center justify-center mb-4">
-        {icon}
-      </div>
-      <span className="text-3xl sm:text-4xl font-bold text-text-primary mb-2">
-        <ScrollCounter end={value} suffix={suffix} prefix={prefix} scrollProgress={scrollProgress} />
-      </span>
-      <span className="text-sm text-text-tertiary uppercase tracking-wider">{label}</span>
-    </motion.div>
-  );
-}
-
-// ============================================
-// Highlight Card with Parallax
-// ============================================
-
-interface HighlightCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  gradient: string;
-  scrollProgress: any;
-  index: number;
-}
-
-function HighlightCard({ icon, title, description, gradient, scrollProgress, index }: HighlightCardProps) {
-  const prefersReduced = usePrefersReducedMotion();
-  
-  // Different parallax speeds based on row position
-  const row = Math.floor(index / 3);
-  const col = index % 3;
-  
-  const cardY = useTransform(
-    scrollProgress,
-    [0.3, 0.7],
-    prefersReduced ? [0, 0] : [40 + row * 20, 0]
-  );
-  
-  const cardOpacity = useTransform(
-    scrollProgress,
-    [0.3 + col * 0.02, 0.45 + col * 0.02],
-    [0, 1]
-  );
-
-  return (
-    <motion.div
-      style={{
-        y: cardY,
-        opacity: cardOpacity,
-      }}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="glass-card-hover p-6 group will-change-transform"
-    >
-      <div className={`w-10 h-10 rounded-lg ${gradient} flex items-center justify-center mb-4 
-        group-hover:scale-110 transition-transform duration-300`}>
-        {icon}
-      </div>
-      <h4 className="text-lg font-semibold text-text-primary mb-2">{title}</h4>
-      <p className="text-sm text-text-secondary leading-relaxed">{description}</p>
-    </motion.div>
-  );
-}
-
-// ============================================
-// Main About Component
-// ============================================
+// What's included - no fluff
+const includes = [
+  { emoji: '🎟️', text: 'Free entry for all' },
+  { emoji: '🍽️', text: 'Meals provided' },
+  { emoji: '🚌', text: 'Transport available' },
+  { emoji: '📜', text: 'Certificates for all' },
+];
 
 export default function About() {
   const containerRef = useRef<HTMLElement>(null);
   const prefersReduced = usePrefersReducedMotion();
 
-  // Scroll progress for the entire section
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  // Smooth spring
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80,
+    damping: 20,
     restDelta: 0.001,
   });
 
-  // Header parallax - title stays visible longer, scales down
-  const headerY = useTransform(
-    smoothProgress,
-    [0, 0.3],
-    prefersReduced ? [0, 0] : [80, 0]
-  );
-  
-  const headerOpacity = useTransform(
-    smoothProgress,
-    [0, 0.15],
-    [0, 1]
-  );
-
-  const headerScale = useTransform(
-    smoothProgress,
-    [0.5, 0.8],
-    prefersReduced ? [1, 1] : [1, 0.95]
-  );
-
-  // Background gradient shift
-  const bgOpacity = useTransform(
-    smoothProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 0.2, 0.2, 0]
-  );
+  // Refined parallax - subtle, purposeful
+  const headerY = useTransform(smoothProgress, [0, 0.3], prefersReduced ? [0, 0] : [60, 0]);
+  const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
+  const statsY = useTransform(smoothProgress, [0.1, 0.4], prefersReduced ? [0, 0] : [40, 0]);
+  const statsOpacity = useTransform(smoothProgress, [0.1, 0.25], [0, 1]);
+  const includesY = useTransform(smoothProgress, [0.25, 0.5], prefersReduced ? [0, 0] : [30, 0]);
+  const includesOpacity = useTransform(smoothProgress, [0.25, 0.4], [0, 1]);
 
   return (
     <section
       ref={containerRef}
       id="about"
-      className="relative py-24 sm:py-32 bg-surface-base overflow-hidden"
+      className="relative py-20 sm:py-28 lg:py-36 bg-surface-base"
     >
-      {/* Animated Background Gradients */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none"
-        style={{ opacity: bgOpacity }}
-      >
-        <div
-          className="absolute top-0 left-1/4 w-[600px] h-[600px]"
-          style={{
-            background: 'radial-gradient(circle, hsl(var(--rivalry-red) / 0.3) 0%, transparent 70%)',
-          }}
-        />
-        <div
-          className="absolute bottom-0 right-1/4 w-[600px] h-[600px]"
-          style={{
-            background: 'radial-gradient(circle, hsl(var(--rivalry-blue) / 0.3) 0%, transparent 70%)',
-          }}
-        />
-      </motion.div>
-
-      <div className="relative z-10 section-container">
-        {/* Section Header with scroll-linked animations */}
+      <div className="section-container">
+        {/* Header - Apple-style typography */}
         <motion.div
-          className="text-center mb-16 sm:mb-20"
-          style={{
-            y: headerY,
-            opacity: headerOpacity,
-            scale: headerScale,
-          }}
+          className="max-w-3xl mx-auto text-center mb-16 sm:mb-20"
+          style={{ y: headerY, opacity: headerOpacity }}
         >
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full bg-surface-elevated border border-white/10 
-              text-xs font-medium text-text-secondary tracking-wider uppercase mb-6"
+          <motion.p
+            className="text-rivalry-red text-sm font-medium tracking-widest uppercase mb-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: APPLE_EASE }}
           >
-            About The Event
-          </motion.span>
+            February 9, 2026
+          </motion.p>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            <span className="gradient-text-rivalry">Ignite Your</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary mb-6">
+            One day.
             <br />
-            <span className="text-text-primary">Cybersecurity Passion</span>
+            <span className="text-text-secondary">Six challenges.</span>
           </h2>
 
-          <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Join the ultimate battleground where innovation meets competition.
-            <span className="text-text-primary font-medium"> CyberXelerate 3.0</span> brings
-            together the brightest minds in cybersecurity.
+          <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
+            CyberXelerate 3.0 brings together students across Tamil Nadu 
+            for a day of technical competition and creative problem-solving.
           </p>
         </motion.div>
 
-        {/* Stats Bento Grid with scroll-linked counters */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
-          <StatCard
-            icon={<Users className="w-6 h-6 text-rivalry-red" />}
-            value={1000}
-            suffix="+"
-            label="Expected Participants"
-            scrollProgress={smoothProgress}
-            index={0}
-          />
-          <StatCard
-            icon={<Trophy className="w-6 h-6 text-accent-gold" />}
-            value={50}
-            prefix="₹"
-            suffix="K+"
-            label="Prize Pool"
-            scrollProgress={smoothProgress}
-            index={1}
-          />
-          <StatCard
-            icon={<Calendar className="w-6 h-6 text-rivalry-blue" />}
-            value={6}
-            label="Exciting Events"
-            scrollProgress={smoothProgress}
-            index={2}
-          />
-          <StatCard
-            icon={<Shield className="w-6 h-6 text-accent-purple" />}
-            value={1}
-            label="Epic Day"
-            scrollProgress={smoothProgress}
-            index={3}
-          />
-        </div>
-
-        {/* Highlights Grid with parallax */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16">
-          {[
-            {
-              icon: <span className="text-lg">🎟️</span>,
-              title: 'Free Registration',
-              description: 'Participate in all events at absolutely no cost. Open to all college students.',
-              gradient: 'bg-gradient-to-br from-green-500/20 to-emerald-500/20',
-            },
-            {
-              icon: <Trophy className="w-5 h-5 text-accent-gold" />,
-              title: 'Cash Prizes',
-              description: 'Showcase your skills and compete for exciting cash prizes across all categories.',
-              gradient: 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20',
-            },
-            {
-              icon: <Utensils className="w-5 h-5 text-rivalry-red" />,
-              title: 'Complimentary Food',
-              description: 'Enjoy free meals throughout the event while you tackle the challenges.',
-              gradient: 'bg-gradient-to-br from-rivalry-red/20 to-pink-500/20',
-            },
-            {
-              icon: <Bus className="w-5 h-5 text-rivalry-blue" />,
-              title: 'Transport Facilities',
-              description: 'Convenient transport provided from key locations. Check routes below.',
-              gradient: 'bg-gradient-to-br from-rivalry-blue/20 to-cyan-500/20',
-            },
-            {
-              icon: <span className="text-lg">👔</span>,
-              title: 'Professional Atmosphere',
-              description: 'Dress formally and network with industry experts and fellow enthusiasts.',
-              gradient: 'bg-gradient-to-br from-purple-500/20 to-indigo-500/20',
-            },
-            {
-              icon: <span className="text-lg">🏆</span>,
-              title: 'Certificates',
-              description: 'All participants receive certificates. Winners get special recognition.',
-              gradient: 'bg-gradient-to-br from-amber-500/20 to-yellow-500/20',
-            },
-          ].map((item, index) => (
-            <HighlightCard
-              key={item.title}
-              {...item}
-              scrollProgress={smoothProgress}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* CTA Section */}
+        {/* Stats - Clean grid */}
         <motion.div
-          className="text-center"
-          style={{
-            opacity: useTransform(smoothProgress, [0.6, 0.75], [0, 1]),
-            y: useTransform(smoothProgress, [0.6, 0.75], prefersReduced ? [0, 0] : [30, 0]),
-          }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20"
+          style={{ y: statsY, opacity: statsOpacity }}
         >
-          <p className="text-text-secondary mb-6">
-            Organized by the Department of CSE (Cyber Security) at
-            <span className="text-text-primary font-medium"> R.M.K. College of Engineering and Technology</span>
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="text-center py-6 sm:py-8 rounded-2xl bg-surface-elevated/50 border border-white/5"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6, ease: APPLE_EASE }}
+            >
+              <span className="block text-3xl sm:text-4xl font-bold text-text-primary mb-1">
+                {stat.value}
+              </span>
+              <span className="text-sm text-text-tertiary">{stat.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* What's Included - Minimal */}
+        <motion.div
+          className="max-w-2xl mx-auto"
+          style={{ y: includesY, opacity: includesOpacity }}
+        >
+          <p className="text-center text-text-tertiary text-sm uppercase tracking-widest mb-6">
+            What's included
           </p>
           
-          <motion.a
-            href="/pdfs/transport-details.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-text-primary
-              bg-gradient-to-r from-rivalry-red to-rivalry-blue
-              hover:shadow-lg hover:shadow-rivalry-red/20 transition-shadow duration-300"
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12">
+            {includes.map((item, i) => (
+              <motion.div
+                key={item.text}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-elevated/50 border border-white/5"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5, ease: APPLE_EASE }}
+              >
+                <span>{item.emoji}</span>
+                <span className="text-sm text-text-secondary">{item.text}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6, ease: APPLE_EASE }}
           >
-            <Bus className="w-5 h-5" />
-            View Transport Routes
-          </motion.a>
+            <p className="text-text-tertiary text-sm mb-4">
+              Hosted by CSE (Cyber Security), RMKCET
+            </p>
+            
+            <motion.a
+              href="/pdfs/transport-details.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium
+                bg-white/10 text-text-primary border border-white/10
+                hover:bg-white/15 transition-colors duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Bus className="w-4 h-4" />
+              Transport Routes
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

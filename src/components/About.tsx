@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef } from 'react';
-import { Bus } from 'lucide-react';
-import { usePrefersReducedMotion } from '../hooks/useScrollAnimations';
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { Bus } from "lucide-react";
+import { usePrefersReducedMotion } from "../hooks/useScrollAnimations";
 
 // Apple-style easing
 const APPLE_EASE = [0.25, 0.1, 0.25, 1] as const;
 
 // Stats data - concise, factual
 const stats = [
-  { value: '1000+', label: 'Participants' },
-  { value: '₹50K', label: 'Prize Pool' },
-  { value: '6', label: 'Events' },
-  { value: '1', label: 'Day' },
+  { value: "1000+", label: "Participants" },
+  { value: "₹50K", label: "Prize Pool" },
+  { value: "6", label: "Events" },
+  { value: "1", label: "Day" },
 ];
 
 // What's included - no fluff
 const includes = [
-  { emoji: '🎟️', text: 'Free entry for all' },
-  { emoji: '🍽️', text: 'Meals provided' },
-  { emoji: '🚌', text: 'Transport available' },
-  { emoji: '📜', text: 'Certificates for all' },
+  { emoji: "🎟️", text: "Free entry for all" },
+  { emoji: "🍽️", text: "Meals provided" },
+  { emoji: "🚌", text: "Transport available" },
+  { emoji: "📜", text: "Certificates for all" },
 ];
 
 export default function About() {
@@ -30,7 +30,7 @@ export default function About() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -40,11 +40,23 @@ export default function About() {
   });
 
   // Refined parallax - subtle, purposeful
-  const headerY = useTransform(smoothProgress, [0, 0.3], prefersReduced ? [0, 0] : [60, 0]);
+  const headerY = useTransform(
+    smoothProgress,
+    [0, 0.3],
+    prefersReduced ? [0, 0] : [60, 0]
+  );
   const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
-  const statsY = useTransform(smoothProgress, [0.1, 0.4], prefersReduced ? [0, 0] : [40, 0]);
+  const statsY = useTransform(
+    smoothProgress,
+    [0.1, 0.4],
+    prefersReduced ? [0, 0] : [40, 0]
+  );
   const statsOpacity = useTransform(smoothProgress, [0.1, 0.25], [0, 1]);
-  const includesY = useTransform(smoothProgress, [0.25, 0.5], prefersReduced ? [0, 0] : [30, 0]);
+  const includesY = useTransform(
+    smoothProgress,
+    [0.25, 0.5],
+    prefersReduced ? [0, 0] : [30, 0]
+  );
   const includesOpacity = useTransform(smoothProgress, [0.25, 0.4], [0, 1]);
 
   return (
@@ -76,9 +88,19 @@ export default function About() {
           </h2>
 
           <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
-            CyberXelerate 3.0 brings together students across Tamil Nadu 
-            for a day of technical competition and creative problem-solving.
+            CyberXelerate 3.0 brings together students across Tamil Nadu for a
+            day of technical competition and creative problem-solving.
           </p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6, ease: APPLE_EASE }}
+            className="text-text-tertiary text-sm italic mt-4"
+          >
+            "The pitch is set. The players are ready."
+          </motion.p>
         </motion.div>
 
         {/* Stats - Clean grid */}
@@ -111,19 +133,25 @@ export default function About() {
           <p className="text-center text-text-tertiary text-sm uppercase tracking-widest mb-6">
             What's included
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12">
+
+          <div className="flex justify-center gap-6 sm:gap-8 mb-12 overflow-x-auto pb-2">
             {includes.map((item, i) => (
               <motion.div
                 key={item.text}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-elevated/50 border border-white/5"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center gap-1.5 flex-shrink-0"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: APPLE_EASE }}
+                transition={{
+                  delay: i * 0.08,
+                  duration: 0.5,
+                  ease: APPLE_EASE,
+                }}
               >
-                <span>{item.emoji}</span>
-                <span className="text-sm text-text-secondary">{item.text}</span>
+                <span className="text-2xl">{item.emoji}</span>
+                <span className="text-xs text-text-tertiary whitespace-nowrap">
+                  {item.text}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -139,7 +167,7 @@ export default function About() {
             <p className="text-text-tertiary text-sm mb-4">
               Hosted by CSE (Cyber Security), RMKCET
             </p>
-            
+
             <motion.a
               href="/pdfs/transport-details.pdf"
               target="_blank"

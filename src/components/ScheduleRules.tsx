@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import { usePrefersReducedMotion } from '../hooks/useScrollAnimations';
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import { usePrefersReducedMotion } from "../hooks/useScrollAnimations";
 
 // Apple-style easing
 const APPLE_EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
@@ -12,19 +12,19 @@ const APPLE_EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 // ============================================
 
 const schedule = [
-  { time: '8:30 AM', event: 'Registration' },
-  { time: '9:00 AM', event: 'Inauguration' },
-  { time: '10:00 AM', event: 'Events Begin' },
-  { time: '12:45 PM', event: 'Lunch' },
-  { time: '1:30 PM', event: 'Valedictory' },
+  { time: "8:30 AM", event: "Registration" },
+  { time: "9:00 AM", event: "Inauguration" },
+  { time: "10:00 AM", event: "Events Begin" },
+  { time: "12:45 PM", event: "Lunch" },
+  { time: "1:30 PM", event: "Valedictory" },
 ];
 
 const rules = [
-  'College ID required',
-  'Formal attire only',
-  'No mobile phones',
-  'Use college transport (Feb 9)',
-  'No on-spot registration',
+  "College ID required",
+  "Formal attire only",
+  "No mobile phones",
+  "Use college transport (Feb 9)",
+  "No on-spot registration",
 ];
 
 // ============================================
@@ -56,8 +56,11 @@ export default function ScheduleRules() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-text-primary tracking-tight mb-4">
             The day, planned.
           </h2>
-          <p className="text-xl text-text-secondary max-w-lg mx-auto">
+          <p className="text-xl text-text-secondary max-w-lg mx-auto mb-2">
             Everything runs on schedule. Be on time.
+          </p>
+          <p className="text-text-tertiary text-sm italic">
+            "Kickoff waits for no one."
           </p>
         </motion.header>
 
@@ -70,8 +73,10 @@ export default function ScheduleRules() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: APPLE_EASE }}
           >
-            <h3 className="text-xl font-medium text-text-primary mb-8">Schedule</h3>
-            
+            <h3 className="text-xl font-medium text-text-primary mb-8">
+              Schedule
+            </h3>
+
             <div className="space-y-0">
               {schedule.map((item, index) => (
                 <motion.div
@@ -102,8 +107,10 @@ export default function ScheduleRules() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: APPLE_EASE }}
           >
-            <h3 className="text-xl font-medium text-text-primary mb-8">Rules</h3>
-            
+            <h3 className="text-xl font-medium text-text-primary mb-8">
+              Rules
+            </h3>
+
             <div className="space-y-0">
               {rules.map((rule, index) => (
                 <motion.div
@@ -118,8 +125,10 @@ export default function ScheduleRules() {
                   }}
                   className="flex items-center gap-4 py-4 border-b border-white/5 last:border-0"
                 >
-                  <span className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center 
-                    text-xs text-text-tertiary flex-shrink-0">
+                  <span
+                    className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center 
+                    text-xs text-text-tertiary flex-shrink-0"
+                  >
                     {index + 1}
                   </span>
                   <span className="text-text-primary">{rule}</span>

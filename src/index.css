@@ -3,7 +3,7 @@
    ============================================ */
 
 /* Google Fonts - Clean, Modern Typography */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,74 +15,77 @@
 @layer base {
   :root {
     /* === Rivalry Colors === */
-    --rivalry-red: 348 83% 32%;        /* #a50044 - Barcelona burgundy */
-    --rivalry-red-glow: 348 100% 45%;  /* Brighter for hover/glow */
-    --rivalry-blue: 212 100% 31%;      /* #00529f - Real Madrid blue */
+    --rivalry-red: 348 83% 32%; /* #a50044 - Barcelona burgundy */
+    --rivalry-red-glow: 348 100% 45%; /* Brighter for hover/glow */
+    --rivalry-blue: 212 100% 31%; /* #00529f - Real Madrid blue */
     --rivalry-blue-glow: 212 100% 50%; /* Brighter for hover/glow */
-    
+
     /* === Surface Colors === */
-    --surface-base: 228 15% 6%;        /* #0d0e12 - Deepest background */
-    --surface-primary: 228 12% 8%;     /* #121318 - Primary background */
-    --surface-elevated: 228 15% 12%;   /* #1a1b23 - Cards, elevated surfaces */
-    --surface-overlay: 228 15% 16%;    /* #252631 - Modals, overlays */
-    
+    --surface-base: 228 15% 6%; /* #0d0e12 - Deepest background */
+    --surface-primary: 228 12% 8%; /* #121318 - Primary background */
+    --surface-elevated: 228 15% 12%; /* #1a1b23 - Cards, elevated surfaces */
+    --surface-overlay: 228 15% 16%; /* #252631 - Modals, overlays */
+
     /* === Text Colors === */
-    --text-primary: 0 0% 98%;          /* #fafafa - Primary text */
-    --text-secondary: 220 9% 70%;      /* #a8adb8 - Secondary text */
-    --text-tertiary: 220 9% 46%;       /* #6b7280 - Muted text */
-    --text-disabled: 220 9% 30%;       /* #444955 - Disabled text */
-    
+    --text-primary: 0 0% 98%; /* #fafafa - Primary text */
+    --text-secondary: 220 9% 70%; /* #a8adb8 - Secondary text */
+    --text-tertiary: 220 9% 46%; /* #6b7280 - Muted text */
+    --text-disabled: 220 9% 30%; /* #444955 - Disabled text */
+
     /* === Accent Colors === */
-    --accent-gold: 45 93% 58%;         /* #f5c518 - Highlights */
-    --accent-purple: 270 70% 60%;      /* #9b5de5 - Secondary accent */
-    --accent-cyan: 185 80% 50%;        /* #19c6d4 - Tertiary accent */
-    
+    --accent-gold: 45 93% 58%; /* #f5c518 - Highlights */
+    --accent-purple: 270 70% 60%; /* #9b5de5 - Secondary accent */
+    --accent-cyan: 185 80% 50%; /* #19c6d4 - Tertiary accent */
+
     /* === Semantic Colors === */
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
     --error: 0 84% 60%;
-    
+
     /* === Spacing Scale (4px base) === */
-    --space-1: 0.25rem;   /* 4px */
-    --space-2: 0.5rem;    /* 8px */
-    --space-3: 0.75rem;   /* 12px */
-    --space-4: 1rem;      /* 16px */
-    --space-6: 1.5rem;    /* 24px */
-    --space-8: 2rem;      /* 32px */
-    --space-12: 3rem;     /* 48px */
-    --space-16: 4rem;     /* 64px */
-    --space-24: 6rem;     /* 96px */
-    --space-32: 8rem;     /* 128px */
-    
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem; /* 8px */
+    --space-3: 0.75rem; /* 12px */
+    --space-4: 1rem; /* 16px */
+    --space-6: 1.5rem; /* 24px */
+    --space-8: 2rem; /* 32px */
+    --space-12: 3rem; /* 48px */
+    --space-16: 4rem; /* 64px */
+    --space-24: 6rem; /* 96px */
+    --space-32: 8rem; /* 128px */
+
     /* === Animation Curves (Apple-inspired) === */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
+
     /* === Animation Durations === */
     --duration-fast: 150ms;
     --duration-normal: 300ms;
     --duration-slow: 500ms;
     --duration-slower: 800ms;
-    
+
     /* === Border Radius === */
-    --radius-sm: 0.375rem;  /* 6px */
-    --radius-md: 0.5rem;    /* 8px */
-    --radius-lg: 0.75rem;   /* 12px */
-    --radius-xl: 1rem;      /* 16px */
-    --radius-2xl: 1.5rem;   /* 24px */
+    --radius-sm: 0.375rem; /* 6px */
+    --radius-md: 0.5rem; /* 8px */
+    --radius-lg: 0.75rem; /* 12px */
+    --radius-xl: 1rem; /* 16px */
+    --radius-2xl: 1.5rem; /* 24px */
     --radius-full: 9999px;
-    
+
     /* === Shadows === */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadow-glow-red: 0 0 60px -12px hsl(var(--rivalry-red) / 0.4);
     --shadow-glow-blue: 0 0 60px -12px hsl(var(--rivalry-blue) / 0.4);
-    
+
     /* === Legacy Shadcn Variables (for compatibility) === */
     --background: var(--surface-primary);
     --foreground: var(--text-primary);
@@ -116,57 +119,64 @@
   *::after {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
     @apply bg-surface-base text-text-primary;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     line-height: 1.6;
   }
-  
+
   /* Typography Scale */
-  h1, .h1 {
+  h1,
+  .h1 {
     @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
     line-height: 1.1;
   }
-  
-  h2, .h2 {
+
+  h2,
+  .h2 {
     @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
     line-height: 1.15;
   }
-  
-  h3, .h3 {
+
+  h3,
+  .h3 {
     @apply text-3xl md:text-4xl font-semibold tracking-tight;
     line-height: 1.2;
   }
-  
-  h4, .h4 {
+
+  h4,
+  .h4 {
     @apply text-2xl md:text-3xl font-semibold;
     line-height: 1.25;
   }
-  
-  h5, .h5 {
+
+  h5,
+  .h5 {
     @apply text-xl md:text-2xl font-medium;
     line-height: 1.3;
   }
-  
-  h6, .h6 {
+
+  h6,
+  .h6 {
     @apply text-lg md:text-xl font-medium;
     line-height: 1.4;
   }
-  
+
   /* Selection */
   ::selection {
     background: hsl(var(--rivalry-red) / 0.3);
     color: white;
   }
-  
+
   /* Focus styles */
   :focus-visible {
     @apply outline-none ring-2 ring-offset-2 ring-offset-surface-base;
@@ -181,23 +191,21 @@
   /* Glass morphism card */
   .glass-card {
     @apply bg-surface-elevated/60 backdrop-blur-xl border border-white/10 rounded-2xl;
-    box-shadow: 
-      0 0 0 1px hsl(var(--border) / 0.1),
+    box-shadow: 0 0 0 1px hsl(var(--border) / 0.1),
       0 4px 24px -4px rgb(0 0 0 / 0.2);
   }
-  
+
   .glass-card-hover {
     @apply glass-card transition-all duration-300;
   }
-  
+
   .glass-card-hover:hover {
     @apply border-white/20 bg-surface-elevated/80;
-    box-shadow: 
-      0 0 0 1px hsl(var(--border) / 0.2),
+    box-shadow: 0 0 0 1px hsl(var(--border) / 0.2),
       0 8px 32px -8px rgb(0 0 0 / 0.3);
     transform: translateY(-2px);
   }
-  
+
   /* Gradient text */
   .gradient-text-rivalry {
     @apply bg-clip-text text-transparent;
@@ -208,7 +216,7 @@
       hsl(var(--rivalry-blue)) 100%
     );
   }
-  
+
   .gradient-text-messi {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
@@ -217,7 +225,7 @@
       hsl(var(--rivalry-red)) 100%
     );
   }
-  
+
   .gradient-text-ronaldo {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
@@ -226,30 +234,30 @@
       hsl(var(--rivalry-blue)) 100%
     );
   }
-  
+
   /* Rivalry glow effects */
   .glow-messi {
     box-shadow: var(--shadow-glow-red);
   }
-  
+
   .glow-ronaldo {
     box-shadow: var(--shadow-glow-blue);
   }
-  
+
   /* Text glow */
   .text-glow-messi {
     text-shadow: 0 0 40px hsl(var(--rivalry-red) / 0.5);
   }
-  
+
   .text-glow-ronaldo {
     text-shadow: 0 0 40px hsl(var(--rivalry-blue) / 0.5);
   }
-  
+
   /* Animated gradient border button */
   .ring-btn {
     @apply relative rounded-full;
   }
-  
+
   .ring-btn::before {
     content: "";
     position: absolute;
@@ -268,13 +276,14 @@
       hsl(var(--rivalry-red-glow)),
       hsl(var(--rivalry-red))
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: spin 8s linear infinite;
   }
-  
+
   .ring-btn::after {
     content: "";
     position: absolute;
@@ -283,47 +292,47 @@
     background: hsl(var(--surface-base));
     z-index: 1;
   }
-  
+
   .ring-btn > * {
     position: relative;
     z-index: 2;
   }
-  
+
   /* Section container */
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   /* Fluid typography - Apple-grade responsive text */
   .fluid-title {
     font-size: clamp(2rem, 5vw + 1rem, 4.5rem);
     line-height: 1.1;
   }
-  
+
   .fluid-subtitle {
     font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
     line-height: 1.2;
   }
-  
+
   .fluid-body {
     font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
     line-height: 1.6;
   }
-  
+
   /* Mobile-optimized touch targets */
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
-  
+
   /* Safe area padding for mobile */
   .safe-padding-bottom {
     padding-bottom: env(safe-area-inset-bottom, 1rem);
   }
-  
+
   /* Monospace accent */
   .font-mono-accent {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-feature-settings: 'liga' 1, 'calt' 1;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-feature-settings: "liga" 1, "calt" 1;
   }
 }
 
@@ -332,33 +341,59 @@
    ============================================ */
 @layer utilities {
   /* Background colors with HSL */
-  .bg-surface-base { background-color: hsl(var(--surface-base)); }
-  .bg-surface-primary { background-color: hsl(var(--surface-primary)); }
-  .bg-surface-elevated { background-color: hsl(var(--surface-elevated)); }
-  .bg-surface-overlay { background-color: hsl(var(--surface-overlay)); }
-  
+  .bg-surface-base {
+    background-color: hsl(var(--surface-base));
+  }
+  .bg-surface-primary {
+    background-color: hsl(var(--surface-primary));
+  }
+  .bg-surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+  .bg-surface-overlay {
+    background-color: hsl(var(--surface-overlay));
+  }
+
   /* Text colors */
-  .text-text-primary { color: hsl(var(--text-primary)); }
-  .text-text-secondary { color: hsl(var(--text-secondary)); }
-  .text-text-tertiary { color: hsl(var(--text-tertiary)); }
-  
+  .text-text-primary {
+    color: hsl(var(--text-primary));
+  }
+  .text-text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+  .text-text-tertiary {
+    color: hsl(var(--text-tertiary));
+  }
+
   /* Rivalry colors */
-  .bg-rivalry-red { background-color: hsl(var(--rivalry-red)); }
-  .bg-rivalry-blue { background-color: hsl(var(--rivalry-blue)); }
-  .text-rivalry-red { color: hsl(var(--rivalry-red)); }
-  .text-rivalry-blue { color: hsl(var(--rivalry-blue)); }
-  .border-rivalry-red { border-color: hsl(var(--rivalry-red)); }
-  .border-rivalry-blue { border-color: hsl(var(--rivalry-blue)); }
-  
+  .bg-rivalry-red {
+    background-color: hsl(var(--rivalry-red));
+  }
+  .bg-rivalry-blue {
+    background-color: hsl(var(--rivalry-blue));
+  }
+  .text-rivalry-red {
+    color: hsl(var(--rivalry-red));
+  }
+  .text-rivalry-blue {
+    color: hsl(var(--rivalry-blue));
+  }
+  .border-rivalry-red {
+    border-color: hsl(var(--rivalry-red));
+  }
+  .border-rivalry-blue {
+    border-color: hsl(var(--rivalry-blue));
+  }
+
   /* Animation utilities */
   .animate-ease-out-expo {
     transition-timing-function: var(--ease-out-expo);
   }
-  
+
   .animate-ease-spring {
     transition-timing-function: var(--ease-spring);
   }
-  
+
   /* Noise texture overlay */
   .noise-overlay::before {
     content: "";
@@ -369,26 +404,30 @@
     pointer-events: none;
     mix-blend-mode: overlay;
   }
-  
+
   /* Vignette effect */
   .vignette::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, hsl(var(--surface-base)) 100%);
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      hsl(var(--surface-base)) 100%
+    );
     pointer-events: none;
   }
-  
+
   /* Hide scrollbar */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -411,7 +450,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
@@ -422,7 +462,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -440,7 +481,8 @@
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -450,7 +492,8 @@
 
 /* Bounce animation for scroll indicator */
 @keyframes bounce-gentle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -517,15 +560,13 @@
 /* Enhanced glass with inner glow */
 .glass-card-glow {
   @apply glass-card;
-  box-shadow: 
-    0 0 0 1px hsl(var(--border) / 0.1),
+  box-shadow: 0 0 0 1px hsl(var(--border) / 0.1),
     0 4px 24px -4px rgb(0 0 0 / 0.2),
     inset 0 1px 0 0 hsl(var(--text-primary) / 0.05);
 }
 
 .glass-card-glow:hover {
-  box-shadow: 
-    0 0 0 1px hsl(var(--border) / 0.2),
+  box-shadow: 0 0 0 1px hsl(var(--border) / 0.2),
     0 8px 40px -8px rgb(0 0 0 / 0.35),
     inset 0 1px 0 0 hsl(var(--text-primary) / 0.08);
 }
@@ -595,8 +636,10 @@
 
 /* Cyber grid pattern background */
 .cyber-grid {
-  background-image: 
-    linear-gradient(hsl(var(--text-primary) / 0.02) 1px, transparent 1px),
+  background-image: linear-gradient(
+      hsl(var(--text-primary) / 0.02) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, hsl(var(--text-primary) / 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
 }
@@ -619,7 +662,7 @@
 }
 
 .animated-border::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 1px;
@@ -646,7 +689,8 @@
 
 /* Hover lift effect */
 .hover-lift {
-  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+  transition: transform 0.3s var(--ease-out-expo),
+    box-shadow 0.3s var(--ease-out-expo);
 }
 
 .hover-lift:hover {
@@ -666,4 +710,3 @@
 .interactive-scale:active {
   transform: scale(0.98);
 }
-

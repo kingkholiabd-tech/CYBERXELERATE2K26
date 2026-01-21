@@ -1,12 +1,25 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
-import { staggerContainer, staggerItem, scrollReveal } from '../hooks/useAppleMotion';
-import { useIsMobile, usePrefersReducedMotion } from '../hooks/useScrollAnimations';
-import { cn } from '../lib/utils';
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import {
+  staggerContainer,
+  staggerItem,
+  scrollReveal,
+} from "../hooks/useAppleMotion";
+import {
+  useIsMobile,
+  usePrefersReducedMotion,
+} from "../hooks/useScrollAnimations";
+import { cn } from "../lib/utils";
 
 // ============================================
 // Types & Data
@@ -15,7 +28,7 @@ import { cn } from '../lib/utils';
 interface Event {
   title: string;
   slug: string;
-  category: 'Technical' | 'Non Technical';
+  category: "Technical" | "Non Technical";
   description: string;
   longDescription: string;
   image: string;
@@ -26,70 +39,76 @@ interface Event {
 
 const events: Event[] = [
   {
-    title: 'H4CK_077 CTF',
-    slug: 'hack077-ctf',
-    category: 'Technical',
-    description: 'Capture The Flag cybersecurity challenge.',
-    longDescription: 'Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.',
-    image: '/events/ctf1.jpeg',
-    formLink: 'https://forms.gle/xxxxx1',
-    gradient: 'from-purple-500 to-purple-700',
+    title: "H4CK_077 CTF",
+    slug: "hack077-ctf",
+    category: "Technical",
+    description: "Capture The Flag cybersecurity challenge.",
+    longDescription:
+      "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.",
+    image: "/events/ctf1.jpeg",
+    formLink: "https://forms.gle/xxxxx1",
+    gradient: "from-purple-500 to-purple-700",
     featured: true,
   },
   {
-    title: 'CODE FC',
-    slug: 'code-fc',
-    category: 'Technical',
-    description: 'Competitive coding on HackerRank.',
-    longDescription: 'Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.',
-    image: '/events/binary.jpg',
-    formLink: 'https://forms.gle/xxxxx2',
-    gradient: 'from-rivalry-red to-red-600',
+    title: "CODE FC",
+    slug: "code-fc",
+    category: "Technical",
+    description: "Competitive coding on HackerRank.",
+    longDescription:
+      "Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.",
+    image: "/events/binary.jpg",
+    formLink: "https://forms.gle/xxxxx2",
+    gradient: "from-rivalry-red to-red-600",
   },
   {
-    title: 'Paper Presentation',
-    slug: 'paper-presentation',
-    category: 'Technical',
-    description: 'Present innovative tech ideas.',
-    longDescription: 'Showcase your research in Cyber Security, AI, Edutech, or Open Innovation. Submit your project report (PDF) and PPT online. Present offline for 5-10 minutes. Team: 1-4 members. Venue: Mechanical Block, 3rd Floor. Time: 10:00 AM – 12:30 PM.',
-    image: '/events/vibe.jpg',
-    formLink: 'https://forms.gle/xxxxx3',
-    gradient: 'from-rivalry-blue to-blue-700',
+    title: "Paper Presentation",
+    slug: "paper-presentation",
+    category: "Technical",
+    description: "Present innovative tech ideas.",
+    longDescription:
+      "Showcase your research in Cyber Security, AI, Edutech, or Open Innovation. Submit your project report (PDF) and PPT online. Present offline for 5-10 minutes. Team: 1-4 members. Venue: Mechanical Block, 3rd Floor. Time: 10:00 AM – 12:30 PM.",
+    image: "/events/vibe.jpg",
+    formLink: "https://forms.gle/xxxxx3",
+    gradient: "from-rivalry-blue to-blue-700",
   },
   {
-    title: 'Vibe Coding',
-    slug: 'vibe-coding',
-    category: 'Technical',
-    description: 'UI/UX design challenge.',
-    longDescription: 'Create stunning user interfaces under pressure. One round with 4 problem statements to solve in 2 hours. Team: 2-3 members. Design beautiful, functional solutions that showcase your creativity and technical skills.',
-    image: '/events/data.jpg',
-    formLink: 'https://forms.gle/xxxxx4',
-    gradient: 'from-cyan-500 to-blue-600',
+    title: "Vibe Coding",
+    slug: "vibe-coding",
+    category: "Technical",
+    description: "UI/UX design challenge.",
+    longDescription:
+      "Create stunning user interfaces under pressure. One round with 4 problem statements to solve in 2 hours. Team: 2-3 members. Design beautiful, functional solutions that showcase your creativity and technical skills.",
+    image: "/events/data.jpg",
+    formLink: "https://forms.gle/xxxxx4",
+    gradient: "from-cyan-500 to-blue-600",
   },
   {
-    title: 'De-Melodia',
-    slug: 'de-melodia',
-    category: 'Non Technical',
-    description: 'Music-based rhythm challenge.',
-    longDescription: 'Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.',
-    image: '/events/cyber.jpg',
-    formLink: 'https://forms.gle/xxxxx5',
-    gradient: 'from-pink-500 to-rose-600',
+    title: "De-Melodia",
+    slug: "de-melodia",
+    category: "Non Technical",
+    description: "Music-based rhythm challenge.",
+    longDescription:
+      "Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.",
+    image: "/events/cyber.jpg",
+    formLink: "https://forms.gle/xxxxx5",
+    gradient: "from-pink-500 to-rose-600",
   },
   {
-    title: 'Play.io',
-    slug: 'play-io',
-    category: 'Non Technical',
-    description: 'Teamwork & coordination games.',
-    longDescription: 'Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.',
-    image: '/events/cyber.jpg',
-    formLink: 'https://forms.gle/xxxxx6',
-    gradient: 'from-emerald-500 to-green-600',
+    title: "Play.io",
+    slug: "play-io",
+    category: "Non Technical",
+    description: "Teamwork & coordination games.",
+    longDescription:
+      "Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.",
+    image: "/events/cyber.jpg",
+    formLink: "https://forms.gle/xxxxx6",
+    gradient: "from-emerald-500 to-green-600",
   },
 ];
 
-const categories = ['All', 'Technical', 'Non Technical'] as const;
-type Category = typeof categories[number];
+const categories = ["Technical", "Non Technical"] as const;
+type Category = (typeof categories)[number];
 
 // ============================================
 // Event Card Component with Scroll Parallax
@@ -102,14 +121,19 @@ interface EventCardProps {
   scrollProgress: any;
 }
 
-function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps) {
+function EventCard({
+  event,
+  index,
+  onNavigate,
+  scrollProgress,
+}: EventCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const prefersReduced = usePrefersReducedMotion();
 
   // Staggered parallax based on grid position
   const row = Math.floor(index / 3);
   const col = index % 3;
-  
+
   const cardY = useTransform(
     scrollProgress,
     [0, 1],
@@ -132,8 +156,8 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        'group relative rounded-2xl overflow-hidden cursor-pointer will-change-transform',
-        event.featured ? 'sm:col-span-2 sm:row-span-2' : ''
+        "group relative rounded-2xl overflow-hidden cursor-pointer will-change-transform",
+        event.featured ? "sm:col-span-2 sm:row-span-2" : ""
       )}
       onClick={() => onNavigate(event.slug)}
     >
@@ -150,28 +174,33 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-        
+
         {/* Colored Overlay on Hover */}
         <motion.div
-          className={cn('absolute inset-0 bg-gradient-to-br opacity-0', event.gradient)}
+          className={cn(
+            "absolute inset-0 bg-gradient-to-br opacity-0",
+            event.gradient
+          )}
           animate={{ opacity: isHovered ? 0.4 : 0 }}
           transition={{ duration: 0.3 }}
         />
       </div>
 
       {/* Content */}
-      <div className={cn(
-        'relative z-10 h-full flex flex-col justify-end p-6',
-        event.featured ? 'sm:p-8' : ''
-      )}>
+      <div
+        className={cn(
+          "relative z-10 h-full flex flex-col justify-end p-6",
+          event.featured ? "sm:p-8" : ""
+        )}
+      >
         {/* Category Badge */}
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 + 0.2 }}
           className={cn(
-            'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mb-4 w-fit',
-            'bg-white/10 backdrop-blur-sm border border-white/20 text-white'
+            "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mb-4 w-fit",
+            "bg-white/10 backdrop-blur-sm border border-white/20 text-white"
           )}
         >
           {event.category}
@@ -180,8 +209,8 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
         {/* Title */}
         <motion.h3
           className={cn(
-            'font-bold text-white mb-2 tracking-tight',
-            event.featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
+            "font-bold text-white mb-2 tracking-tight",
+            event.featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
           )}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ duration: 0.3 }}
@@ -192,8 +221,10 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
         {/* Description */}
         <motion.p
           className={cn(
-            'text-white/70 leading-relaxed mb-4',
-            event.featured ? 'text-base sm:text-lg max-w-md' : 'text-sm line-clamp-2'
+            "text-white/70 leading-relaxed mb-4",
+            event.featured
+              ? "text-base sm:text-lg max-w-md"
+              : "text-sm line-clamp-2"
           )}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
@@ -219,9 +250,10 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-              'inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm text-white',
-              'bg-gradient-to-r', event.gradient,
-              'hover:shadow-lg transition-shadow duration-300'
+              "inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm text-white",
+              "bg-gradient-to-r",
+              event.gradient,
+              "hover:shadow-lg transition-shadow duration-300"
             )}
           >
             Register
@@ -245,7 +277,7 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
       <motion.div
         className="absolute inset-0 rounded-2xl border-2 border-transparent pointer-events-none"
         animate={{
-          borderColor: isHovered ? 'rgba(255,255,255,0.2)' : 'transparent',
+          borderColor: isHovered ? "rgba(255,255,255,0.2)" : "transparent",
         }}
         transition={{ duration: 0.3 }}
       />
@@ -257,12 +289,12 @@ function EventCard({ event, index, onNavigate, scrollProgress }: EventCardProps)
 // Featured Event Card (Hero Style) with Scroll Effects
 // ============================================
 
-function FeaturedEventCard({ 
-  event, 
-  onNavigate, 
-  scrollProgress 
-}: { 
-  event: Event; 
+function FeaturedEventCard({
+  event,
+  onNavigate,
+  scrollProgress,
+}: {
+  event: Event;
   onNavigate: (slug: string) => void;
   scrollProgress: any;
 }) {
@@ -275,7 +307,7 @@ function FeaturedEventCard({
     [0, 0.5],
     prefersReduced ? [0, 0] : [40, -20]
   );
-  
+
   const featuredScale = useTransform(
     scrollProgress,
     [0.3, 0.7],
@@ -291,7 +323,7 @@ function FeaturedEventCard({
       variants={scrollReveal}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      viewport={{ once: true, margin: "-100px" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onNavigate(event.slug)}
@@ -307,7 +339,7 @@ function FeaturedEventCard({
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
       <motion.div
-        className={cn('absolute inset-0 bg-gradient-to-br', event.gradient)}
+        className={cn("absolute inset-0 bg-gradient-to-br", event.gradient)}
         animate={{ opacity: isHovered ? 0.3 : 0 }}
         transition={{ duration: 0.4 }}
       />
@@ -361,9 +393,10 @@ function FeaturedEventCard({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-              'inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white',
-              'bg-gradient-to-r', event.gradient,
-              'hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300'
+              "inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white",
+              "bg-gradient-to-r",
+              event.gradient,
+              "hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300"
             )}
           >
             Register Now
@@ -395,14 +428,14 @@ function FeaturedEventCard({
 
 export default function Events() {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
+  const [activeCategory, setActiveCategory] = useState<Category>("Technical");
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = usePrefersReducedMotion();
 
   // Scroll progress for the section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -417,17 +450,12 @@ export default function Events() {
     [0, 0.2],
     prefersReduced ? [0, 0] : [60, 0]
   );
-  
-  const headerOpacity = useTransform(
-    smoothProgress,
-    [0, 0.15],
-    [0, 1]
-  );
 
-  const filteredEvents = events.filter((event) => {
-    if (activeCategory === 'All') return !event.featured; // Don't show featured in grid
-    return event.category === activeCategory && !event.featured;
-  });
+  const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
+
+  const filteredEvents = events.filter(
+    (event) => event.category === activeCategory && !event.featured
+  );
 
   const featuredEvent = events.find((e) => e.featured);
 
@@ -436,12 +464,17 @@ export default function Events() {
   };
 
   return (
-    <section ref={sectionRef} id="events" className="relative py-24 sm:py-32 bg-surface-base overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="events"
+      className="relative py-24 sm:py-32 bg-surface-base overflow-hidden"
+    >
       {/* Background Gradient */}
       <div
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
-          background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--rivalry-red) / 0.15) 0%, transparent 50%)',
+          background:
+            "radial-gradient(ellipse at 50% 0%, hsl(var(--rivalry-red) / 0.15) 0%, transparent 50%)",
         }}
       />
 
@@ -470,14 +503,29 @@ export default function Events() {
             <span className="gradient-text-rivalry">Battlefield</span>
           </h2>
 
-          <p className="text-lg text-text-secondary max-w-xl mx-auto">
-            Five epic arenas await. Pick your challenge and prove your excellence.
+          <p className="text-lg text-text-secondary max-w-xl mx-auto mb-2">
+            Five epic arenas await. Pick your challenge and prove your
+            excellence.
           </p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-text-tertiary text-sm italic"
+          >
+            "Every match has a winner."
+          </motion.p>
         </motion.div>
 
         {/* Featured Event */}
         {featuredEvent && (
-          <FeaturedEventCard event={featuredEvent} onNavigate={handleNavigate} scrollProgress={smoothProgress} />
+          <FeaturedEventCard
+            event={featuredEvent}
+            onNavigate={handleNavigate}
+            scrollProgress={smoothProgress}
+          />
         )}
 
         {/* Category Filter */}
@@ -494,10 +542,10 @@ export default function Events() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={cn(
-                'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300',
+                "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
                 activeCategory === category
-                  ? 'bg-white text-surface-base'
-                  : 'bg-surface-elevated text-text-secondary border border-white/10 hover:border-white/20'
+                  ? "bg-white text-surface-base"
+                  : "bg-surface-elevated text-text-secondary border border-white/10 hover:border-white/20"
               )}
             >
               {category}
@@ -513,11 +561,26 @@ export default function Events() {
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, y: 20 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className={cn(
+              "grid gap-6",
+              activeCategory === "Non Technical"
+                ? "grid-cols-1 sm:grid-cols-2"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            )}
           >
             {filteredEvents.map((event, index) => (
-              <div key={event.slug} className="h-[320px]">
-                <EventCard event={event} index={index} onNavigate={handleNavigate} scrollProgress={smoothProgress} />
+              <div
+                key={event.slug}
+                className={cn(
+                  activeCategory === "Non Technical" ? "h-[400px]" : "h-[320px]"
+                )}
+              >
+                <EventCard
+                  event={event}
+                  index={index}
+                  onNavigate={handleNavigate}
+                  scrollProgress={smoothProgress}
+                />
               </div>
             ))}
           </motion.div>

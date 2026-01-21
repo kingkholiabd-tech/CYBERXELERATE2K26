@@ -1,15 +1,21 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useScroll } from 'framer-motion';
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { EncryptedText } from './ui/encrypted-text';
 import {
-  messiReveal,
-  ronaldoReveal,
-  fadeUp,
-} from '../hooks/useAppleMotion';
-import { useIsMobile, usePrefersReducedMotion } from '../hooks/useScrollAnimations';
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  useSpring,
+  useScroll,
+} from "framer-motion";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { ChevronDown } from "lucide-react";
+import { EncryptedText } from "./ui/encrypted-text";
+import { messiReveal, ronaldoReveal, fadeUp } from "../hooks/useAppleMotion";
+import {
+  useIsMobile,
+  usePrefersReducedMotion,
+} from "../hooks/useScrollAnimations";
 
 // ============================================
 // Types
@@ -27,7 +33,7 @@ interface TimeLeft {
 // ============================================
 
 const NAVBAR_HEIGHT = 80;
-const TARGET_DATE = new Date('2026-02-09T09:00:00').getTime();
+const TARGET_DATE = new Date("2026-02-09T09:00:00").getTime();
 
 // Apple-style easing curves
 const APPLE_EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -42,13 +48,13 @@ const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
       <AnimatePresence mode="popLayout">
         <motion.span
           key={value}
-          initial={{ y: 20, opacity: 0, filter: 'blur(4px)' }}
-          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-          exit={{ y: -20, opacity: 0, filter: 'blur(4px)' }}
+          initial={{ y: 20, opacity: 0, filter: "blur(4px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: -20, opacity: 0, filter: "blur(4px)" }}
           transition={{ duration: 0.4, ease: APPLE_EASE }}
           className="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-text-primary absolute"
         >
-          {String(value).padStart(2, '0')}
+          {String(value).padStart(2, "0")}
         </motion.span>
       </AnimatePresence>
     </div>
@@ -66,10 +72,12 @@ const ScrollIndicator = ({ opacity }: { opacity: any }) => (
     style={{ opacity }}
     className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30"
   >
-    <span className="text-2xs sm:text-xs text-text-tertiary tracking-widest uppercase">Scroll</span>
+    <span className="text-2xs sm:text-xs text-text-tertiary tracking-widest uppercase">
+      Scroll
+    </span>
     <motion.div
       animate={{ y: [0, 6, 0] }}
-      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
     >
       <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-text-tertiary" />
     </motion.div>
@@ -94,7 +102,8 @@ const MobileHero = ({
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse at 30% 100%, hsl(var(--rivalry-red) / 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, hsl(var(--rivalry-blue) / 0.15) 0%, transparent 50%)',
+            background:
+              "radial-gradient(ellipse at 30% 100%, hsl(var(--rivalry-red) / 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, hsl(var(--rivalry-blue) / 0.15) 0%, transparent 50%)",
           }}
         />
       </div>
@@ -127,6 +136,16 @@ const MobileHero = ({
 
       {/* Center Content */}
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-32">
+        {/* Football tagline - above title */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.8, ease: APPLE_EASE }}
+          className="text-text-tertiary text-xs italic mb-3"
+        >
+          Rivals, not enemies.
+        </motion.p>
+
         {/* Event Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -206,7 +225,7 @@ export default function HeroSplit() {
     minutes: 0,
     seconds: 0,
   });
-  
+
   const isMobile = useIsMobile();
   const prefersReduced = usePrefersReducedMotion();
 
@@ -215,7 +234,7 @@ export default function HeroSplit() {
   // ============================================
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -225,35 +244,73 @@ export default function HeroSplit() {
   });
 
   // Apple-style scroll transforms - subtle, refined
-  const heroScale = useTransform(smoothProgress, [0, 0.5], prefersReduced ? [1, 1] : [1, 0.95]);
+  const heroScale = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    prefersReduced ? [1, 1] : [1, 0.95]
+  );
   const heroOpacity = useTransform(smoothProgress, [0, 0.4], [1, 0]);
-  const heroBlur = useTransform(smoothProgress, [0, 0.5], prefersReduced ? ['blur(0px)', 'blur(0px)'] : ['blur(0px)', 'blur(8px)']);
-  const heroY = useTransform(smoothProgress, [0, 0.5], prefersReduced ? [0, 0] : [0, -40]);
+  const heroBlur = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    prefersReduced ? ["blur(0px)", "blur(0px)"] : ["blur(0px)", "blur(8px)"]
+  );
+  const heroY = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    prefersReduced ? [0, 0] : [0, -40]
+  );
 
   // Memoized parallax values
-  const messiParallax = useMemo(() => ({
-    y: prefersReduced ? [0, 0] : [0, -120],
-    x: prefersReduced ? [0, 0] : [0, -60],
-    scale: [1, 1.05],
-  }), [prefersReduced]);
+  const messiParallax = useMemo(
+    () => ({
+      y: prefersReduced ? [0, 0] : [0, -120],
+      x: prefersReduced ? [0, 0] : [0, -60],
+      scale: [1, 1.05],
+    }),
+    [prefersReduced]
+  );
 
-  const ronaldoParallax = useMemo(() => ({
-    y: prefersReduced ? [0, 0] : [0, -160],
-    x: prefersReduced ? [0, 0] : [0, 60],
-    scale: [1, 1.08],
-  }), [prefersReduced]);
+  const ronaldoParallax = useMemo(
+    () => ({
+      y: prefersReduced ? [0, 0] : [0, -160],
+      x: prefersReduced ? [0, 0] : [0, 60],
+      scale: [1, 1.08],
+    }),
+    [prefersReduced]
+  );
 
   // Silhouette parallax transforms
   const messiParallaxY = useTransform(smoothProgress, [0, 1], messiParallax.y);
   const messiParallaxX = useTransform(smoothProgress, [0, 1], messiParallax.x);
-  const messiScale = useTransform(smoothProgress, [0, 0.5], messiParallax.scale);
+  const messiScale = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    messiParallax.scale
+  );
 
-  const ronaldoParallaxY = useTransform(smoothProgress, [0, 1], ronaldoParallax.y);
-  const ronaldoParallaxX = useTransform(smoothProgress, [0, 1], ronaldoParallax.x);
-  const ronaldoScale = useTransform(smoothProgress, [0, 0.5], ronaldoParallax.scale);
+  const ronaldoParallaxY = useTransform(
+    smoothProgress,
+    [0, 1],
+    ronaldoParallax.y
+  );
+  const ronaldoParallaxX = useTransform(
+    smoothProgress,
+    [0, 1],
+    ronaldoParallax.x
+  );
+  const ronaldoScale = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    ronaldoParallax.scale
+  );
 
   // Scroll indicator fade
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+  const scrollIndicatorOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.08],
+    [1, 0]
+  );
 
   // ============================================
   // Mouse parallax (desktop only)
@@ -262,10 +319,22 @@ export default function HeroSplit() {
   const mouseY = useMotionValue(0);
 
   const springConfig = { stiffness: 80, damping: 25 };
-  const messiMouseX = useSpring(useTransform(mouseX, [-0.5, 0.5], [15, -15]), springConfig);
-  const messiMouseY = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
-  const ronaldoMouseX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
-  const ronaldoMouseY = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
+  const messiMouseX = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [15, -15]),
+    springConfig
+  );
+  const messiMouseY = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [8, -8]),
+    springConfig
+  );
+  const ronaldoMouseX = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [-15, 15]),
+    springConfig
+  );
+  const ronaldoMouseY = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [8, -8]),
+    springConfig
+  );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -280,7 +349,7 @@ export default function HeroSplit() {
   // ============================================
   // Effects
   // ============================================
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       const diff = TARGET_DATE - Date.now();
@@ -303,8 +372,10 @@ export default function HeroSplit() {
       className="relative h-[150vh] bg-surface-base"
     >
       {/* Sticky container for pinned hero */}
-      <div className="sticky top-0 h-screen overflow-hidden" style={{ paddingTop: NAVBAR_HEIGHT }}>
-        
+      <div
+        className="sticky top-0 h-screen overflow-hidden"
+        style={{ paddingTop: NAVBAR_HEIGHT }}
+      >
         {/* Noise Overlay */}
         <div className="absolute inset-0 noise-overlay pointer-events-none z-50" />
 
@@ -312,7 +383,10 @@ export default function HeroSplit() {
             Mobile Layout
             ============================================ */}
         {isMobile ? (
-          <MobileHero timeLeft={timeLeft} scrollIndicatorOpacity={scrollIndicatorOpacity} />
+          <MobileHero
+            timeLeft={timeLeft}
+            scrollIndicatorOpacity={scrollIndicatorOpacity}
+          />
         ) : (
           /* ============================================
              Desktop Layout - Clean, centered design
@@ -333,7 +407,8 @@ export default function HeroSplit() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: 'radial-gradient(ellipse at 20% 80%, hsl(var(--rivalry-red) / 0.2) 0%, transparent 50%)',
+                    background:
+                      "radial-gradient(ellipse at 20% 80%, hsl(var(--rivalry-red) / 0.2) 0%, transparent 50%)",
                   }}
                 />
               </div>
@@ -343,7 +418,8 @@ export default function HeroSplit() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: 'radial-gradient(ellipse at 80% 80%, hsl(var(--rivalry-blue) / 0.2) 0%, transparent 50%)',
+                    background:
+                      "radial-gradient(ellipse at 80% 80%, hsl(var(--rivalry-blue) / 0.2) 0%, transparent 50%)",
                   }}
                 />
               </div>
@@ -397,6 +473,16 @@ export default function HeroSplit() {
                 animate="visible"
                 className="flex flex-col items-center text-center max-w-lg"
               >
+                {/* Football tagline - above title */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.8, ease: APPLE_EASE }}
+                  className="text-text-tertiary text-xs lg:text-sm italic mb-3"
+                >
+                  Rivals, not enemies.
+                </motion.p>
+
                 {/* Event Title */}
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}

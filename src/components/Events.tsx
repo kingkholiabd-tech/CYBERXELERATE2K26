@@ -567,7 +567,11 @@ export default function Events() {
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, y: 20 }}
-            className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            className={`grid gap-6 grid-cols-1 sm:grid-cols-2 ${
+              filteredEvents.length <= 2 
+                ? "lg:grid-cols-2 max-w-3xl mx-auto" 
+                : "lg:grid-cols-3"
+            }`}
           >
             {filteredEvents.map((event, index) => (
               <div

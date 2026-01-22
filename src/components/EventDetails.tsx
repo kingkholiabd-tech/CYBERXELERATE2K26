@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
+import Footer from "./Footer";
 
 // Apple-style easing
 const APPLE_EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
@@ -17,6 +18,7 @@ interface EventData {
   tagline: string;
   description: string;
   poster: string;
+  eventPoster?: string; // Optional dedicated event poster image
   formLink: string;
   time: string;
   team: string;
@@ -29,22 +31,26 @@ const eventsData: Record<string, EventData> = {
     title: "H4CK_077 CTF",
     tagline: "Capture the flag.",
     description:
-      "Real-world cybersecurity challenges on CTFD. Flag hunting, cryptographic puzzles, ethical hacking.",
+      "Real-world cybersecurity challenges on CTFD platform. Compete in Jeopardy-style challenges across multiple categories including Cryptography, Forensics, Reverse Engineering, Steganography, OSINT, Web Exploitation, and Binary Exploitation. Duration: 1 hour 45 minutes. Flag format: hackoff{flag}. Offline mode. Bring your own laptops/devices.",
     poster: "/events/ctf1.jpeg",
+    eventPoster: "/events/posters/ctf.jpeg",
     formLink: "https://forms.gle/xxxxx2",
-    time: "10:00 AM – 12:30 PM",
+    time: "10:00 AM – 11:45 AM (1h 45min)",
     team: "Up to 3 members",
     rules: [
-      "Teams of 3 max",
-      "No attacking infrastructure outside scope",
-      "No sharing flags between teams",
-      "No brute-force or DoS attacks",
-      "Follow ethical hacking guidelines",
+      "Team size: Maximum of 3 members per team",
+      "Duration: 1 hour 45 minutes (approx)",
+      "No flag sharing: Any team found sharing flags will be immediately disqualified",
+      "Categories: Cryptography, Forensics, Reverse Engineering, Steganography, OSINT, Web Exploitation, Binary Exploitation",
+      "Bring your own laptops/devices",
+      "Platform: CTFD",
+      "Flag format: hackoff{flag}",
+      "Style: Jeopardy",
+      "Mode: Offline",
     ],
     coordinators: [
       { name: "Gopinath S", phone: "+91 80152 23085" },
       { name: "Kirthi Sai T", phone: "+91 99529 41725" },
-      { name: "Vishnu TS", phone: "+91 88258 66507" },
     ],
   },
   "code-fc": {
@@ -75,6 +81,7 @@ const eventsData: Record<string, EventData> = {
     description:
       "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
     poster: "/events/vibe.png",
+      eventPoster: "/events/posters/vibeathon.jpeg",
     formLink: "https://forms.gle/xxxxx3",
     time: "10:00 AM – 12:00 PM",
     team: "1-2 members",
@@ -204,13 +211,22 @@ export default function EventDetails() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: APPLE_EASE }}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            navigate("/");
+            // Wait for navigation then scroll to events section
+            setTimeout(() => {
+              const eventsSection = document.getElementById("events");
+              if (eventsSection) {
+                eventsSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }, 100);
+          }}
           className="absolute top-24 left-6 sm:left-12 z-10 inline-flex items-center gap-2 
             px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm
             hover:bg-white/20 transition-colors"
         >
           <ArrowLeft size={16} />
-          Back
+          Back to Events
         </motion.button>
 
         {/* Content */}
@@ -294,67 +310,101 @@ export default function EventDetails() {
               </motion.div>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar - Event Poster only */}
             <div className="space-y-8">
-              {/* Register CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: APPLE_EASE }}
-                className="bg-white/[0.03] rounded-2xl p-6 border border-white/5"
-              >
-                <a
-                  href={event.formLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 
-                    rounded-full bg-white text-black font-medium
-                    hover:bg-white/90 transition-colors"
-                >
-                  Register Now
-                  <ArrowUpRight size={16} />
-                </a>
-                <p className="text-text-tertiary text-xs text-center mt-3">
-                  Opens in Google Forms
-                </p>
-              </motion.div>
-
-              {/* Coordinators */}
-              {event.coordinators.length > 0 && (
+              {/* Event Poster - if available */}
+              {event.eventPoster && (
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1, ease: APPLE_EASE }}
-                  className="bg-white/[0.03] rounded-2xl p-6 border border-white/5"
+                  transition={{ duration: 0.6, ease: APPLE_EASE }}
+                  className="rounded-2xl overflow-hidden border border-white/10"
                 >
-                  <h3 className="text-sm text-text-tertiary mb-4">
-                    Coordinators
-                  </h3>
-                  <div className="space-y-4">
-                    {event.coordinators.map((coordinator) => (
-                      <div key={coordinator.name}>
-                        <p className="text-text-primary font-medium">
-                          {coordinator.name}
-                        </p>
-                        <a
-                          href={`tel:${coordinator.phone.replace(/\s/g, "")}`}
-                          className="inline-flex items-center gap-1.5 text-text-tertiary text-sm 
-                            hover:text-text-primary transition-colors"
-                        >
-                          <Phone size={12} />
-                          {coordinator.phone}
-                        </a>
-                      </div>
-                    ))}
-                  </div>
+                  <img
+                    src={event.eventPoster}
+                    alt={`${event.title} Poster`}
+                    className="w-full h-auto object-cover"
+                  />
                 </motion.div>
               )}
             </div>
           </div>
+
+          {/* Register & Coordinators - Full Width Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+            {/* Register CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: APPLE_EASE }}
+              className="bg-white/[0.03] rounded-2xl p-8 border border-white/5 flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-lg font-medium text-text-primary mb-4">
+                  Registration
+                </h3>
+                <p className="text-text-secondary mb-6">
+                  Ready to compete? Register your team now.
+                </p>
+                <a
+                  href={event.formLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 
+                    rounded-full bg-white text-black font-medium text-lg
+                    hover:bg-white/90 transition-colors"
+                >
+                  Register Now
+                  <ArrowUpRight size={20} />
+                </a>
+              </div>
+              <p className="text-text-tertiary text-sm mt-4">
+                Opens in Google Forms
+              </p>
+            </motion.div>
+
+            {/* Coordinators */}
+            {event.coordinators.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1, ease: APPLE_EASE }}
+                className="bg-white/[0.03] rounded-2xl p-8 border border-white/5"
+              >
+                <h3 className="text-lg font-medium text-text-primary mb-4">
+                  Coordinators
+                </h3>
+                <p className="text-text-secondary mb-6">
+                  Have questions? Reach out to our team.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {event.coordinators.map((coordinator) => (
+                    <div key={coordinator.name} className="space-y-1">
+                      <p className="text-text-primary font-medium text-lg">
+                        {coordinator.name}
+                      </p>
+                      <a
+                        href={`tel:${coordinator.phone.replace(/\s/g, "")}`}
+                        className="inline-flex items-center gap-2 text-text-secondary 
+                          hover:text-text-primary transition-colors"
+                      >
+                        <Phone size={16} />
+                        {coordinator.phone}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

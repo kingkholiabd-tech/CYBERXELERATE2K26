@@ -159,7 +159,7 @@ const MobileHero = ({
               encryptedClassName="text-text-disabled"
               revealedClassName="gradient-text-rivalry"
               revealDelayMs={35}
-              startDelay={600}
+              startDelay={2100}
             />
           </h1>
           <motion.span
@@ -247,18 +247,18 @@ export default function HeroSplit() {
   const heroScale = useTransform(
     smoothProgress,
     [0, 0.5],
-    prefersReduced ? [1, 1] : [1, 0.95]
+    prefersReduced ? [1, 1] : [1, 0.95],
   );
   const heroOpacity = useTransform(smoothProgress, [0, 0.4], [1, 0]);
   const heroBlur = useTransform(
     smoothProgress,
     [0, 0.5],
-    prefersReduced ? ["blur(0px)", "blur(0px)"] : ["blur(0px)", "blur(8px)"]
+    prefersReduced ? ["blur(0px)", "blur(0px)"] : ["blur(0px)", "blur(8px)"],
   );
   const heroY = useTransform(
     smoothProgress,
     [0, 0.5],
-    prefersReduced ? [0, 0] : [0, -40]
+    prefersReduced ? [0, 0] : [0, -40],
   );
 
   // Memoized parallax values
@@ -268,7 +268,7 @@ export default function HeroSplit() {
       x: prefersReduced ? [0, 0] : [0, -60],
       scale: [1, 1.05],
     }),
-    [prefersReduced]
+    [prefersReduced],
   );
 
   const ronaldoParallax = useMemo(
@@ -277,7 +277,7 @@ export default function HeroSplit() {
       x: prefersReduced ? [0, 0] : [0, 60],
       scale: [1, 1.08],
     }),
-    [prefersReduced]
+    [prefersReduced],
   );
 
   // Silhouette parallax transforms
@@ -286,38 +286,34 @@ export default function HeroSplit() {
   const messiScale = useTransform(
     smoothProgress,
     [0, 0.5],
-    messiParallax.scale
+    messiParallax.scale,
   );
 
   const ronaldoParallaxY = useTransform(
     smoothProgress,
     [0, 1],
-    ronaldoParallax.y
+    ronaldoParallax.y,
   );
   const ronaldoParallaxX = useTransform(
     smoothProgress,
     [0, 1],
-    ronaldoParallax.x
+    ronaldoParallax.x,
   );
   const ronaldoScale = useTransform(
     smoothProgress,
     [0, 0.5],
-    ronaldoParallax.scale
+    ronaldoParallax.scale,
   );
 
   // Scroll indicator fade
   const scrollIndicatorOpacity = useTransform(
     scrollYProgress,
     [0, 0.08],
-    [1, 0]
+    [1, 0],
   );
 
   // Background gradient fade - disappears on scroll, shows at top
-  const bgGradientOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.15],
-    [1, 0]
-  );
+  const bgGradientOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   // ============================================
   // Mouse parallax (desktop only)
@@ -328,19 +324,19 @@ export default function HeroSplit() {
   const springConfig = { stiffness: 80, damping: 25 };
   const messiMouseX = useSpring(
     useTransform(mouseX, [-0.5, 0.5], [15, -15]),
-    springConfig
+    springConfig,
   );
   const messiMouseY = useSpring(
     useTransform(mouseY, [-0.5, 0.5], [8, -8]),
-    springConfig
+    springConfig,
   );
   const ronaldoMouseX = useSpring(
     useTransform(mouseX, [-0.5, 0.5], [-15, 15]),
-    springConfig
+    springConfig,
   );
   const ronaldoMouseY = useSpring(
     useTransform(mouseY, [-0.5, 0.5], [8, -8]),
-    springConfig
+    springConfig,
   );
 
   const handleMouseMove = useCallback(
@@ -350,7 +346,7 @@ export default function HeroSplit() {
       mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
       mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
     },
-    [mouseX, mouseY, isMobile]
+    [mouseX, mouseY, isMobile],
   );
 
   // ============================================
@@ -509,7 +505,7 @@ export default function HeroSplit() {
                       encryptedClassName="text-text-disabled"
                       revealedClassName="gradient-text-rivalry"
                       revealDelayMs={35}
-                      startDelay={500}
+                      startDelay={2100}
                     />
                   </h1>
                 </motion.div>

@@ -32,9 +32,10 @@ const eventsData: Record<string, EventData> = {
     tagline: "Capture the flag.",
     description:
       "Real-world cybersecurity challenges on CTFD platform. Compete in Jeopardy-style challenges across multiple categories including Cryptography, Forensics, Reverse Engineering, Steganography, OSINT, Web Exploitation, and Binary Exploitation. Duration: 1 hour 45 minutes. Flag format: hackoff{flag}. Offline mode. Bring your own laptops/devices.",
-    poster: "/events/ctf1.jpeg",
+    poster: "/events/ctf3.jpeg",
     eventPoster: "/events/posters/ctf.jpeg",
-    formLink: "https://forms.gle/xxxxx2",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",
     time: "10:00 AM – 11:45 AM (1h 45min)",
     team: "Up to 3 members",
     rules: [
@@ -58,8 +59,10 @@ const eventsData: Record<string, EventData> = {
     tagline: "Competitive Coding Challenge - Solve. Submit. Win.",
     description:
       "A competitive coding challenge on HackerRank platform. One round consisting of 5 algorithmic problems. Questions will be provided on the spot. Test your problem-solving speed and coding efficiency. Final results based on HackerRank Leaderboard. Systems will be provided.",
-    poster: "/events/code.png",
-    formLink: "https://forms.gle/xxxxx1",
+    poster: "/events/codfcbanner.jpeg",
+    eventPoster: "/events/posters/code.jpeg",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSc8YvkniuUoOdqqGXsf_vV5ulaHbbmDt_oOEMKsXST9YoxbrQ/viewform",
     time: "10:30 AM – 12:30 PM",
     team: "1-2 members",
     rules: [
@@ -79,14 +82,15 @@ const eventsData: Record<string, EventData> = {
       { name: "Hari Priyan R", phone: "+91 63819 78926" },
     ],
   },
-  "vibeathon": {
+  vibeathon: {
     title: "Vibeathon",
     tagline: "Build. Ship. Win.",
     description:
       "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
     poster: "/events/vibe.png",
-      eventPoster: "/events/posters/vibeathon.jpeg",
-    formLink: "https://forms.gle/xxxxx3",
+    eventPoster: "/events/posters/vibeathon.jpeg",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
     time: "10:00 AM – 12:00 PM",
     team: "1-2 members",
     rules: [
@@ -111,7 +115,8 @@ const eventsData: Record<string, EventData> = {
       "Showcase your research and innovative ideas in Cyber Security, Artificial Intelligence, Edutech, or Open Innovation. Submit both Project Report (PDF) and PPT through the online submission form before the deadline. Single round evaluation based on presentation quality, innovation, and relevance to the selected domain. Mode: Offline. Venue: Mechanical Block, 3rd Floor Seminar Hall.",
     poster: "/events/paper.png",
     eventPoster: "/events/posters/paper.png",
-    formLink: "https://forms.gle/xxxxx3",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfQP_j_LIzfnzEenC0cnwmd0ldhLnYb4ULT52IgU4j1Q45W_w/viewform",
     time: "10:00 AM – 12:30 PM",
     team: "1-4 members",
     rules: [
@@ -131,19 +136,27 @@ const eventsData: Record<string, EventData> = {
   },
   "de-melodia": {
     title: "De-Melodia",
-    tagline: "Test your musical ear.",
+    tagline:
+      "A fun-filled music-based event that tests creativity, rhythm sense, and quick thinking.",
     description:
-      "Three progressively challenging rounds. Connect with tunes, lyrics, and musical clues.",
-    poster: "/events/cyber.jpg",
-    formLink: "https://forms.gle/xxxxx5",
-    time: "10:00 AM – 12:00 PM",
+      "Round 1 features Bioscope and English to Tamil Translation, where participants showcase observation and lyrical skills. Top-performing teams move to Round 2, which includes Dumsharax and Find the Missing Line, focusing on teamwork and timing.",
+    poster: "/events/music.png",
+    eventPoster: "/events/posters/demelodia.jpeg",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeaSTnZVrsQ38NOBGHu-ar2242wduAxJhDAtSB9UQT_371vjw/viewform",
+    time: "10:30 AM – 12:00 PM",
     team: "2-3 members",
     rules: [
-      "Teams of 2-3",
-      "No mobile phones allowed",
-      "Three progressive rounds",
-      "Highest score wins",
-      "Judges' decisions are final",
+      "Team Size: 2 to 3 members",
+      "Eligibility: Open to all departments",
+      "Mode: Offline",
+      "Round 1: Bioscope and English to Tamil Translation",
+      "Round 2: Dumsharax and Find the Missing Line (Top teams from Round 1)",
+      "Evaluation Criteria: Team Coordination, Accuracy, Time Management",
+      "Duration: Depends on the number of participants",
+      "Use of mobile phones or any external assistance is strictly prohibited",
+      "Teams must not communicate with other teams during the event",
+      "Winning Criteria: The team scoring the highest total points at the final round will be declared as the winner",
     ],
     coordinators: [
       { name: "Coordinator 1", phone: "+91 98765 43210" },
@@ -152,19 +165,26 @@ const eventsData: Record<string, EventData> = {
   },
   "play-io": {
     title: "Play.io",
-    tagline: "Teamwork wins.",
+    tagline:
+      "A time-based event that tests coordination, teamwork, and quick thinking through creative mini-games.",
     description:
-      "Time-based coordination games. Round 1: Mini challenges. Top teams advance to Round 2.",
+      "In Round 1, each team will randomly select one of five challenges and complete the task as quickly as possible, with time recorded from start to finish. The teams with the lowest times will qualify for Round 2, which will be a special teamwork challenge requiring all members to participate together in a new task.",
     poster: "/events/cyber.jpg",
     formLink: "https://forms.gle/xxxxx6",
-    time: "10:00 AM – 12:00 PM",
+    time: "Depends on the number of participating teams",
     team: "2-3 members",
     rules: [
-      "Teams of 2-3",
-      "Time recorded in Round 1",
-      "Top teams advance",
-      "Fastest completion wins",
-      "No external help",
+      "Team Size: 2 to 3 members",
+      "Round 1: Randomly select one of five challenges and complete the task as quickly as possible",
+      "Time will be recorded from start to finish",
+      "Teams with the lowest times qualify for Round 2",
+      "Round 2: Special teamwork challenge requiring all members to participate together",
+      "Duration: Depends on the number of participating teams",
+      "Use of mobile phones or any external assistance is strictly prohibited",
+      "Teams must not communicate with other teams during the event",
+      "Winning Criteria: Final results determined solely based on time evaluation",
+      "The team completing the task in the lowest recorded time will be ranked higher",
+      "No additional scoring parameters will be considered",
     ],
     coordinators: [
       { name: "Coordinator 1", phone: "+91 98765 43210" },

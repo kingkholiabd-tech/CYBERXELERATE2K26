@@ -46,7 +46,8 @@ const events: Event[] = [
     longDescription:
       "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.",
     image: "/events/ctf1.jpeg",
-    formLink: "https://forms.gle/xxxxx1",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",
     gradient: "from-rivalry-red  to-red-600",
     featured: true,
   },
@@ -58,7 +59,8 @@ const events: Event[] = [
     longDescription:
       "Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.",
     image: "/events/code.png",
-    formLink: "https://forms.gle/xxxxx2",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSc8YvkniuUoOdqqGXsf_vV5ulaHbbmDt_oOEMKsXST9YoxbrQ/viewform",
     gradient: "from-rivalry-red to-red-600",
   },
   {
@@ -69,7 +71,8 @@ const events: Event[] = [
     longDescription:
       "Showcase your research in Cyber Security, AI, Edutech, or Open Innovation. Submit your project report (PDF) and PPT online. Present offline for 5-10 minutes. Team: 1-4 members. Venue: Mechanical Block, 3rd Floor. Time: 10:00 AM – 12:30 PM.",
     image: "/events/paper.png",
-    formLink: "https://forms.gle/xxxxx3",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfQP_j_LIzfnzEenC0cnwmd0ldhLnYb4ULT52IgU4j1Q45W_w/viewform",
     gradient: "from-rivalry-blue to-blue-700",
   },
   {
@@ -80,7 +83,8 @@ const events: Event[] = [
     longDescription:
       "Step into Vibeathon, a high-energy mini hackathon where creativity and problem-solving come together. Build full-stack applications within 2 hours. Problem statements given on-spot. GitHub repo provided for development. Team: 1-2 members. FREE REGISTRATION.",
     image: "/events/vibe.png",
-    formLink: "https://forms.gle/xxxxx4",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
     gradient: "from-cyan-500 to-blue-600",
   },
   {
@@ -91,7 +95,8 @@ const events: Event[] = [
     longDescription:
       "Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.",
     image: "/events/music.png",
-    formLink: "https://forms.gle/xxxxx5",
+    formLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeaSTnZVrsQ38NOBGHu-ar2242wduAxJhDAtSB9UQT_371vjw/viewform",
     gradient: "from-pink-500 to-rose-600",
   },
   {
@@ -138,13 +143,13 @@ function EventCard({
   const cardY = useTransform(
     scrollProgress,
     [0, 1],
-    prefersReduced ? [0, 0] : [30 + row * 20, -20 - col * 10]
+    prefersReduced ? [0, 0] : [30 + row * 20, -20 - col * 10],
   );
 
   const cardOpacity = useTransform(
     scrollProgress,
     [0, 0.1 + index * 0.02, 0.9, 1],
-    [0.3, 1, 1, 0.3]
+    [0.3, 1, 1, 0.3],
   );
 
   // On mobile, always show buttons
@@ -161,7 +166,7 @@ function EventCard({
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
         "group relative rounded-2xl overflow-hidden cursor-pointer will-change-transform",
-        event.featured ? "sm:col-span-2 sm:row-span-2" : ""
+        event.featured ? "sm:col-span-2 sm:row-span-2" : "",
       )}
       onClick={() => onNavigate(event.slug)}
     >
@@ -183,7 +188,7 @@ function EventCard({
         <motion.div
           className={cn(
             "absolute inset-0 bg-gradient-to-br opacity-0",
-            event.gradient
+            event.gradient,
           )}
           animate={{ opacity: isHovered ? 0.4 : 0 }}
           transition={{ duration: 0.3 }}
@@ -194,7 +199,7 @@ function EventCard({
       <div
         className={cn(
           "relative z-10 h-full flex flex-col justify-end p-4 sm:p-6",
-          event.featured ? "sm:p-8" : ""
+          event.featured ? "sm:p-8" : "",
         )}
       >
         {/* Category Badge */}
@@ -204,7 +209,7 @@ function EventCard({
           transition={{ delay: index * 0.1 + 0.2 }}
           className={cn(
             "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mb-4 w-fit",
-            "bg-white/10 backdrop-blur-sm border border-white/20 text-white"
+            "bg-white/10 backdrop-blur-sm border border-white/20 text-white",
           )}
         >
           {event.category}
@@ -214,7 +219,7 @@ function EventCard({
         <motion.h3
           className={cn(
             "font-bold text-white mb-2 tracking-tight",
-            event.featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
+            event.featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl",
           )}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ duration: 0.3 }}
@@ -228,7 +233,7 @@ function EventCard({
             "text-white/70 leading-relaxed mb-4",
             event.featured
               ? "text-base sm:text-lg max-w-md"
-              : "text-sm line-clamp-2"
+              : "text-sm line-clamp-2",
           )}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
@@ -257,7 +262,7 @@ function EventCard({
               "inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-2.5 rounded-full font-medium text-xs sm:text-sm text-white",
               "bg-gradient-to-r",
               event.gradient,
-              "hover:shadow-lg transition-shadow duration-300"
+              "hover:shadow-lg transition-shadow duration-300",
             )}
           >
             Register
@@ -310,13 +315,13 @@ function FeaturedEventCard({
   const featuredY = useTransform(
     scrollProgress,
     [0, 0.5],
-    prefersReduced ? [0, 0] : [40, -20]
+    prefersReduced ? [0, 0] : [40, -20],
   );
 
   const featuredScale = useTransform(
     scrollProgress,
     [0.3, 0.7],
-    prefersReduced ? [1, 1] : [1, 0.98]
+    prefersReduced ? [1, 1] : [1, 0.98],
   );
 
   return (
@@ -402,7 +407,7 @@ function FeaturedEventCard({
               "inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-white text-sm sm:text-base",
               "bg-gradient-to-r",
               event.gradient,
-              "hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300"
+              "hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300",
             )}
           >
             Register
@@ -454,13 +459,13 @@ export default function Events() {
   const headerY = useTransform(
     smoothProgress,
     [0, 0.2],
-    prefersReduced ? [0, 0] : [60, 0]
+    prefersReduced ? [0, 0] : [60, 0],
   );
 
   const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
 
   const filteredEvents = events.filter(
-    (event) => event.category === activeCategory && !event.featured
+    (event) => event.category === activeCategory && !event.featured,
   );
 
   const featuredEvent = events.find((e) => e.featured);
@@ -551,7 +556,7 @@ export default function Events() {
                 "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
                 activeCategory === category
                   ? "bg-white text-surface-base"
-                  : "bg-surface-elevated text-text-secondary border border-white/10 hover:border-white/20"
+                  : "bg-surface-elevated text-text-secondary border border-white/10 hover:border-white/20",
               )}
             >
               {category}
@@ -568,16 +573,13 @@ export default function Events() {
             animate="visible"
             exit={{ opacity: 0, y: 20 }}
             className={`grid gap-6 grid-cols-1 sm:grid-cols-2 ${
-              filteredEvents.length <= 2 
-                ? "lg:grid-cols-2 max-w-3xl mx-auto" 
+              filteredEvents.length <= 2
+                ? "lg:grid-cols-2 max-w-3xl mx-auto"
                 : "lg:grid-cols-3"
             }`}
           >
             {filteredEvents.map((event, index) => (
-              <div
-                key={event.slug}
-                className="h-[300px]"
-              >
+              <div key={event.slug} className="h-[300px]">
                 <EventCard
                   event={event}
                   index={index}

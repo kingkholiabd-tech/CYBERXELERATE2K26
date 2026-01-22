@@ -108,18 +108,18 @@ const MobileHero = ({
         />
       </div>
 
-      {/* Player Silhouettes */}
-      <div className="absolute inset-x-0 bottom-0 flex justify-between items-end pointer-events-none">
+      {/* Player Silhouettes - positioned to not get cut off */}
+      <div className="absolute inset-x-0 bottom-0 flex justify-between items-end pointer-events-none overflow-hidden">
         <motion.img
           src="/Messi.png"
           alt=""
           aria-hidden="true"
           loading="lazy"
           decoding="async"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 0.35, y: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 0.4, x: 0 }}
           transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
-          className="h-[38vh] sm:h-[48vh] w-auto object-contain"
+          className="h-[28vh] sm:h-[35vh] w-auto object-contain object-bottom"
         />
         <motion.img
           src="/Ronaldo.png"
@@ -127,10 +127,10 @@ const MobileHero = ({
           aria-hidden="true"
           loading="lazy"
           decoding="async"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 0.35, y: 0 }}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 0.4, x: 0 }}
           transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-          className="h-[38vh] sm:h-[48vh] w-auto object-contain"
+          className="h-[28vh] sm:h-[35vh] w-auto object-contain object-bottom"
         />
       </div>
 
@@ -312,6 +312,13 @@ export default function HeroSplit() {
     [1, 0]
   );
 
+  // Background gradient fade - disappears on scroll, shows at top
+  const bgGradientOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.15],
+    [1, 0]
+  );
+
   // ============================================
   // Mouse parallax (desktop only)
   // ============================================
@@ -369,8 +376,14 @@ export default function HeroSplit() {
       ref={containerRef}
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative h-[150vh] bg-gradient-to-r from-blue-800 via-black to-red-800"
+      className="relative h-[150vh] bg-surface-base"
     >
+      {/* Background Gradient - fades on scroll */}
+      <motion.div
+        style={{ opacity: bgGradientOpacity }}
+        className="absolute inset-0 bg-gradient-to-r from-blue-800 via-black to-red-800 pointer-events-none"
+      />
+
       {/* Sticky container for pinned hero */}
       <div
         className="sticky top-0 h-screen overflow-hidden"

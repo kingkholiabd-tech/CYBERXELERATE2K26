@@ -313,7 +313,7 @@ export const countUp = (end: number, duration: number = 2): Variants => ({
 export const messiReveal: Variants = {
   hidden: {
     opacity: 0,
-    x: -120,
+    x: '-100vw',
     filter: 'blur(10px)',
   },
   visible: {
@@ -321,8 +321,9 @@ export const messiReveal: Variants = {
     x: 0,
     filter: 'blur(0px)',
     transition: {
-      duration: 1,
+      duration: 1.2,
       ease: [0.16, 1, 0.3, 1],
+      delay: 0.2,
     },
   },
 };
@@ -330,7 +331,7 @@ export const messiReveal: Variants = {
 export const ronaldoReveal: Variants = {
   hidden: {
     opacity: 0,
-    x: 120,
+    x: '100vw',
     filter: 'blur(10px)',
   },
   visible: {
@@ -338,8 +339,9 @@ export const ronaldoReveal: Variants = {
     x: 0,
     filter: 'blur(0px)',
     transition: {
-      duration: 1,
+      duration: 1.2,
       ease: [0.16, 1, 0.3, 1],
+      delay: 0.3,
     },
   },
 };

@@ -63,7 +63,7 @@ export default function About() {
     <section
       ref={containerRef}
       id="about"
-      className="relative py-20 sm:py-28 lg:py-36 bg-surface-base"
+      className="relative py-20 sm:py-28 lg:pb-36 lg:pt-10 bg-surface-base"
     >
       <div className="section-container">
         {/* Header - Apple-style typography */}

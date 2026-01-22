@@ -129,6 +129,7 @@ function EventCard({
 }: EventCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const prefersReduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
 
   // Staggered parallax based on grid position
   const row = Math.floor(index / 3);
@@ -145,6 +146,9 @@ function EventCard({
     [0, 0.1 + index * 0.02, 0.9, 1],
     [0.3, 1, 1, 0.3]
   );
+
+  // On mobile, always show buttons
+  const showButtons = isMobile || isHovered;
 
   return (
     <motion.article
@@ -189,7 +193,7 @@ function EventCard({
       {/* Content */}
       <div
         className={cn(
-          "relative z-10 h-full flex flex-col justify-end p-6",
+          "relative z-10 h-full flex flex-col justify-end p-4 sm:p-6",
           event.featured ? "sm:p-8" : ""
         )}
       >
@@ -232,13 +236,13 @@ function EventCard({
           {event.featured ? event.longDescription : event.description}
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - always visible on mobile */}
         <motion.div
-          className="flex items-center gap-3"
+          className="flex items-center gap-2 sm:gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 20,
+            opacity: showButtons ? 1 : 0,
+            y: showButtons ? 0 : 20,
           }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -250,25 +254,25 @@ function EventCard({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-              "inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm text-white",
+              "inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-2.5 rounded-full font-medium text-xs sm:text-sm text-white",
               "bg-gradient-to-r",
               event.gradient,
               "hover:shadow-lg transition-shadow duration-300"
             )}
           >
             Register
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </motion.a>
 
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-2.5 rounded-full font-medium text-xs sm:text-sm
               bg-white/10 backdrop-blur-sm border border-white/20 text-white
               hover:bg-white/20 transition-colors duration-300"
           >
             Details
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </motion.button>
         </motion.div>
       </div>
@@ -300,6 +304,7 @@ function FeaturedEventCard({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const prefersReduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
 
   // Parallax effect for featured card
   const featuredY = useTransform(
@@ -327,7 +332,7 @@ function FeaturedEventCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onNavigate(event.slug)}
-      className="relative rounded-3xl overflow-hidden cursor-pointer mb-12 h-[400px] sm:h-[500px] will-change-transform"
+      className="relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer mb-8 sm:mb-12 h-[380px] sm:h-[450px] lg:h-[500px] will-change-transform"
     >
       {/* Background */}
       <motion.img
@@ -337,24 +342,25 @@ function FeaturedEventCard({
         animate={{ scale: isHovered ? 1.05 : 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+      {/* Stronger gradient overlay for mobile readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40 sm:bg-gradient-to-r sm:from-black sm:via-black/70 sm:to-transparent" />
       <motion.div
         className={cn("absolute inset-0 bg-gradient-to-br", event.gradient)}
-        animate={{ opacity: isHovered ? 0.3 : 0 }}
+        animate={{ opacity: isHovered ? 0.3 : 0.1 }}
         transition={{ duration: 0.4 }}
       />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center p-8 sm:p-12 max-w-2xl">
+      <div className="relative z-10 h-full flex flex-col justify-end sm:justify-center p-5 sm:p-8 lg:p-12 max-w-2xl">
         <motion.span
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm 
-            border border-white/20 text-sm font-medium text-white mb-6 w-fit"
+          className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm 
+            border border-white/20 text-xs sm:text-sm font-medium text-white mb-3 sm:mb-6 w-fit"
         >
-          <span className="w-2 h-2 rounded-full bg-rivalry-red animate-pulse" />
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-rivalry-red animate-pulse" />
           Featured Event
         </motion.span>
 
@@ -363,7 +369,7 @@ function FeaturedEventCard({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight"
+          className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4 tracking-tight"
         >
           {event.title}
         </motion.h2>
@@ -373,9 +379,9 @@ function FeaturedEventCard({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed"
+          className="text-sm sm:text-lg lg:text-xl text-white/80 mb-4 sm:mb-8 leading-relaxed line-clamp-3 sm:line-clamp-none"
         >
-          {event.longDescription}
+          {isMobile ? event.description : event.longDescription}
         </motion.p>
 
         <motion.div
@@ -383,7 +389,7 @@ function FeaturedEventCard({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="flex items-center gap-4"
+          className="flex items-center gap-2 sm:gap-4"
         >
           <motion.a
             href={event.formLink}
@@ -393,29 +399,29 @@ function FeaturedEventCard({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-              "inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white",
+              "inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-white text-sm sm:text-base",
               "bg-gradient-to-r",
               event.gradient,
               "hover:shadow-xl hover:shadow-rivalry-red/20 transition-shadow duration-300"
             )}
           >
-            Register Now
-            <ExternalLink className="w-5 h-5" />
+            Register
+            <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
           </motion.a>
 
           <motion.button
             whileHover={{ scale: 1.02, x: 4 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 text-white font-medium"
+            className="inline-flex items-center gap-1.5 sm:gap-2 text-white font-medium text-sm sm:text-base"
           >
             Learn More
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </motion.button>
         </motion.div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-8 right-8 text-8xl font-black text-white/5">
+      {/* Decorative Elements - hidden on mobile */}
+      <div className="absolute top-8 right-8 text-8xl font-black text-white/5 hidden sm:block">
         01
       </div>
     </motion.article>

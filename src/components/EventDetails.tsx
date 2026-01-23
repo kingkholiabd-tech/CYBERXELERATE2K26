@@ -177,7 +177,6 @@ const eventsData: Record<string, EventData> = {
     rules: [
       "Team Size: 2 to 3 members",
       "Round 1: Randomly select one of five challenges and complete the task as quickly as possible",
-      "Time will be recorded from start to finish",
       "Teams with the lowest times qualify for Round 2",
       "Round 2: Special teamwork challenge requiring all members to participate together",
       "Duration: Depends on the number of participating teams",

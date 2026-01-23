@@ -61,7 +61,7 @@ const events: Event[] = [
     image: "/events/code1.png",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSc8YvkniuUoOdqqGXsf_vV5ulaHbbmDt_oOEMKsXST9YoxbrQ/viewform",
-    gradient: "from-rivalry-red to-red-600",
+    gradient: "from-slate-800 to-red-600",
   },
   {
     title: "CLASH OF IDEAS",
@@ -73,7 +73,7 @@ const events: Event[] = [
     image: "/events/paper.png",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfQP_j_LIzfnzEenC0cnwmd0ldhLnYb4ULT52IgU4j1Q45W_w/viewform",
-    gradient: "from-rivalry-blue to-blue-700",
+    gradient: "from-zinc-800 to-indigo-600",
   },
   {
     title: "Vibe-A-thon",
@@ -85,7 +85,7 @@ const events: Event[] = [
     image: "/events/vibe-banner.webp",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
-    gradient: "from-cyan-500 to-blue-600",
+    gradient: "from-gray-500 to-blue-600",
   },
   {
     title: "De-Melodia",
@@ -97,7 +97,7 @@ const events: Event[] = [
     image: "/events/de-melodia.webp",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSeaSTnZVrsQ38NOBGHu-ar2242wduAxJhDAtSB9UQT_371vjw/viewform",
-    gradient: "from-pink-500 to-rose-600",
+    gradient: "from-rose-600 to-indigo-700",
   },
   {
     title: "Play.io",
@@ -107,8 +107,8 @@ const events: Event[] = [
     longDescription:
       "Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.",
     image: "/events/play-io.jpg",
-    formLink: "https://forms.gle/xxxxx6",
-    gradient: "from-emerald-500 to-green-600",
+    formLink: "https://docs.google.com/forms/d/e/1FAIpQLSd0EgUl1LpO_z1g8MMBwKn3NYqGedGaO1MrsaMs7tBCOAImJw/viewform",
+    gradient: "from-red-400 to-blue-300",
   },
 ];
 

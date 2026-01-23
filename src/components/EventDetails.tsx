@@ -224,7 +224,7 @@ export default function EventDetails() {
   return (
     <main className="min-h-screen bg-surface-base">
       {/* Hero */}
-      <section className="relative h-[40vh] min-h-[750px]">
+      <section className="relative h-[50vh] min-h-[400px] md:h-[40vh] md:min-h-[500px]">
         {/* Background image */}
         <div className="absolute inset-0">
           <img

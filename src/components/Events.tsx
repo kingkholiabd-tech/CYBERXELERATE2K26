@@ -44,7 +44,7 @@ const events: Event[] = [
     category: "Technical",
     description: "Capture The Flag cybersecurity challenge.",
     longDescription:
-      "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.",
+      "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. 2-3 members per team. Duration: 10:00 AM – 12:30 PM.",
     image: "/events/ctf4.jpg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",

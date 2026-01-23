@@ -60,7 +60,7 @@ const eventsData: Record<string, EventData> = {
     description:
       "A competitive coding challenge on HackerRank platform. One round consisting of 5 algorithmic problems. Questions will be provided on the spot. Test your problem-solving speed and coding efficiency. Final results based on HackerRank Leaderboard. Systems will be provided.",
     poster: "/events/codfcbanner.jpeg",
-    eventPoster: "/events/posters/code.jpeg",
+    eventPoster: "/events/posters/codewar.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSc8YvkniuUoOdqqGXsf_vV5ulaHbbmDt_oOEMKsXST9YoxbrQ/viewform",
     time: "10:30 AM – 12:30 PM",
@@ -120,11 +120,11 @@ const eventsData: Record<string, EventData> = {
     time: "10:00 AM – 12:30 PM",
     team: "1-5 members",
     rules: [
-      "Team Size: 1 to 5 members",
+      "Team Size: Minmum of 1 to Maximum of 4 members",
       "Domains: Cyber Security, Artificial Intelligence, Edutech, Open Innovation",
       "Submission: Upload both Project Report (PDF) and PPT through the online submission form before deadline",
       "Single Round: Evaluation based on presentation quality, innovation, and relevance to selected domain",
-      "Presentation Time: 5-10 minutes per team",
+      "Presentation Time: Minimum 10 minutes presentation and 5 minutes Q&A session",
       "Mode: Offline presentation",
       "Venue: Mechanical Block, 3rd Floor Seminar Hall",
       "Original work only - plagiarism leads to disqualification",
@@ -224,7 +224,7 @@ export default function EventDetails() {
   return (
     <main className="min-h-screen bg-surface-base">
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] md:h-[40vh] md:min-h-[500px]">
+      <section className="relative h-[40vh] min-h-[750px]">
         {/* Background image */}
         <div className="absolute inset-0">
           <img

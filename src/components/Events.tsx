@@ -52,13 +52,13 @@ const events: Event[] = [
     featured: true,
   },
   {
-    title: "CODE FC",
+    title: "CODE WAR",
     slug: "code-fc",
     category: "Technical",
     description: "Competitive coding on HackerRank.",
     longDescription:
       "Battle through 5 algorithmic problems in this intense HackerRank contest. Test your problem-solving skills and coding efficiency. Team: 1-2 members. Duration: 1½ – 2 Hours (10:30 PM – 12:30 AM). Any programming language allowed.",
-    image: "/events/code.png",
+    image: "/events/code1.png",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSc8YvkniuUoOdqqGXsf_vV5ulaHbbmDt_oOEMKsXST9YoxbrQ/viewform",
     gradient: "from-rivalry-red to-red-600",
@@ -82,7 +82,7 @@ const events: Event[] = [
     description: "Mini Hackathon – Build full-stack apps under pressure.",
     longDescription:
       "Step into Vibeathon, a high-energy mini hackathon where creativity and problem-solving come together. Build full-stack applications within 2 hours. Problem statements given on-spot. GitHub repo provided for development. Team: 1-2 members. FREE REGISTRATION.",
-    image: "/events/vibe.png",
+    image: "/events/vibe1.png",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
     gradient: "from-cyan-500 to-blue-600",

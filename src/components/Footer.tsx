@@ -6,8 +6,8 @@ import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useScrollAnimations';
 
 const socialLinks = [
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/cyberxelerate_26/', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/cyberxelerate26', label: 'LinkedIn' },
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
   { icon: Mail, href: 'mailto:cyberxelerate@rmkcet.ac.in', label: 'Email' },
 ];

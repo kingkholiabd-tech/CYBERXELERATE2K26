@@ -144,7 +144,6 @@ export default function ScheduleRules() {
               transition={{ duration: 0.6, delay: 0.5, ease: APPLE_EASE }}
               className="text-text-tertiary text-sm mt-8"
             >
-              Violations may result in disqualification.
             </motion.p>
           </motion.div>
         </div>

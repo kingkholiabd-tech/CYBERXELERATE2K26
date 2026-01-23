@@ -43,19 +43,19 @@ export default function About() {
   const headerY = useTransform(
     smoothProgress,
     [0, 0.3],
-    prefersReduced ? [0, 0] : [60, 0]
+    prefersReduced ? [0, 0] : [60, 0],
   );
   const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
   const statsY = useTransform(
     smoothProgress,
     [0.1, 0.4],
-    prefersReduced ? [0, 0] : [40, 0]
+    prefersReduced ? [0, 0] : [40, 0],
   );
   const statsOpacity = useTransform(smoothProgress, [0.1, 0.25], [0, 1]);
   const includesY = useTransform(
     smoothProgress,
     [0.25, 0.5],
-    prefersReduced ? [0, 0] : [30, 0]
+    prefersReduced ? [0, 0] : [30, 0],
   );
   const includesOpacity = useTransform(smoothProgress, [0.25, 0.4], [0, 1]);
 
@@ -134,11 +134,11 @@ export default function About() {
             What's included
           </p>
 
-          <div className="flex justify-center gap-6 sm:gap-8 mb-12 overflow-x-auto pb-2">
+          <div className="grid grid-cols-2 sm:flex sm:justify-center gap-6 sm:gap-8 mb-12">
             {includes.map((item, i) => (
               <motion.div
                 key={item.text}
-                className="flex flex-col items-center hover:animate-pulse gap-1.5 flex-shrink-0"
+                className="flex flex-col items-center hover:animate-pulse gap-1.5"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

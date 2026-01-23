@@ -119,7 +119,7 @@ const MobileHero = ({
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 0.4, x: 0 }}
           transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
-          className="h-[28vh] sm:h-[35vh] w-auto object-contain object-bottom"
+          className="h-56 sm:h-72  w-auto object-contain"
         />
         <motion.img
           src="/Ronaldo.png"
@@ -130,7 +130,7 @@ const MobileHero = ({
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 0.4, x: 0 }}
           transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-          className="h-[28vh] sm:h-[35vh] w-auto object-contain object-bottom"
+          className="h-56 sm:h-72  w-auto object-contain"
         />
       </div>
 

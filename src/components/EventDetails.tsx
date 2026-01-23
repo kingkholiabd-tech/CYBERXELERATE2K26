@@ -118,7 +118,7 @@ const eventsData: Record<string, EventData> = {
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfQP_j_LIzfnzEenC0cnwmd0ldhLnYb4ULT52IgU4j1Q45W_w/viewform",
     time: "10:00 AM – 12:30 PM",
-    team: "1-5 members",
+    team: "1-4 members",
     rules: [
       "Team Size: Minmum of 1 to Maximum of 4 members",
       "Domains: Cyber Security, Artificial Intelligence, Edutech, Open Innovation",

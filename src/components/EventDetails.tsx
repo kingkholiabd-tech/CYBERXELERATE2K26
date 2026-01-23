@@ -55,7 +55,7 @@ const eventsData: Record<string, EventData> = {
     ],
   },
   "code-fc": {
-    title: "CODE FC",
+    title: "CODE WAR",
     tagline: "Competitive Coding Challenge - Solve. Submit. Win.",
     description:
       "A competitive coding challenge on HackerRank platform. One round consisting of 5 algorithmic problems. Questions will be provided on the spot. Test your problem-solving speed and coding efficiency. Final results based on HackerRank Leaderboard. Systems will be provided.",
@@ -79,7 +79,7 @@ const eventsData: Record<string, EventData> = {
     ],
     coordinators: [
       { name: "Akash VI", phone: "+91 94452 39862" },
-      { name: "Hari Priyan R", phone: "+91 63819 78926" },
+      { name: "Haripriyan R", phone: "+91 63819 78926" },
     ],
   },
   vibeathon: {
@@ -352,7 +352,7 @@ export default function EventDetails() {
                   <img
                     src={event.eventPoster}
                     alt={`${event.title} Poster`}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </motion.div>
               )}

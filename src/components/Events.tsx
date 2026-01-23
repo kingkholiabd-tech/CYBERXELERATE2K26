@@ -64,7 +64,7 @@ const events: Event[] = [
     gradient: "from-rivalry-red to-red-600",
   },
   {
-    title: "Paper Presentation",
+    title: "CLASH OF IDEAS",
     slug: "paper-presentation",
     category: "Technical",
     description: "Present innovative tech ideas.",
@@ -76,7 +76,7 @@ const events: Event[] = [
     gradient: "from-rivalry-blue to-blue-700",
   },
   {
-    title: "Vibeathon",
+    title: "Vibe-A-thon",
     slug: "vibeathon",
     category: "Technical",
     description: "Mini Hackathon – Build full-stack apps under pressure.",

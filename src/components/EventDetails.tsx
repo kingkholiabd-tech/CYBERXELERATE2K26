@@ -83,7 +83,7 @@ const eventsData: Record<string, EventData> = {
     ],
   },
   vibeathon: {
-    title: "Vibeathon",
+    title: "Vibe-A-thon",
     tagline: "Build. Ship. Win.",
     description:
       "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
@@ -109,7 +109,7 @@ const eventsData: Record<string, EventData> = {
     ],
   },
   "paper-presentation": {
-    title: "Paper Presentation",
+    title: "Clash of Ideas",
     tagline: "Present your innovative ideas.",
     description:
       "Showcase your research and innovative ideas in Cyber Security, Artificial Intelligence, Edutech, or Open Innovation. Submit both Project Report (PDF) and PPT through the online submission form before the deadline. Single round evaluation based on presentation quality, innovation, and relevance to the selected domain. Mode: Offline. Venue: Mechanical Block, 3rd Floor Seminar Hall.",
@@ -159,8 +159,8 @@ const eventsData: Record<string, EventData> = {
       "Winning Criteria: The team scoring the highest total points at the final round will be declared as the winner",
     ],
     coordinators: [
-      { name: "Coordinator 1", phone: "+91 98765 43210" },
-      { name: "Coordinator 2", phone: "+91 98765 43211" },
+      { name: "Laskshmi S", phone: "+91 93450 61303" },
+      { name: "Kaviya M", phone: "+91 88387 40567" },
     ],
   },
   "play-io": {

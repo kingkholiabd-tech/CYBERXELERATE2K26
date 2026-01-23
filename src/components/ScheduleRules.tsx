@@ -24,7 +24,7 @@ const rules = [
   "Formal attire only",
   "No mobile phones",
   "Use college transport (Feb 9)",
-  "No on-spot registration",
+  "On-spot registration",
 ];
 
 // ============================================

@@ -22,6 +22,11 @@ const contacts = [
     name: 'Pritto Ruban R',
     phone: '+91 99529 41725',
   },
+  {
+    role: 'Student Coordinator',
+    name: 'Porselvi P',
+    phone: '+91 80157 07073',
+  },
 ];
 
 // Contact Card with scroll-based parallax
@@ -173,7 +178,7 @@ export default function Contact() {
         </motion.header>
 
         {/* Contact Cards with staggered parallax */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
           {contacts.map((contact, index) => (
             <ContactCard 
               key={contact.name} 

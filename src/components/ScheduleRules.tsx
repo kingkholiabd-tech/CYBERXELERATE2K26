@@ -22,7 +22,7 @@ const schedule = [
 const rules = [
   "College ID required",
   "Formal attire only",
-  "No mobile phones",
+  "Mobile Usage Prohibited",
   "Use college transport (Feb 9)",
   "No on-spot registration",
 ];

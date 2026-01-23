@@ -106,7 +106,7 @@ const events: Event[] = [
     description: "Teamwork & coordination games.",
     longDescription:
       "Time-based event testing coordination through creative mini-games. Round 1: Random challenges with time recording. Top teams advance to Round 2: Special teamwork challenge. Team: 2-3 members. Winner decided by fastest completion time.",
-    image: "/events/play.png",
+    image: "/events/play-io.jpg",
     formLink: "https://forms.gle/xxxxx6",
     gradient: "from-emerald-500 to-green-600",
   },

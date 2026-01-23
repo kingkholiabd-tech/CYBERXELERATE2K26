@@ -118,9 +118,9 @@ const eventsData: Record<string, EventData> = {
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfQP_j_LIzfnzEenC0cnwmd0ldhLnYb4ULT52IgU4j1Q45W_w/viewform",
     time: "10:00 AM – 12:30 PM",
-    team: "1-4 members",
+    team: "1-5 members",
     rules: [
-      "Team Size: 1 to 4 members",
+      "Team Size: 1 to 5 members",
       "Domains: Cyber Security, Artificial Intelligence, Edutech, Open Innovation",
       "Submission: Upload both Project Report (PDF) and PPT through the online submission form before deadline",
       "Single Round: Evaluation based on presentation quality, innovation, and relevance to selected domain",
@@ -140,7 +140,7 @@ const eventsData: Record<string, EventData> = {
       "A fun-filled music-based event that tests creativity, rhythm sense, and quick thinking.",
     description:
       "Round 1 features Bioscope and English to Tamil Translation, where participants showcase observation and lyrical skills. Top-performing teams move to Round 2, which includes Dumsharax and Find the Missing Line, focusing on teamwork and timing.",
-    poster: "/events/music.png",
+    poster: "/events/de-melodia1.jpeg",
     eventPoster: "/events/posters/demelodia.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSeaSTnZVrsQ38NOBGHu-ar2242wduAxJhDAtSB9UQT_371vjw/viewform",
@@ -159,7 +159,7 @@ const eventsData: Record<string, EventData> = {
       "Winning Criteria: The team scoring the highest total points at the final round will be declared as the winner",
     ],
     coordinators: [
-      { name: "Laskshmi S", phone: "+91 93450 61303" },
+      { name: "Lakshmi S", phone: "+91 93450 61303" },
       { name: "Kaviya M", phone: "+91 88387 40567" },
     ],
   },
@@ -189,7 +189,7 @@ const eventsData: Record<string, EventData> = {
     ],
     coordinators: [
       { name: "Sachin Madhumitha Sree D", phone: "+91 99410 22033" },
-      { name: "Hemanth Kumar B", phone: "++91 87782 27280" },
+      { name: "Hemanth Kumar B", phone: "+91 87782 27280" },
     ],
   },
 };

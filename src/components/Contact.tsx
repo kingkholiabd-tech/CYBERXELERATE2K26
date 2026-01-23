@@ -204,7 +204,7 @@ export default function Contact() {
           <motion.p 
             className="text-text-secondary text-center mb-8 max-w-lg mx-auto"
           >
-            RMK Nagar, Gummidipoondi Taluk, Puduvoyal, Tamil Nadu 601 206
+            RSM Nagar, Gummidipoondi Taluk, Puduvoyal, Tamil Nadu 601 206
           </motion.p>
 
           {/* Map with zoom effect */}

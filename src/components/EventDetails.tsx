@@ -56,7 +56,7 @@ const eventsData: Record<string, EventData> = {
   },
   "code-fc": {
     title: "CODE WAR",
-    tagline: "Competitive Coding Challenge - Solve. Submit. Win.",
+    tagline: "Competitive Coding Challenge - Code. Complie. Compete.",
     description:
       "A competitive coding challenge on HackerRank platform. One round consisting of 5 algorithmic problems. Questions will be provided on the spot. Test your problem-solving speed and coding efficiency. Final results based on HackerRank Leaderboard. Systems will be provided.",
     poster: "/events/codfcbanner.jpeg",
@@ -131,7 +131,7 @@ const eventsData: Record<string, EventData> = {
     ],
     coordinators: [
       { name: "Ranitha L", phone: "+91 80723 93081" },
-      { name: "Vishali S", phone: "+91 72001 05247" },
+      { name: "Vaishali S", phone: "+91 72001 05247" },
     ],
   },
   "de-melodia": {
@@ -188,8 +188,8 @@ const eventsData: Record<string, EventData> = {
       "No additional scoring parameters will be considered",
     ],
     coordinators: [
-      { name: "Coordinator 1", phone: "+91 98765 43210" },
-      { name: "Coordinator 2", phone: "+91 98765 43211" },
+      { name: "Sachin Madhumitha Sree D", phone: "+91 99410 22033" },
+      { name: "Hemanth Kumar B", phone: "++91 87782 27280" },
     ],
   },
 };

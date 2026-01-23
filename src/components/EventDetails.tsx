@@ -33,7 +33,7 @@ const eventsData: Record<string, EventData> = {
     description:
       "Real-world cybersecurity challenges on CTFD platform. Compete in Jeopardy-style challenges across multiple categories including Cryptography, Forensics, Reverse Engineering, Steganography, OSINT, Web Exploitation, and Binary Exploitation. Duration: 1 hour 45 minutes. Flag format: hackoff{flag}. Offline mode. Bring your own laptops/devices.",
     poster: "/events/ctf3.jpeg",
-    eventPoster: "/events/posters/ctf.jpeg",
+    eventPoster: "/events/posters/ctf1.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",
     time: "10:00 AM – 11:45 AM (1h 45min)",

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "./Footer";
 
 // Apple-style easing
@@ -32,7 +32,7 @@ const eventsData: Record<string, EventData> = {
     tagline: "Capture the flag.",
     description:
       "Real-world cybersecurity challenges on CTFD platform. Compete in Jeopardy-style challenges across multiple categories including Cryptography, Forensics, Reverse Engineering, Steganography, OSINT, Web Exploitation, and Binary Exploitation. Duration: 1 hour 45 minutes. Flag format: hackoff{flag}. Offline mode. Bring your own laptops/devices.",
-    poster: "/events/ctf3.jpeg",
+    poster: "/events/ctf2.jpg",
     eventPoster: "/events/posters/ctf1.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",
@@ -87,7 +87,7 @@ const eventsData: Record<string, EventData> = {
     tagline: "Build. Ship. Win.",
     description:
       "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
-    poster: "/events/vibe.png",
+    poster: "/events/vibe2.jpg",
     eventPoster: "/events/posters/vibeathon.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
@@ -224,13 +224,13 @@ export default function EventDetails() {
   return (
     <main className="min-h-screen bg-surface-base">
       {/* Hero */}
-      <section className="relative h-[60vh] min-h-[400px]">
+      <section className="relative h-[40vh] min-h-[750px]">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
             src={event.poster}
             alt={event.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/60 to-transparent" />
         </div>
@@ -353,7 +353,7 @@ export default function EventDetails() {
                   <img
                     src={event.eventPoster}
                     alt={`${event.title} Poster`}
-                    className="w-full h-auto object-contain"
+                    className="w-full h-full object-contain"
                   />
                 </motion.div>
               )}

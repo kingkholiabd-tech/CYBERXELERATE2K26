@@ -45,7 +45,7 @@ const events: Event[] = [
     description: "Capture The Flag cybersecurity challenge.",
     longDescription:
       "Dive into real-world cybersecurity challenges on the CTFD platform. Compete in flag hunting, solve cryptographic puzzles, and prove your hacking prowess. Max 3 members per team. Duration: 10:00 AM – 12:30 PM.",
-    image: "/events/ctf1.jpeg",
+    image: "/events/ctf4.jpg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfIlTt4FxusBf5JbwzJ30mR_QDPDmGbThEyRK3SRJxdmUCLwA/viewform",
     gradient: "from-rivalry-red  to-red-600",
@@ -82,7 +82,7 @@ const events: Event[] = [
     description: "Mini Hackathon – Build full-stack apps under pressure.",
     longDescription:
       "Step into Vibeathon, a high-energy mini hackathon where creativity and problem-solving come together. Build full-stack applications within 2 hours. Problem statements given on-spot. GitHub repo provided for development. Team: 1-2 members. FREE REGISTRATION.",
-    image: "/events/vibe1.png",
+    image: "/events/vibe-banner.webp",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
     gradient: "from-cyan-500 to-blue-600",
@@ -94,7 +94,7 @@ const events: Event[] = [
     description: "Music-based rhythm challenge.",
     longDescription:
       "Test your musical knowledge through three progressively challenging stages. Connect with tunes, lyrics, and musical clues. Team: 2-3 members. No mobile phones allowed. Win by scoring highest points across all rounds.",
-    image: "/events/music.png",
+    image: "/events/de-melodia.webp",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSeaSTnZVrsQ38NOBGHu-ar2242wduAxJhDAtSB9UQT_371vjw/viewform",
     gradient: "from-pink-500 to-rose-600",

@@ -171,7 +171,7 @@ const eventsData: Record<string, EventData> = {
       "In Round 1, each team will randomly select one of five challenges and complete the task as quickly as possible, with time recorded from start to finish. The teams with the lowest times will qualify for Round 2, which will be a special teamwork challenge requiring all members to participate together in a new task.",
     poster: "/events/posters/PlayioBanner.jpg",
     eventPoster: "/events/posters/playio.jpeg",
-    formLink: "https://forms.gle/xxxxx6",
+    formLink: "https://docs.google.com/forms/d/e/1FAIpQLSd0EgUl1LpO_z1g8MMBwKn3NYqGedGaO1MrsaMs7tBCOAImJw/viewform",
     time: "Depends on the number of participating teams",
     team: "2-3 members",
     rules: [

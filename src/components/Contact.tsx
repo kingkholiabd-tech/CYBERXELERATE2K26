@@ -15,7 +15,7 @@ const contacts = [
   {
     role: 'Faculty Coordinator',
     subtitle: 'Assistant Professor',
-    name: 'Mrs Monica',
+    name: 'Mrs Monica GK',
   },
   {
     role: 'Student Coordinator',

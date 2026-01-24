@@ -515,7 +515,7 @@ export default function Events() {
           </h2>
 
           <p className="text-lg text-text-secondary max-w-xl mx-auto mb-2">
-            Five epic arenas await. Pick your challenge and prove your
+            Six epic arenas await. Pick your challenge and prove your
             excellence.
           </p>
 

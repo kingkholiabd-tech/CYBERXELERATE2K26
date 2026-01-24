@@ -19,12 +19,12 @@ const contacts = [
   },
   {
     role: 'Student Coordinator',
-    name: 'Pritto Ruban R',
+    name: 'Mr Pritto Ruban R',
     phone: '+91 99529 41725',
   },
   {
     role: 'Student Coordinator',
-    name: 'Porselvi P',
+    name: 'Ms Porselvi P',
     phone: '+91 80157 07073',
   },
 ];

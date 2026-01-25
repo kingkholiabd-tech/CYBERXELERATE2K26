@@ -88,7 +88,7 @@ const eventsData: Record<string, EventData> = {
     description:
       "A high-energy mini hackathon focused on Full Stack Development. Solve real-world problems by designing and developing effective solutions within 2 hours. FREE REGISTRATION.",
     poster: "/events/vibe2.jpg",
-    eventPoster: "/events/posters/vibeathon.jpeg",
+    eventPoster: "/events/posters/vibe.jpeg",
     formLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSfk_0sJwny9eLZANa0JRNewMyu-REM36MfUHSMJt6PVeeIMAw/viewform",
     time: "10:00 AM – 12:00 PM",

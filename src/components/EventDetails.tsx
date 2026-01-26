@@ -96,6 +96,7 @@ const eventsData: Record<string, EventData> = {
     rules: [
       "Team size: 1-2 members only",
       "Problem statements given on-spot",
+      "All must bring their own laptops & devices with necessary software installed",
       "2 hours to build your solution",
       "Domain: Full Stack Development",
       "GitHub repo will be provided – work only on that repo",

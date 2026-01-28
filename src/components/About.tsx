@@ -11,7 +11,7 @@ const APPLE_EASE = [0.25, 0.1, 0.25, 1] as const;
 // Stats data - concise, factual
 const stats = [
   { value: "1000+", label: "Participants" },
-  { value: "₹50K", label: "Prize Pool" },
+  { value: "₹25K", label: "Prize Pool" },
   { value: "6", label: "Events" },
   { value: "1", label: "Day" },
 ];

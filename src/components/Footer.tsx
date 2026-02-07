@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import { useRef } from 'react';
 import { usePrefersReducedMotion } from '../hooks/useScrollAnimations';
 
 const socialLinks = [
@@ -55,12 +55,41 @@ export default function Footer() {
     [0.2, 0.7],
     prefersReduced ? [1, 1] : [0.9, 1]
   );
-  
+
   const brandingOpacity = useTransform(
     smoothProgress,
     [0.2, 0.6],
     [0, 1]
   );
+
+  // Social links y transforms
+  const socialY1 = useTransform(
+    smoothProgress,
+    [0.15, 0.5],
+    prefersReduced ? [0, 0] : [20, 0]
+  );
+  const socialY2 = useTransform(
+    smoothProgress,
+    [0.18, 0.53],
+    prefersReduced ? [0, 0] : [20, 0]
+  );
+  const socialY3 = useTransform(
+    smoothProgress,
+    [0.21, 0.56],
+    prefersReduced ? [0, 0] : [20, 0]
+  );
+  const socialY4 = useTransform(
+    smoothProgress,
+    [0.24, 0.59],
+    prefersReduced ? [0, 0] : [20, 0]
+  );
+
+  // Divider transforms
+  const dividerScaleX = useTransform(smoothProgress, [0.3, 0.7], prefersReduced ? [1, 1] : [0, 1]);
+  const dividerOpacity = useTransform(smoothProgress, [0.3, 0.6], [0, 1]);
+
+  // Copyright opacity
+  const copyrightOpacity = useTransform(smoothProgress, [0.5, 0.8], [0, 1]);
 
   return (
     <footer ref={footerRef} className="relative py-16 bg-surface-primary border-t border-white/5">
@@ -102,11 +131,7 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{
-                y: useTransform(
-                  smoothProgress,
-                  [0.15 + index * 0.03, 0.5 + index * 0.03],
-                  prefersReduced ? [0, 0] : [20, 0]
-                ),
+                y: [socialY1, socialY2, socialY3, socialY4][index],
               }}
             >
               <social.icon size={20} strokeWidth={1.5} />
@@ -143,7 +168,7 @@ export default function Footer() {
         <motion.p
           className="text-center text-text-tertiary text-sm"
           style={{
-            opacity: useTransform(smoothProgress, [0.5, 0.8], [0, 1]),
+            opacity: copyrightOpacity,
           }}
         >
           © {currentYear} CYBERXELERATE. All rights reserved.

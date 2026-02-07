@@ -179,7 +179,7 @@ export default function About() {
               whileTap={{ scale: 0.98 }}
             >
               <Bus className="w-4 h-4 " />
-              Transport Available
+              Transport Details
             </motion.a>
           </motion.div>
         </motion.div>

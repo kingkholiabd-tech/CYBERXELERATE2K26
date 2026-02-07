@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Bus, ScrollText, Ticket, UtensilsCrossed } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { Bus, Ticket, UtensilsCrossed, ScrollText } from "lucide-react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimations";
 
 // Apple-style easing
@@ -169,7 +169,7 @@ export default function About() {
             </p>
 
             <motion.a
-              href="/Symposium%20Bus%20Route.pdf"
+              href="/public/Symposium Bus Route.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium

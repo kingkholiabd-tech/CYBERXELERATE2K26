@@ -170,7 +170,7 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <motion.a
-              href="/Event Poster.pdf"
+              href="/Event%20Poster.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className={`
@@ -324,7 +324,7 @@ export default function Navbar() {
 
                 {/* Mobile CTA */}
                 <motion.a
-                  href="/Event Poster.pdf"
+                  href="/Event%20Poster.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 mt-4 px-4 py-3 rounded-xl

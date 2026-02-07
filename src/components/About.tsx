@@ -169,7 +169,7 @@ export default function About() {
             </p>
 
             <motion.a
-              href="/pdfs/transport-details.pdf"
+              href="Symposium Bus Route.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium
